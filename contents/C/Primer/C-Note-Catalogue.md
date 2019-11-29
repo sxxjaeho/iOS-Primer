@@ -1,7 +1,7 @@
 # C 语言
 ## 笔记目录 
 
-* [day 1](https://github.com/sxxjaeho/iOS-Primer/contents/C/Primer/Note/day1.md)
+* [day 1](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/C/Primer/Note/day1.md)
   * 关键字及分类
   * 标识符概念及其命名原则
   * 标识符的命名规范
@@ -16,7 +16,7 @@
   * scanf 函数介绍及使用
   * scanf 使用注意事项
   * scanf 函数原理
-* [day 2](https://github.com/sxxjaeho/iOS-Primer/contents/C/Primer/Note/day2.md)
+* [day 2](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/C/Primer/Note/day2.md)
   * 运算符的概念及分类
   * 运算符的优先级及结合性
   * 算术运算符介绍及用法
@@ -31,7 +31,7 @@
   * 逻辑运算符
   * 逻辑运算符结合性和优先级
   * 三目运算符符及求值方法
-* [day 3](https://github.com/sxxjaeho/iOS-Primer/contents/C/Primer/Note/day3.md)
+* [day 3](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/C/Primer/Note/day3.md)
   * 程序的结构及分类
   * if 语句介绍及基本格式
   * if-else 语句及嵌套
