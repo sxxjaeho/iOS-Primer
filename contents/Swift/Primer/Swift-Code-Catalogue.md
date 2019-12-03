@@ -9,5 +9,7 @@
     * [Operator.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/Swift/Primer/Code/Operator.playground)
 * 流程控制
     * [ControlFlow.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/Swift/Primer/Code/ControlFlow.playground)
+* 集合类
+    * [Collection.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/Swift/Primer/Code/Collection.playground)
     
 
