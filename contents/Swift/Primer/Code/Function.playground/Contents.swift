@@ -241,3 +241,122 @@ var str = "Hello, playground"
 //    }
 //}
 
+
+//// MARK: - 高阶函数
+//// map:对于原始集合里的每一个元素，以一个变换后的元素替换之形成一个新的集合
+//let numbers = [1, 2, 4, 5, 10]
+//print(numbers.map { $0 * 10 })
+//
+//// filter:对于原始集合里的每一个元素，通过判定来将其丢弃或者放进新集合
+//print(numbers.filter { $0 > 4 })
+//
+//// reduce:对于原始集合里的每一个元素，作用于当前累积的结果上
+//print(numbers.reduce(100) { $0 + $1 })
+//
+//// flatMap:对于元素是集合的集合，可以得到单级的集合
+//let arrayNumbers = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+//print(arrayNumbers.flatMap{ $0.map{ $0 * 10 }})
+//
+//// compactMap:过滤空值
+//let names:[String?] = ["zhangsan", "lisi", nil, "wangwu", nil, "zhaoliu"]
+//print(names.count)
+//
+//print(names.compactMap { $0 })
+//print(names.compactMap { $0?.count })
+
+
+//// MARK: - 函数式编程1
+//// 读入一个文本文件，确定所有单词的使用频率并从高到低排序，打印出所有单词及其 频率的排序列表
+// 命令式解法
+//let words = """
+//There are moments in life when you miss someone so much that you just want to pick them from your dreams and hug them for real dream what you want to dream go where you want to go be what you want to be because you have only one life and one life and one chance to do all the things you want to do
+//"""
+//let NON_WORDS = ["a", "of", "and", "or", "the", "on"]
+//
+//func wordFreq(words: String) -> [String: Int] {
+//    var wordDict: [String: Int] = [:]
+//    let wordList = words.split(separator: " ")
+//    for word in wordList {
+//        let lowercaseWord = word.lowercased()
+//        if !NON_WORDS.contains(lowercaseWord) {
+//            if let count = wordDict[lowercaseWord] {
+//                wordDict[lowercaseWord] = count + 1
+//            } else {
+//                wordDict[lowercaseWord] = 1
+//            }
+//        }
+//    }
+//    return wordDict
+//}
+//print(wordFreq(words: words))
+//
+// 函数式解法
+//func wordFreq1(words: String) -> [String: Int] {
+//    var wordDict: [String: Int] = [:]
+//    let wordList = words.split(separator: " ")
+//    wordList.map { $0.lowercased() }
+//        .filter { !NON_WORDS.contains($0)} // ?? 合并空值运算符
+//        .forEach { wordDict[$0] = (wordDict[$0] ?? 0) + 1}
+//
+//    return wordDict;
+//}
+//print(wordFreq1(words: words))
+//
+//// 找到一个字符串里面某个字符数组里面第一个出现的字符的位置。比如“Hello， World”，[“a”, “e”, “i”, “o”, “u”]，那 e 是在字符串第一个出现的字符，位置是 1， 返回 1
+//let words = "Hello, world"
+//let letters = ["a", "e", "i", "o", "u"]
+//func findFirstAppearLetterIndex(words: String) -> Int {
+//    let result = zip(0..., Array(words)).map { $0 }
+//        .filter { letters.contains(String($0.1.lowercased())) }
+//    print(result)
+//    return result.first?.0 ?? -1
+//}
+//print(findFirstAppearLetterIndex(words: words))
+
+
+//// MARK: - 函数式编程2
+//// 假设我们有一个名字列表，其中一些条目由单个字符构成。现在的任务是，将除去单字符条 目之外的列表内容，放在一个逗号分隔的字符串里返回，且每个名字的首字母都要大写。
+//// 命令式解法
+//let employee = ["neal", "s", "stu", "j", "rich", "bob", "aiden", "j", "ethan", "liam", "mason", "noah", "lucas", "jacob", "jack"]
+//func cleanNames(names: Array<String>) -> String {
+//    var cleanedNames = ""
+//    for name in names {
+//        if name.count > 1 {
+//            cleanedNames += name.capitalized + ","
+//        }
+//    }
+//    cleanedNames.remove(at: cleanedNames.index(before: cleanedNames.endIndex))
+//    return cleanedNames
+//}
+//print(cleanNames(names: employee))
+//
+//// 函数式解法
+//func cleanNames1(names: Array<String>) -> String {
+//    let cleanedNames = employee.filter { $0.count > 1 }
+//        .map { $0.capitalized }
+//    .joined(separator: ",")
+//    return cleanedNames
+//}
+//print(cleanNames1(names: employee))
+//
+//// 聊聊 Swift 的劣势-并行
+//extension Array where Element: Any {
+//    func paralletMap<T>(_ transform: (Element) -> T) -> [T] {
+//        let n = self.count
+//        if n == 0 {
+//            return []
+//        }
+//        var result = ContiguousArray<T>() // “邻接数组”类型是一个总将元素存储在一个相邻的内存区域的专用的数组
+//        result.reserveCapacity(n)
+//
+//        DispatchQueue.concurrentPerform(iterations: n) { (i) in
+//            result.append(transform(self[i]))
+//        }
+//        return Array<T>(result)
+//    }
+//}
+//
+//// 具有普遍意义的基本构造单元
+//// 筛选(filter)
+//// 映射(map)
+//// 折叠/化约(foldLeft/reduce等)
