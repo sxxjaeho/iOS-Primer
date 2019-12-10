@@ -18,6 +18,7 @@
 ##### - Swift
 <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/Swift/Swift-Catalogue.md"><img src="contents/assets/images/item_cover_swift.png" align="left" width="200" height="130"></a>
 <br>&emsp;<a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/Swift/Primer/Swift-Code-Catalogue.md">练习代码</a>
+<br>&emsp;<a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/Swift/Arithmetic/Swift-Arithmetic-Catalogue.md">算法</a>
 <br>&emsp;<a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/Swift/Swift-Catalogue.md">...</a>
 <br>
 <br>

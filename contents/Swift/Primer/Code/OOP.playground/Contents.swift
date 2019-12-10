@@ -325,7 +325,7 @@ var str = "Hello, playground"
 //    case north
 //    case east
 //    case west
-//    
+//
 //    static subscript(index: Int) -> CompassPoint {
 //        get {
 //            return CompassPoint(rawValue: index)!
@@ -335,3 +335,203 @@ var str = "Hello, playground"
 //
 //let direction = CompassPoint[2]
 //print(direction)
+
+
+//// MARK: - 类的初始化和反初始化
+//// 初始化器
+//struct Fahrenheit {
+//    var temperature: Double
+//    init() {
+//        temperature = 32.0
+//    }
+//}
+//var f = Fahrenheit()
+//print("The default temperature is \(f.temperature)° Fahrenheit")
+//
+//// 默认的属性值
+//struct Fahrenheit1 {
+//    var temperature = 32.0
+//}
+//var f1 = Fahrenheit1()
+//print("The default temperature is \(f.temperature)° Fahrenheit")
+//
+//// 默认的初始化器
+//class ShoppingListItem {
+//    var name: String?
+//    var quantity = 1
+//    var purchased = false
+//}
+//var item = ShoppingListItem()
+//
+//// 自定义初始化
+//struct Celsius {
+//    var temperatureInCelsius: Double
+//    init(fromFahrenheit fahrenheit: Double) {
+//        temperatureInCelsius = (fahrenheit - 32.0) / 1.8
+//    }
+//    init(fromKelvin kelvin: Double) {
+//        temperatureInCelsius = kelvin - 273.15
+//    }
+//}
+//let boilingPointOfWater = Celsius(fromFahrenheit: 212.0)
+//let freezingPointOfWater = Celsius(fromKelvin: 273.15)
+//
+//// 在初始化中分配常量属性
+//class SurveyQuestion {
+//    let text: String
+//    var response: String?
+//    init(text: String) {
+//        self.text = text
+//    }
+//    func ask() {
+//        print(text)
+//    }
+//}
+//let beetsQuestion = SurveyQuestion(text: "How about beets?")
+//beetsQuestion.ask()
+//beetsQuestion.response = "I also like beets. (But not with cheese.)"
+//
+//// 结构体的成员初始化器
+//struct Size {
+//    var width = 0.0, height = 0.0
+//}
+//let twoByTwo = Size(width: 2.0, height: 2.0)
+//
+//// 值类型的初始化器委托
+//struct Point {
+//    var x = 0.0, y = 0.0
+//}
+//
+//struct Rect {
+//    var origin = Point()
+//    var size = Size()
+//    init() {}
+//    init(origin: Point, size: Size) {
+//        self.origin = origin
+//        self.size = size
+//    }
+//    init(center: Point, size:Size) {
+//        let originX = center.x - (size.width / 2)
+//        let originY = center.y - (size.width / 2)
+//        self.init(origin: Point(x: originX, y: originY), size: size)
+//    }
+//}
+//
+//// 类的继承和初始化
+//// 指定初始化器和便捷初始化器
+//
+//// 类的初始化委托
+//
+//// 两段式初始化
+//// 安全检查
+//class Person {
+//    var name: String
+//    var age: Int
+//    init(name: String, age: Int) {
+//        self.name = name
+//        self.age = age
+//    }
+//    convenience init(age: Int) {
+//        self.init(name: "[Unnamed]", age: age)
+//    }
+//}
+//
+//class Teacher: Person {
+//    var salary: Int
+//    init(name: String, age: Int, salary: Int) {
+////        super.init(name: name, age: age)
+////        self.salary = salary // 1.指定初始化器必须保证在向上委托给父类初始化器之前，其所在类引入的所有属性都要初始化完成
+////        self.name = name + "老师"
+//
+//
+////        self.salary = salary
+////        self.name = name + "老师" // 2.指定初始化器必须先向上委托父类初始化器，然后才能为继承的属性设置新值
+////        super.init(name: name, age: age)
+//
+//        self.salary = salary
+////        self.test() // 4.初始化器在第一阶段初始化完成之前，不能调用任何实例方法、不能读取任何实例属性的值，也 不能引用 self 作为值
+//        super.init(name: name, age: age)
+//        self.test()
+//        self.name = name + "老师"
+//    }
+//    convenience init(name: String) {
+////        self.name = name + "老师" // 3.便捷初始化器必须先委托同类中的其它初始化器，然后再为任意属性赋新值
+////        self.init(name: name, age: 30, salary: 5000)
+//
+//        self.init(name: name, age: 30, salary: 5000)
+//        self.name = name + "老师"
+//    }
+//    func test () {
+//        print("i am a teacher")
+//    }
+//    func showInfo() {
+//        print("teacher name \(name), age \(age), salary \(salary)")
+//    }
+//}
+//
+//// 初始化器的继承和重写
+//class Teacher1: Person {
+//    var salary: Int = 5000
+//
+////    override init(name: String, age: Int) {
+////        self.salary = 5000
+////        super.init(name: name, age: age)
+////    }
+//
+//    func showInfo() {
+//        print("teacher name \(name), age \(age), salary \(salary)")
+//    }
+//}
+//
+//let teacher = Teacher1(age: 20)
+//teacher.showInfo()
+//
+//// 初始化器的自动继承
+//// 如果你的子类没有定义任何指定初始化器，它会自动继承父类所有的指定初始化器
+//// 重写父类的所有指定初始化器，它会自动继承父类所有的指定初始化器
+//
+//// 可失败初始化器
+//// 通常来讲我们通过在 init 关键字后添加问号 (init?)的方式来定义一个可失败初始化器以创建 一个合适类型的可选项实例
+//
+//// 必要初始化器
+//// 在类的初始化器前添加 required 修饰符来表明所有该类的子类都必须实现该初始化器
+//
+//// 反初始化器
+//// 在类实例被释放的时候，反初始化器就会立即被调用，你可以是用 deinit 关键字来写反初始 化器，就如同写初始化器要用 init 关键字一样。反初始化器只在类类型中有效
+
+
+//// MARK: - 继承
+//// 定义基类
+//class Vehicle {
+//    var currentSpeed = 0.0
+//    var description: String {
+//        return "traveling at \(currentSpeed) miles per hour"
+//    }
+//    func makeNoise() {
+//    }
+//}
+//
+//// 子类
+//class Bicycle: Vehicle {
+//    var hasBasket = false
+//}
+//let bicycle = Bicycle()
+//bicycle.hasBasket = true
+//bicycle.currentSpeed = 15.0
+//print("Bicycle: \(bicycle.description)")
+//
+//// 重写
+//class Car: Vehicle {
+//    var gear: Int = 0
+//    // 重写方法
+//    override var description : String {
+//        return super.description + "at gear \(gear)"
+//    }
+//}
+//var car = Car()
+//car.gear = 3
+//car.currentSpeed = 30
+//print(car.description)
+//
+//// 阻止重写
+//// 可以通过标记为 ﬁnal 来阻止一个方法、属性或者下标脚本被重写。
