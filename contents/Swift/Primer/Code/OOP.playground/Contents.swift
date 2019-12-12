@@ -534,4 +534,151 @@ var str = "Hello, playground"
 //print(car.description)
 //
 //// 阻止重写
-//// 可以通过标记为 ﬁnal 来阻止一个方法、属性或者下标脚本被重写。
+//// 可以通过标记为 ﬁnal 来阻止一个方法、属性或者下标脚本被重写
+
+
+//// MARK: - 多态和类型转换
+//// 类型
+//class MediaItem {
+//    var name: String
+//    init(name: String) {
+//        self.name = name
+//    }
+//}
+//
+//class Movie: MediaItem {
+//    var director: String
+//    init(name: String, director: String) {
+//        self.director = director
+//        super.init(name: name)
+//    }
+//}
+//
+//class Song: MediaItem {
+//    var artist: String
+//    init(name: String, artist: String) {
+//        self.artist = artist
+//        super.init(name: name)
+//    }
+//}
+//let array = [Movie(name: "1", director: "2"),
+//             Song(name: "3", artist: "4"),
+//             Movie(name: "5", director: "6")]
+//print(type(of: array))
+//
+//for item in array {
+//    // 向下类型转换
+//    // 某个类类型的常量或变量可能实际上在后台引用自一个子类的实例。当你遇到这种情况时你 可以尝试使用类型转换操作符（ as? 或 as! ）将它向下类型转换至其子类类型
+//    if let realItem = item as? Movie {
+//        print(realItem.director)
+//    }
+//}
+//
+//// 类型检查
+//// 使用类型检查操作符 （ is ）来检查一个实例是否属于一个特定的子类
+//
+//// Any 和 AnyObject
+//// Swift 为不确定的类型提供了两种特殊的类型别名：
+//// AnyObject 可以表示任何类类型的实例
+//// Any 可以表示任何类型，包括函数类型
+//
+//// 嵌套类型
+//// Swift 中的类，结构体和枚举可以进行嵌套，即在某一类型的内部定义类型，这种类型嵌套 在 Java 中称为内部类，在 C# 中称为嵌套类
+//// 嵌套类型的能够访问它外部的成员
+
+
+//// MARK: - 扩展
+//// extension
+//// 添加计算实例属性和计算类型属性
+//extension Double {
+//    var km: Double {
+//        return self / 1000.0
+//    }
+//}
+//let speed = 1200.0
+//print(speed.km)
+//
+//// 定义实例方法和类型方法
+//extension Int {
+//    func repetition(task: () -> Void) {
+//        for _ in 0..<self {
+//            task()
+//        }
+//    }
+//    // mutating 方法
+//    mutating func square() -> Int {
+//        self = self * self
+//        return self
+//    }
+//}
+//3.repetition {
+//    print("hello")
+//}
+//
+//var someInt = 3
+//print(someInt.square())
+//
+//// 提供新初始化器
+//struct Size {
+//    var width = 0.0, height = 0.0
+//}
+//
+//struct Point {
+//    var x = 0.0, y = 0.0
+//}
+//
+//struct Rect {
+//    var origin = Point()
+//    var size = Size()
+//}
+//
+//extension Rect {
+//    init(center: Point, size: Size) {
+//        let originX = center.x - (size.width / 2)
+//        let originY = center.y - (size.height / 2)
+//        self.init(origin: Point(x: originX, y: originY), size: size)
+//    }
+//}
+//
+//let centerRect = Rect(center: Point(x: 4.0, y: 4.0), size: Size(width: 3.0, height: 3.0))
+//print(centerRect)
+//
+//// 定义下标
+//extension Int {
+//    subscript(digitIndex: Int) -> Int {
+//        get {
+//            var decimalBase = 1
+//            for _ in 0..<digitIndex {
+//                decimalBase *= 10
+//            }
+//            return (self / decimalBase) % 10
+//        }
+//    }
+//}
+//print(73112402[0])
+//print(73112402[1])
+//print(73112402[2])
+//
+//// 定义和使用新内嵌类型
+//extension Int {
+//    enum Kind {
+//        case negative, zero, positive
+//    }
+//    var kind: Kind {
+//        switch self {
+//        case 0:
+//            return .zero
+//        case let x where x > 0:
+//            return .positive
+//        default:
+//            return .negative
+//        }
+//    }
+//}
+//print(9.kind)
+//
+//// 使现有的类型遵循某协议
+//
+//// 扩展可以向一个类型添加新的方法，但是不能重写已有的方法
+
+
