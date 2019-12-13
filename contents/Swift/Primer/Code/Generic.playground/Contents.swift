@@ -67,8 +67,8 @@ var str = "Hello, playground"
 //// MARK: - 关联类型
 //// 协议不允许有泛型参数，为协议指定泛型必须使用关联类型
 //protocol Container {
-////    associatedtype ItemType
-//    associatedtype Item: Equatable // 你可以在协议里给关联类型添加约束来要求遵循的类型满足约束
+//    associatedtype Item
+////    associatedtype Item: Equatable // 你可以在协议里给关联类型添加约束来要求遵循的类型满足约束
 //
 //    mutating func append(_ item: Item)
 //    var count: Int { get }
@@ -104,4 +104,33 @@ var str = "Hello, playground"
 //    associatedtype Suffix: SuffixableContainer where Suffix.Item == Item
 //    func suffix(_ size: Int)
 //}
+//
+//
+//// MARK: - 泛型 where 子句
+//func allItemsMatch<C1: Container, C2: Container>(container: C1, anotherContaner: C2) -> Bool where C1.Item == C2.Item, C1.Item : Equatable {
+//    if container.count != anotherContaner.count {
+//        return false
+//    }
+//    for i in 0..<container.count {
+//        if container[i] != anotherContaner[i] {
+//            return false
+//        }
+//    }
+//    return true
+//}
+//
+//
+//// MARK: - 泛型下标
+//extension Container {
+//    subscript<Indices: Sequence>(indices: Indices) -> [Item] where Indices.Iterator.Element == Int {
+//        var result = [Item]()
+//        for index in indices {
+//            result.append(self[index])
+//        }
+//        return result
+//    }
+//}
+//print(intStack[[0, 1]])
 
+
+// MARK: - 泛型编程思维

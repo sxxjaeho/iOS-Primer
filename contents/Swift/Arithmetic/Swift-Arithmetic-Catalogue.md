@@ -63,7 +63,7 @@
       * [61.扑克牌中的顺子](#61扑克牌中的顺子)
       * [62.圆圈中最后剩下的数字](#62圆圈中最后剩下的数字)
       * [63.股票的最大利润](#63股票的最大利润)
-      * [64.求 1 2 ... n](#64求-12n)
+      * [64.求 1+2...+n](#64求-12n)
       * [65.不用加减乘除做加法](#65不用加减乘除做加法)
       * [66.构建乘积数组](#66构建乘积数组)
       * [67.把字符串转换成整数](#67把字符串转换成整数)
@@ -313,6 +313,48 @@ traverseList(newHead)
 
 ## 41.数据流中的中位数
 
+[数据流中的中位数.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/Swift/Arithmetic/Code/数据流中的中位数.playground)
+
+题目：如何得到一个数据流中的中位数？如果从数据流中读出奇数个数值，那么中位数就是所有数值排序之后位于中间的数值。如果从数据流中读出偶数个数值，那么中位数就是所有数值排序之后中间两个数的平均值。
+
+```
+
+func getMedian(_ nums: [Int]) -> Double? {
+    if nums.count == 0 { return nil }
+    var max = Heap<Int>(sort: >) // 存放数组左边数据
+    var min = Heap<Int>(sort: <) // 存放数组右边数据
+    for num in nums {
+        var operateNum = num
+        if (max.count + min.count) % 2 == 0 {
+            if max.count > 0 && num < max.peek()! {
+                operateNum = max.peek()!
+                max.insert(num)
+                max.remove()
+            }
+            min.insert(operateNum)
+        } else {
+            if min.count > 0 && num > min.peek()! {
+                operateNum = min.peek()!
+                min.insert(num)
+                min.remove()
+            }
+            max.insert(operateNum)
+        }
+    }
+    let size = min.count + max.count
+    if size % 2 == 0 {
+        return Double((min.peek()! + max.peek()!)) / 2
+    } else {
+        return Double(min.peek()!)
+    }
+}
+
+let array = [5, 8, 1, 3, 6, 2, 9];
+print(getMedian(array) ?? 0)
+
+```
+
+***
 
 ## 42.连续子数组的最大和
 
@@ -340,6 +382,40 @@ traverseList(newHead)
 
 ## 50.第一个只出现一次的字符
 
+[字符串中第一个只出现一次的字符.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/Swift/Arithmetic/Code/字符串中第一个只出现一次的字符.playground)
+
+题目：字符串中第一个只出现一次的字符。
+在字符串中找出第一个只出现一次的字符。如输入“abaccdeff”，则输出“b”。
+
+```
+
+// 题目：字符串中第一个只出现一次的字符。
+// 在字符串中找出第一个只出现一次的字符。如输入“abaccdeff”，则输出“b”
+
+func firstNotRepeatingChar(_ string: String) -> Character? {
+    let chars = Array(string)
+    var dictionary = [Character: Int]()
+    for char in chars {
+        if dictionary[char] == nil {
+            dictionary[char] = 1
+        } else {
+            dictionary[char]! += 1
+        }
+    }
+    print(dictionary)
+    for char in chars {
+        if dictionary[char]! == 1 {
+            return char
+        }
+    }
+    return nil
+}
+
+print(firstNotRepeatingChar("abaccdeff") ?? "")
+
+```
+
+***
 
 ## 51.数组中的逆序对
 

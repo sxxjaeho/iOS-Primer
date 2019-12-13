@@ -18,5 +18,7 @@
     * [Protocol.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/Swift/Primer/Code/Protocol.playground)
 * 泛型
     * [Generic.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/Swift/Primer/Code/Generic.playground)
+* 多线程
+    * [Thread.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/Swift/Primer/Code/Thread.playground)
     
 
