@@ -146,7 +146,6 @@
 题目：定义一个函数，输入一个链表的头结点，反转该链表并输出反转后链表的头结点。链表节点定义如下：
 
 ```
-
 class ListNode {
     var value: Int
     var next: ListNode?
@@ -194,7 +193,6 @@ traverseList(head)
 let newHead = reverseList(head)
 print("反转链表:")
 traverseList(newHead)
-
 ```   
 
 ***
@@ -209,7 +207,6 @@ traverseList(newHead)
 链表3：1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 
 ```
-
 class ListNode {
     var value: Int
     var next: ListNode?
@@ -261,7 +258,6 @@ traverseList(head2)
 let newHead = merge(head1, head2)
 print("合并链表:")
 traverseList(newHead)
-
 ```
 
 ***
@@ -318,7 +314,6 @@ traverseList(newHead)
 题目：如何得到一个数据流中的中位数？如果从数据流中读出奇数个数值，那么中位数就是所有数值排序之后位于中间的数值。如果从数据流中读出偶数个数值，那么中位数就是所有数值排序之后中间两个数的平均值。
 
 ```
-
 func getMedian(_ nums: [Int]) -> Double? {
     if nums.count == 0 { return nil }
     var max = Heap<Int>(sort: >) // 存放数组左边数据
@@ -351,7 +346,6 @@ func getMedian(_ nums: [Int]) -> Double? {
 
 let array = [5, 8, 1, 3, 6, 2, 9];
 print(getMedian(array) ?? 0)
-
 ```
 
 ***
@@ -388,7 +382,6 @@ print(getMedian(array) ?? 0)
 在字符串中找出第一个只出现一次的字符。如输入“abaccdeff”，则输出“b”。
 
 ```
-
 // 题目：字符串中第一个只出现一次的字符。
 // 在字符串中找出第一个只出现一次的字符。如输入“abaccdeff”，则输出“b”
 
@@ -412,7 +405,6 @@ func firstNotRepeatingChar(_ string: String) -> Character? {
 }
 
 print(firstNotRepeatingChar("abaccdeff") ?? "")
-
 ```
 
 ***
@@ -445,7 +437,6 @@ print(firstNotRepeatingChar("abaccdeff") ?? "")
 题目：输入一个英文句子，翻转句子中单词的顺序，但单词内字符的顺序不变。为简单起见，标点符号和普通字母一样处理。例如输入字符串"I am a student."，则输出"student. a am I"。
 
 ```
-
 func reverse<T> (_ chars: inout Array<T>, _ begin: Int, _ end: Int) {
     var begin = begin
     var end = end
@@ -475,7 +466,6 @@ func reverseSentence(_ sentence: String?) -> String? {
 }
 
 print(reverseSentence("I am a student.") ?? "")
-
 ```
 
 ***
