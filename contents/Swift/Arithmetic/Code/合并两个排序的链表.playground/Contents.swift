@@ -4,6 +4,7 @@ import UIKit
 // 链表1：1 -> 3 -> 5 -> 7
 // 链表2：2 -> 4 -> 6 -> 8
 // 链表3：1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
+
 class ListNode {
     var value: Int
     var next: ListNode?
