@@ -1,6 +1,6 @@
 # Swift 练习代码
 
-* Swift简介
+* Swift 简介
     * [MyPlayground.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/Swift/Primer/Code/MyPlayground.playground)
     * [LiveView.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/Swift/Primer/Code/LiveView.playground)
 * 基本数据类型
@@ -20,5 +20,12 @@
     * [Generic.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/Swift/Primer/Code/Generic.playground)
 * 多线程
     * [Thread.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/Swift/Primer/Code/Thread.playground)
+* SwiftUI
+    * [Landmarks](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/Swift/Primer/Code/Landmarks)
+* 其他话题
+    * [ErrorHandle.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/Swift/Primer/Code/ErrorHandle.playground)
+    * [swiftOther](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/Swift/Primer/Code/swiftOther)
+    * [Opaque.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/Swift/Primer/Code/Opaque.playground)
+
     
 
