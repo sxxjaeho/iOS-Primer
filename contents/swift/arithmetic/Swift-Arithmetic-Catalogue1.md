@@ -1,5 +1,5 @@
 
-   * [算法](#算法)
+   * [剑指OFFER 名企面试官精讲典型编程题-部分算法题解](#剑指OFFER-名企面试官精讲典型编程题-部分算法题解)
       * [1.赋值运算符函数](#1赋值运算符函数)
       * [2.实现 Singleton 模式](#2实现-singleton-模式)
       * [3.数组中重复的数字](#3数组中重复的数字)
@@ -69,7 +69,7 @@
       * [67.把字符串转换成整数](#67把字符串转换成整数)
       * [68.树中两个节点的最低公共祖先](#68树中两个节点的最低公共祖先)
 
-# 算法
+# 剑指OFFER  名企面试官精讲典型编程题-部分算法题解
 ## 1.赋值运算符函数
 
 
@@ -141,7 +141,7 @@
 
 ## 24.反转链表
 
-[反转链表.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/Swift/Arithmetic/Code/反转链表.playground)
+[反转链表.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/反转链表.playground)
 
 题目：定义一个函数，输入一个链表的头结点，反转该链表并输出反转后链表的头结点。链表节点定义如下：
 
@@ -199,7 +199,7 @@ traverseList(newHead)
 
 ## 25.合并两个排序的链表
 
-[合并两个排序的链表.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/Swift/Arithmetic/Code/合并两个排序的链表.playground)
+[合并两个排序的链表.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/合并两个排序的链表.playground)
 
 题目：输入两个递增排序的链表，合并这两个链表并使新链表中的结点仍然是按照递增排序的。例如输入如下链表1和链表2，则合并之后的升序链表如链3所示。链表节点定义如下：
 链表1：1 -> 3 -> 5 -> 7
@@ -309,7 +309,7 @@ traverseList(newHead)
 
 ## 41.数据流中的中位数
 
-[数据流中的中位数.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/Swift/Arithmetic/Code/数据流中的中位数.playground)
+[数据流中的中位数.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/数据流中的中位数.playground)
 
 题目：如何得到一个数据流中的中位数？如果从数据流中读出奇数个数值，那么中位数就是所有数值排序之后位于中间的数值。如果从数据流中读出偶数个数值，那么中位数就是所有数值排序之后中间两个数的平均值。
 
@@ -376,7 +376,7 @@ print(getMedian(array) ?? 0)
 
 ## 50.第一个只出现一次的字符
 
-[字符串中第一个只出现一次的字符.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/Swift/Arithmetic/Code/字符串中第一个只出现一次的字符.playground)
+[字符串中第一个只出现一次的字符.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/字符串中第一个只出现一次的字符.playground)
 
 题目：字符串中第一个只出现一次的字符。
 在字符串中找出第一个只出现一次的字符。如输入“abaccdeff”，则输出“b”。
@@ -423,7 +423,7 @@ print(firstNotRepeatingChar("abaccdeff") ?? "")
 
 ## 55.二叉树深度
 
-[二叉树深度.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/Swift/Arithmetic/Code/二叉树深度.playground)
+[二叉树深度.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/二叉树深度.playground)
 
 题目：输入一棵二叉树的根结点，求该树的深度。从根结点到叶结点依次经过的结点（含根、叶结点）形成树的一条路径，最长路径的长度为树的深度。
 
@@ -461,7 +461,7 @@ print(treeDepth(root))
 
 ## 57.和为 s 的数字
 
-[和为s的数字.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/Swift/Arithmetic/Code/和为s的数字.playground)
+[和为s的数字.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/和为s的数字.playground)
 
 题目：输入一个递增排序的数组和一个数字 s，在数组中查找两个数，使得它们的和正好是 s。如果有多对数字的和等于 s，输出任意一对即可。
 
@@ -499,7 +499,7 @@ if result != nil {
 
 ## 58.翻转字符串
 
-[翻转字符串.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/Swift/Arithmetic/Code/翻转字符串.playground)
+[翻转字符串.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/翻转字符串.playground)
 
 题目：输入一个英文句子，翻转句子中单词的顺序，但单词内字符的顺序不变。为简单起见，标点符号和普通字母一样处理。例如输入字符串"I am a student."，则输出"student. a am I"。
 
