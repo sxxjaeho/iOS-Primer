@@ -1,6 +1,10 @@
 
    * [LeetCode-部分算法题解](#LeetCode-部分算法题解)
+      * [100.相同的树](#100相同的树)
+      * [141.环形链表](#141环形链表)
+      * [226.翻转二叉树](#226翻转二叉树)
       * [236.二叉树的最近公共祖先](#236二叉树的最近公共祖先)
+      * [480.滑动窗口中位数](#480滑动窗口中位数)
 
 # LeetCode-部分算法题解
 
@@ -121,6 +125,7 @@ print(isSameTree(node5, node6))
 ```
 
 ```
+// 双指针解法
 class ListNode {
     var value: Int
     var next: ListNode?
@@ -320,6 +325,89 @@ let root = BinaryTreeNode(value: 3, left: BinaryTreeNode(value: 5, left: BinaryT
 lowestCommonAncestor(root, BinaryTreeNode(value: 5, left: BinaryTreeNode(value: 6, left: nil, right: nil), right: BinaryTreeNode(value: 2, left: BinaryTreeNode(value: 7, left: nil, right: nil), right: BinaryTreeNode(value: 4, left: nil, right: nil))), BinaryTreeNode(value: 1, left: BinaryTreeNode(value: 0, left: nil, right: nil), right: BinaryTreeNode(value: 8, left: nil, right: nil)))
 
 print(lowestCommonAncestor?.value ?? 0)
+```
+
+***
+
+## 480.滑动窗口中位数
+
+[滑动窗口中位数.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/滑动窗口中位数.playground)
+
+题目：中位数是有序序列最中间的那个数。如果序列的大小是偶数，则没有最中间的数；此时中位数是最中间的两个数的平均数。
+
+例如：
+[2,3,4]，中位数是 3
+[2,3]，中位数是 (2 + 3) / 2 = 2.5
+
+给出一个数组 nums，有一个大小为 k 的窗口从最左端滑动到最右端。窗口中有 k 个数，每次窗口移动 1 位。你的任务是找出每次窗口移动后得到的新窗口中元素的中位数，并输出由它们组成的数组。
+
+例如：
+给出 nums = [1,3,-1,-3,5,3,6,7]，以及 k = 3。
+
+```
+窗口位置                       中位数
+---------------------------   -----
+[1  3  -1] -3  5  3  6  7       1
+ 1 [3  -1  -3] 5  3  6  7      -1
+ 1  3 [-1  -3  5] 3  6  7      -1
+ 1  3  -1 [-3  5  3] 6  7       3
+ 1  3  -1  -3 [5  3  6] 7       5
+ 1  3  -1  -3  5 [3  6  7]      6
+```
+因此，返回该滑动窗口的中位数数组 [1,-1,-1,3,5,6]。
+
+```
+var max = Heap<Int>(sort: >)
+var min = Heap<Int>(sort: <)
+
+func medianSlidingWindow(_ nums: [Int], _ k: Int) -> [Double]? {
+    if nums.count == 0 { return nil }
+    
+    var res = [Double]()
+    
+    for (index, value) in nums.enumerated() {
+        if max.isEmpty || value <= max.peek()! {
+            max.insert(value)
+        } else {
+            min.insert(value)
+        }
+        
+        balance()
+        
+        let removeIndex = index - k
+        if removeIndex >= 0 {
+            if nums[removeIndex] > max.peek()! {
+                min.remove(node: nums[removeIndex])
+            } else {
+                max.remove(node: nums[removeIndex])
+            }
+        }
+        
+        balance()
+        
+        if index >= k - 1 {
+            if k % 2 == 0 {
+                res.append(Double((min.peek()! + max.peek()!)) / 2)
+            } else {
+                res.append(Double(min.peek()!))
+            }
+        }
+    }
+    
+    return res
+}
+
+func balance() {
+    if max.count < min.count - 1 {
+        max.insert(min.remove()!)
+    }
+    if min.count < max.count {
+        min.insert(max.remove()!)
+    }
+}
+
+let array = [1, 3, -1, -3, 5, 3, 6, 7]
+print(medianSlidingWindow(array, 3) ?? [])
 ```
 
 ***
