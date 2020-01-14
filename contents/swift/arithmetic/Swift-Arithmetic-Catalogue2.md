@@ -329,6 +329,57 @@ print(lowestCommonAncestor?.value ?? 0)
 
 ***
 
+## 443.压缩字符串
+
+[压缩字符串.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/压缩字符串.playground)
+
+题目：给定一组字符，使用原地算法将其压缩。
+压缩后的长度必须始终小于或等于原数组长度。
+数组的每个元素应该是长度为1 的字符（不是 int 整数类型）。
+在完成原地修改输入数组后，返回数组的新长度。
+
+示例 1：
+
+```
+输入：
+["a","a","b","b","c","c","c"]
+
+输出：
+返回6，输入数组的前6个字符应该是：["a","2","b","2","c","3"]
+
+说明：
+"aa"被"a2"替代。"bb"被"b2"替代。"ccc"被"c3"替代。
+```
+
+```
+func compress(_ chars: inout[Character]) {
+    if chars.isEmpty { return }
+    var length = 0, count = 1
+    for i in 0..<chars.count {
+        if i == chars.count - 1 || chars[i] != chars[i+1] {
+            chars[length] = chars[i]
+            length += 1
+            if count > 1 {
+                for char in String(count) {
+                    chars[length] = char
+                    length += 1
+                }
+                count = 1
+            }
+        } else {
+           count += 1
+        }
+    }
+    chars = Array(chars.prefix(upTo: length))
+}
+
+var chars = Array("aaabbccc")
+compress(&chars)
+print(String(chars))
+```
+
+***
+
 ## 480.滑动窗口中位数
 
 [滑动窗口中位数.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/滑动窗口中位数.playground)
@@ -408,6 +459,108 @@ func balance() {
 
 let array = [1, 3, -1, -3, 5, 3, 6, 7]
 print(medianSlidingWindow(array, 3) ?? [])
+```
+
+***
+
+## 704.二分查找
+
+[二分查找.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/二分查找.playground)
+
+题目：给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target  ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。
+
+示例 1:
+
+```
+输入: nums = [-1,0,3,5,9,12], target = 9
+输出: 4
+解释: 9 出现在 nums 中并且下标为 4
+```
+
+```
+func search(_ nums: [Int], _ target: Int) -> Int? {
+    guard nums.count != 1 else {
+        return 0
+    }
+    
+    var lo = 0, hi = nums.count - 1
+    while lo <= hi {
+        let mid = lo + (hi - lo) / 2
+        if nums[mid] == target {
+            return mid
+        } else if nums[mid] < target {
+            lo = mid + 1
+        } else {
+            hi = mid - 1
+        }
+    }
+    return nil
+}
+
+let nums = [-1, 0, 3, 5, 9, 12]
+print(search(nums, 9) as Any)
+```
+
+***
+
+## 912.排序数组
+
+[排序数组.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/排序数组.playground)
+
+题目：给定一个整数数组 nums，将该数组升序排列。
+
+示例 1：
+
+```
+输入：[5,2,3,1]
+输出：[1,2,3,5]
+```
+
+```
+//// 冒泡排序
+//func sortArray(_ nums: inout [Int]) {
+//    guard nums.count > 1 else {
+//        return
+//    }
+//    for i in 0..<nums.count - 1 {
+//        for j in 0..<nums.count - i - 1 {
+//            if nums[j] > nums[j+1] {
+//                nums.swapAt(j, j+1)
+//            }
+//        }
+//    }
+//}
+
+// 选择排序
+func sortArray(_ nums: inout [Int]) {
+    guard nums.count > 1 else {
+        return
+    }
+    for i in 0..<nums.count - 1 {
+        for j in i+1..<nums.count {
+            if nums[i] > nums[j] {
+                nums.swapAt(i, j)
+            }
+        }
+    }
+}
+
+//// 快速排序
+//func sortArray(_ nums: [Int]) -> [Int] {
+//    guard nums.count > 1 else {
+//        return nums
+//    }
+//    let pivot = nums[nums.count / 2]
+//    let left = nums.filter { $0 < pivot}
+//    let middle = nums.filter { $0 == pivot}
+//    let right = nums.filter { $0 > pivot}
+//    return sortArray(left) + middle + sortArray(right)
+//}
+
+var nums = [5, 2, 3, 1]
+sortArray(&nums)
+print(nums)
+
 ```
 
 ***
