@@ -1,12 +1,64 @@
 
    * [LeetCode-部分算法题解](#LeetCode-部分算法题解)
+      * [88.合并两个有序数组](#88合并两个有序数组)
       * [100.相同的树](#100相同的树)
       * [141.环形链表](#141环形链表)
       * [226.翻转二叉树](#226翻转二叉树)
       * [236.二叉树的最近公共祖先](#236二叉树的最近公共祖先)
+      * [443.压缩字符串](#443压缩字符串)
       * [480.滑动窗口中位数](#480滑动窗口中位数)
+      * [704.二分查找](#704二分查找)
+      * [912.排序数组](#912排序数组)
 
 # LeetCode-部分算法题解
+
+## 88.合并两个有序数组
+
+[合并两个有序数组.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/合并两个有序数组.playground)
+
+
+给定两个有序整数数组 nums1 和 nums2，将 nums2 合并到 nums1 中，使得 num1 成为一个有序数组。
+
+说明:
+初始化 nums1 和 nums2 的元素数量分别为 m 和 n。
+你可以假设 nums1 有足够的空间（空间大小大于或等于 m + n）来保存 nums2 中的元素。
+
+示例:
+
+```
+输入:
+nums1 = [1,2,3,0,0,0], m = 3
+nums2 = [2,5,6],       n = 3
+
+输出: [1,2,2,3,5,6]
+```
+
+```
+func merge(_ nums1: inout [Int], _ m: Int, _ nums2: [Int], _ n: Int) {
+    var i = m - 1, j = n - 1
+    if m == 0 {
+        nums1 = nums2
+    } else {
+        while i >= 0 || j >= 0 {
+            if j < 0 || (i >= 0 && j >= 0 && nums1[i] > nums2[j]){
+                nums1[i + j + 1] = nums1[i]
+                i -= 1
+            } else {
+                nums1[i + j + 1] = nums2[j]
+                j -= 1
+            }
+        }
+    }
+    print(nums1)
+}
+
+var nums1 = [1, 2, 3, 0, 0, 0]
+var nums2 = [2, 5, 6]
+merge(&nums1, 3, nums2, 3)
+```
+
+***
+
 
 ## 100.相同的树
 

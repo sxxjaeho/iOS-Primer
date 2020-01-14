@@ -566,9 +566,8 @@ func reverseSentence(_ sentence: String?) -> String? {
     var chars = Array(sentence)
     var start = 0
     reverse(&chars, 0, chars.count - 1)
-    for i in 0..<chars.count {
+    for i in 0..<chars.count - 1 {
         if i == chars.count - 1 || chars[i + 1] == " " {
-            print(i)
             reverse(&chars, start, i)
             start = i + 2
         }
