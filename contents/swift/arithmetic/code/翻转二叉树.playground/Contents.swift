@@ -90,6 +90,26 @@ func postorderTraversal(_ root: BinaryTreeNode?) -> [Int] {
     return res
 }
  
+// 二叉树层次遍历
+func levelorderTraversal(_ root: BinaryTreeNode?) -> [Int] {
+    guard let root = root else { return [] }
+    
+    var res: [Int] = []
+    var queue = [BinaryTreeNode]()
+    queue.append(root)
+    
+    while !queue.isEmpty {
+        let node = queue.removeFirst()
+        if let left = node.left {
+            queue.append(left)
+        }
+        if let right = node.right {
+            queue.append(right)
+        }
+        res.append(node.value)
+    }
+    return res
+}
 
  
 

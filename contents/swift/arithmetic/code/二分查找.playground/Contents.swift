@@ -7,15 +7,15 @@ func search(_ nums: [Int], _ target: Int) -> Int? {
         return 0
     }
     
-    var lo = 0, hi = nums.count - 1
-    while lo <= hi {
-        let mid = lo + (hi - lo) / 2
+    var left = 0, right = nums.count - 1
+    while left <= right {
+        let mid = left + (right - left) / 2
         if nums[mid] == target {
             return mid
         } else if nums[mid] < target {
-            lo = mid + 1
+            left = mid + 1
         } else {
-            hi = mid - 1
+            right = mid - 1
         }
     }
     return nil
