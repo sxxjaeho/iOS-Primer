@@ -78,12 +78,124 @@
 
 ## 3.数组中重复的数字
 
+[数组中重复的数字.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/数组中重复的数字.playground)
+
+题目：在一个长度为n的数组里的所有数字都在0到n-1的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。例如，如果输入长度为7的数组{2, 3, 1, 0, 2, 5, 3}，那么对应的输出是重复的数字2或者3。
+
+```
+func duplicate(_ nums: [Int]) -> Int? {
+    var nums = nums
+    for index in 0..<nums.count {
+        while nums[index] != index {
+            if nums[index] == nums[nums[index]] {
+                return nums[index]
+            }
+            (nums[index], nums[nums[index]]) = (nums[nums[index]], nums[index])
+        }
+    }
+    return nil
+}
+
+let nums =  [2, 3, 1, 0, 2, 5, 3]
+if let result = duplicate(nums) {
+    print(result)
+} else {
+    print("Not found")
+}
+```
+
+`时间复杂度：O(n) 空间复杂度：O(1)`
+
+***
 
 ## 4.二维数组中的查找
 
+[二维数组中的查找.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/二维数组中的查找.playground)
+
+题目：在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
+
+```
+func find(_ matrix: [[Int]], _ num: Int) -> Bool {
+    var row = 0
+    var column = matrix.count - 1
+    while row <= matrix[0].count - 1 && column >= 0 {
+        if matrix[row][column] > num {
+            column -= 1
+        } else if matrix[row][column] < num {
+            row += 1
+        } else {
+            return true
+        }
+    }
+    return false
+}
+
+let nums = [[1, 2, 8, 9], [2, 4, 9 , 12], [4, 7, 10, 13], [6, 8, 11, 15]]
+print(find(nums, 7))
+```
+
+`时间复杂度：O(n+m)`
+
+***
 
 ## 5.替换空格
 
+[替换空格.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/替换空格.playground)
+
+题目：请实现一个函数，把字符串中的每个空格替换成"%20"。例如输入“We are happy.”，则输出“We%20are%20happy.”
+
+```
+func replaceBlank(_ string: String) -> String? {
+    let characters = Array(string)
+    guard characters.count != 0 else {
+        return nil
+    }
+    
+    var numberOfBlank = 0
+    for character in characters {
+        if character == " " {
+            numberOfBlank += 1
+        }
+    }
+    
+    if numberOfBlank == 0 {
+        return string
+    }
+    
+    let newLength = characters.count + numberOfBlank * 2
+    
+    var indexOfOriginal = characters.count - 1
+    var indexOfNew = newLength - 1
+    
+    var resultArray = [Character](repeating: " ", count: newLength)
+    
+    while indexOfOriginal >= 0 {
+        
+        let start = string.index(string.startIndex, offsetBy: indexOfOriginal)
+        let end = string.index(string.startIndex, offsetBy: indexOfOriginal + 1)
+        let character = Character(String(string[start..<end]))
+        
+        if character == " " {
+            resultArray[indexOfNew-2...indexOfNew] = ["%", "2", "0"]
+            indexOfNew -= 2
+        } else {
+            resultArray[indexOfNew] = character
+        }
+        
+        indexOfOriginal -= 1
+        indexOfNew -= 1
+    }
+    
+    return String(resultArray)
+}
+
+let string = "We are happy."
+print(replaceBlank(string) ?? "")
+```
+
+`时间复杂度：O(n)`
+
+***
 
 ## 6.从尾到头打印链表
 
