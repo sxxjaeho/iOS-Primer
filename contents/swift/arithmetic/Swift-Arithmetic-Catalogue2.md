@@ -1,6 +1,7 @@
 
    * [LeetCode-部分算法题解](#LeetCode-部分算法题解)
       * [1.两数之和](#1两数之和)
+      * [24.两两交换链表中的节点](#24两两交换链表中的节点)
       * [88.合并两个有序数组](#88合并两个有序数组)
       * [100.相同的树](#100相同的树)
       * [141.环形链表](#141环形链表)
@@ -35,6 +36,70 @@ func twoSum(_ nums: [Int], _ target: Int) -> [[Int]] {
 print(twoSum([2, 7, 5, 1, 2, 4], 9))
 
 ```
+
+## 24.两两交换链表中的节点
+
+[两两交换链表中的节点.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/两两交换链表中的节点.playground)
+
+给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。
+
+你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。
+
+示例:
+
+```
+给定 1->2->3->4, 你应该返回 2->1->4->3.
+```
+
+```
+class ListNode {
+    var value: Int
+    var next: ListNode?
+    
+    init(_ value: Int) {
+        self.value = value
+    }
+    
+    func next(_ value: Int) -> ListNode {
+        let node = ListNode(value)
+        next = node
+        return node
+    }
+}
+
+func swapPairs(_ head: ListNode?) -> ListNode? {
+    let prev = ListNode(0)
+    prev.next = head
+    var dumb = prev
+    while dumb.next != nil && dumb.next?.next != nil {
+        let a = dumb.next!
+        let b = a.next!
+        dumb.next = b
+        a.next = b.next
+        b.next = a
+        dumb = a
+    }
+    return prev.next
+}
+
+func traverseList(_ head : ListNode?) {
+    var node = head
+    while node != nil {
+        print(node?.value ?? 0)
+        node = node?.next
+    }
+}
+
+let head = ListNode(1)
+head.next(2).next(3).next(4).next(5)
+if let result = swapPairs(head) {
+    traverseList(result)
+}
+```
+
+**时间复杂度：O(n)**
+
+***
 
 ## 88.合并两个有序数组
 

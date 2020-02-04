@@ -46,11 +46,13 @@ func traverseList(_ head : ListNode?) {
 }
 
 print("链表1:")
-let head1 = ListNode(1).next(3).next(5).next(7)
+let head1 = ListNode(1)
+head1.next(3).next(5).next(7)
 traverseList(head1)
 
 print("链表2:")
-let head2 = ListNode(2).next(4).next(6).next(8)
+let head2 = ListNode(2)
+head2.next(4).next(6).next(8)
 traverseList(head2)
 
 let newHead = merge(head1, head2)

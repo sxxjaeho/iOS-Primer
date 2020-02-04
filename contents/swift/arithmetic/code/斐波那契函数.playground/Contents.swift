@@ -2,16 +2,18 @@ import UIKit
 
 // 题目：写一个函数，输入n，求斐波那契（Fibonacci）数列的第n项。
 
-func fibonacciRecursion(_ num : Int) -> Int {
-    if num <= 0 {
-        return 0
-    }
-    if num == 1 {
-        return 1
-    }
-    return fibonacciRecursion(num - 1) + fibonacciRecursion(num - 2)
-}
+// 递归，效率低
+//func fibonacciRecursion(_ num : Int) -> Int {
+//    if num <= 0 {
+//        return 0
+//    }
+//    if num == 1 {
+//        return 1
+//    }
+//    return fibonacciRecursion(num - 1) + fibonacciRecursion(num - 2)
+//}
 
+// 循环，更实用
 func fibonacciLoop(_ num : Int) -> Int {
     if num <= 0 {
         return 0
@@ -23,5 +25,5 @@ func fibonacciLoop(_ num : Int) -> Int {
     return curr
 }
 
-print(fibonacciRecursion(6))
+//print(fibonacciRecursion(6))
 print(fibonacciLoop(6))

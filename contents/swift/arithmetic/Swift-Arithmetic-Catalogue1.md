@@ -104,7 +104,7 @@ if let result = duplicate(nums) {
 }
 ```
 
-`时间复杂度：O(n) 空间复杂度：O(1)`
+**时间复杂度：O(n) 空间复杂度：O(1)**
 
 ***
 
@@ -134,7 +134,7 @@ let nums = [[1, 2, 8, 9], [2, 4, 9 , 12], [4, 7, 10, 13], [6, 8, 11, 15]]
 print(find(nums, 7))
 ```
 
-`时间复杂度：O(n+m)`
+**时间复杂度：O(n+m)**
 
 ***
 
@@ -193,7 +193,7 @@ let string = "We are happy."
 print(replaceBlank(string) ?? "")
 ```
 
-`时间复杂度：O(n)`
+**时间复杂度：O(n)**
 
 ***
 
@@ -216,16 +216,18 @@ print(replaceBlank(string) ?? "")
 题目：写一个函数，输入n，求斐波那契（Fibonacci）数列的第n项。
 
 ```
-func fibonacciRecursion(_ num : Int) -> Int {
-    if num <= 0 {
-        return 0
-    }
-    if num == 1 {
-        return 1
-    }
-    return fibonacciRecursion(num - 1) + fibonacciRecursion(num - 2)
-}
+// 递归，效率低
+//func fibonacciRecursion(_ num : Int) -> Int {
+//    if num <= 0 {
+//        return 0
+//    }
+//    if num == 1 {
+//        return 1
+//    }
+//    return fibonacciRecursion(num - 1) + fibonacciRecursion(num - 2)
+//}
 
+// 循环，更实用
 func fibonacciLoop(_ num : Int) -> Int {
     if num <= 0 {
         return 0
@@ -237,9 +239,11 @@ func fibonacciLoop(_ num : Int) -> Int {
     return curr
 }
 
-print(fibonacciRecursion(6))
+// print(fibonacciRecursion(6))
 print(fibonacciLoop(6))
 ```
+
+**时间复杂度：O(n)**
 
 ***
 
@@ -329,7 +333,8 @@ func traverseList(_ head : ListNode?) {
 }
 
 
-let head = ListNode(1).next(2).next(3).next(4).next(5)
+let head = ListNode(1)
+head.next(2).next(3).next(4).next(5)
 print("原链表:")
 traverseList(head)
 
@@ -391,11 +396,13 @@ func traverseList(_ head : ListNode?) {
 }
 
 print("链表1:")
-let head1 = ListNode(1).next(3).next(5).next(7)
+let head1 = ListNode(1)
+head1.next(3).next(5).next(7)
 traverseList(head1)
 
 print("链表2:")
-let head2 = ListNode(2).next(4).next(6).next(8)
+let head2 = ListNode(2)
+head2.next(4).next(6).next(8)
 traverseList(head2)
 
 let newHead = merge(head1, head2)

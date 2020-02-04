@@ -42,7 +42,8 @@ func traverseList(_ head : ListNode?) {
 }
 
 
-let head = ListNode(1).next(2).next(3).next(4).next(5)
+let head = ListNode(1)
+head.next(2).next(3).next(4).next(5)
 print("原链表:")
 traverseList(head)
 
