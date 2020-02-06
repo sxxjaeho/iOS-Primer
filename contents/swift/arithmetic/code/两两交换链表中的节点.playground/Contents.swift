@@ -22,18 +22,18 @@ class ListNode {
 }
 
 func swapPairs(_ head: ListNode?) -> ListNode? {
-    let prev = ListNode(0)
-    prev.next = head
-    var dumb = prev
-    while dumb.next != nil && dumb.next?.next != nil {
-        let a = dumb.next!
+    let dumb = ListNode(0)
+    dumb.next = head
+    var pre = dumb
+    while pre.next != nil && pre.next?.next != nil {
+        let a = pre.next!
         let b = a.next!
-        dumb.next = b
+        pre.next = b
         a.next = b.next
         b.next = a
-        dumb = a
+        pre = a
     }
-    return prev.next
+    return dumb.next
 }
 
 func traverseList(_ head : ListNode?) {
