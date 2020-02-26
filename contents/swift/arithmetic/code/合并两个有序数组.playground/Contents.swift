@@ -1,11 +1,12 @@
    import UIKit
 
 // 题目：给定两个有序整数数组 nums1 和 nums2，将 nums2 合并到 nums1 中，使得 num1 成为一个有序数组。
-
+// 双指针 / 从后往前
 func merge(_ nums1: inout [Int], _ m: Int, _ nums2: [Int], _ n: Int) {
     var i = m - 1, j = n - 1
-    if m == 0 {
+    if i < 0 {
         nums1 = nums2
+    } else if j < 0 {
     } else {
         while i >= 0 || j >= 0 {
             if j < 0 || (i >= 0 && j >= 0 && nums1[i] > nums2[j]){
@@ -23,4 +24,3 @@ func merge(_ nums1: inout [Int], _ m: Int, _ nums2: [Int], _ n: Int) {
 var nums1 = [1, 2, 3, 0, 0, 0]
 var nums2 = [2, 5, 6]
 merge(&nums1, 3, nums2, 3)
-

@@ -22,35 +22,23 @@ class BinaryTreeNode {
     }
 }
 
-var lowestCommonAncestor: BinaryTreeNode?
-
-func recurseTree(_ root: BinaryTreeNode?, _ node1: BinaryTreeNode?, _ node2: BinaryTreeNode?) -> Bool {
-    
-    guard root != nil else {
-       return false
+func lowestCommonAncestor(_ root: BinaryTreeNode?, _ node1: BinaryTreeNode?, _ node2: BinaryTreeNode?) -> BinaryTreeNode? {
+    if root == nil || root?.value == node1?.value || root?.value == node2?.value {
+        return root
     }
-
-    let left = recurseTree(root?.left, node1, node2) ? 1 : 0
-
-    let right = recurseTree(root?.right, node1, node2) ? 1 : 0
-
-    let mid = (root?.value == node1?.value || root?.value == node2?.value) ? 1 : 0
     
-    if mid + left + right >= 2 {
-        lowestCommonAncestor = root
-    }
-
-    return (mid + left + right > 0)
-}
-
-func lowestCommonAncestor(_ root: BinaryTreeNode?, _ node1: BinaryTreeNode?, _ node2: BinaryTreeNode?) {
-    recurseTree(root, node1, node2)
+    let left = lowestCommonAncestor(root?.left, node1, node2)
+    let right = lowestCommonAncestor(root?.right, node1, node2)
+    return left == nil ? right : (right == nil ? left : root)
 }
 
 let root = BinaryTreeNode(value: 3, left: BinaryTreeNode(value: 5, left: BinaryTreeNode(value: 6, left: nil, right: nil), right: BinaryTreeNode(value: 2, left: BinaryTreeNode(value: 7, left: nil, right: nil), right: BinaryTreeNode(value: 4, left: nil, right: nil))), right: BinaryTreeNode(value: 1, left: BinaryTreeNode(value: 0, left: nil, right: nil), right: BinaryTreeNode(value: 8, left: nil, right: nil)))
 
-lowestCommonAncestor(root, BinaryTreeNode(value: 5, left: BinaryTreeNode(value: 6, left: nil, right: nil), right: BinaryTreeNode(value: 2, left: BinaryTreeNode(value: 7, left: nil, right: nil), right: BinaryTreeNode(value: 4, left: nil, right: nil))), BinaryTreeNode(value: 1, left: BinaryTreeNode(value: 0, left: nil, right: nil), right: BinaryTreeNode(value: 8, left: nil, right: nil)))
+let node = lowestCommonAncestor(root, BinaryTreeNode(value: 5, left: BinaryTreeNode(value: 6, left: nil, right: nil), right: BinaryTreeNode(value: 2, left: BinaryTreeNode(value: 7, left: nil, right: nil), right: BinaryTreeNode(value: 4, left: nil, right: nil))), BinaryTreeNode(value: 1, left: BinaryTreeNode(value: 0, left: nil, right: nil), right: BinaryTreeNode(value: 8, left: nil, right: nil)))
 
-print(lowestCommonAncestor?.value ?? 0)
+
+if let node = node {
+    print(node.value)
+}
 
 

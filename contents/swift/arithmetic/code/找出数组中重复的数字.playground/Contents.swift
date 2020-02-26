@@ -10,6 +10,12 @@ func duplicate(_ nums: [Int]) -> Int? {
                 return nums[index]
             }
             (nums[index], nums[nums[index]]) = (nums[nums[index]], nums[index])
+            // print(nums)
+            /*
+             [1, 3, 2, 0, 2, 5, 3]
+             [3, 1, 2, 0, 2, 5, 3]
+             [0, 1, 2, 3, 2, 5, 3]
+             */
         }
     }
     return nil
@@ -21,3 +27,4 @@ if let result = duplicate(nums) {
 } else {
     print("Not found")
 }
+

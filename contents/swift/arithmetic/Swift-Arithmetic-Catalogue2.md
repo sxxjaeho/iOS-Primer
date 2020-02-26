@@ -3,12 +3,14 @@
       * [1.两数之和](#1两数之和)
       * [24.两两交换链表中的节点](#24两两交换链表中的节点)
       * [88.合并两个有序数组](#88合并两个有序数组)
+      * [98.验证二叉搜索树](#98验证二叉搜索树)
       * [100.相同的树](#100相同的树)
       * [141.环形链表](#141环形链表)
       * [226.翻转二叉树](#226翻转二叉树)
       * [236.二叉树的最近公共祖先](#236二叉树的最近公共祖先)
       * [443.压缩字符串](#443压缩字符串)
       * [480.滑动窗口中位数](#480滑动窗口中位数)
+      * [703.数据流中的第K大元素](#703数据流中的第K大元素)
       * [704.二分查找](#704二分查找)
       * [912.排序数组](#912排序数组)
 
@@ -123,10 +125,12 @@ nums2 = [2,5,6],       n = 3
 ```
 
 ```
+// 双指针 / 从后往前
 func merge(_ nums1: inout [Int], _ m: Int, _ nums2: [Int], _ n: Int) {
     var i = m - 1, j = n - 1
-    if m == 0 {
+    if i < 0 {
         nums1 = nums2
+    } else if j < 0 {
     } else {
         while i >= 0 || j >= 0 {
             if j < 0 || (i >= 0 && j >= 0 && nums1[i] > nums2[j]){
@@ -146,8 +150,67 @@ var nums2 = [2, 5, 6]
 merge(&nums1, 3, nums2, 3)
 ```
 
+**时间复杂度：O(n+m) 空间复杂度：O(1)**
+
 ***
 
+## 98.验证二叉搜索树
+
+[验证二叉搜索树.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/验证二叉搜索树.playground)
+
+题目：给定一个二叉树，判断其是否是一个有效的二叉搜索树。
+
+假设一个二叉搜索树具有如下特征：
+
+节点的左子树只包含小于当前节点的数。
+节点的右子树只包含大于当前节点的数。
+所有左子树和右子树自身必须也是二叉搜索树。
+
+```
+示例 1:
+
+输入:
+    2
+   / \
+  1   3
+输出: true
+```
+
+```
+class BinaryTreeNode {
+    var left: BinaryTreeNode?
+    var right: BinaryTreeNode?
+    var value: Int
+    
+    init(value: Int, left: BinaryTreeNode?, right: BinaryTreeNode?) {
+        self.value = value
+        self.left = left
+        self.right = right
+    }
+}
+
+func isValidBST(_ root: BinaryTreeNode?, min : Int?, max : Int?) -> Bool {
+   guard let root = root else {
+        return true
+    }
+    // 左子树的最大值要小于根节点的值
+    if let max = max, root.value >= max  {
+        return false
+    }
+    // 右子树的最小值要大于根节点的值
+    if let min = min, root.value <= min {
+        return false
+    }
+    return isValidBST(root.left, min: min, max: root.value) && isValidBST(root.right, min: root.value, max: max)
+}
+
+let root = BinaryTreeNode(value: 2, left: BinaryTreeNode(value: 1, left: nil, right: nil), right: BinaryTreeNode(value: 3, left: nil, right: nil))
+print(isValidBST(root, min: nil, max: nil))
+```
+
+**时间复杂度：O(n) 空间复杂度：O(n)**
+
+***
 
 ## 100.相同的树
 
@@ -436,37 +499,27 @@ class BinaryTreeNode {
     }
 }
 
-var lowestCommonAncestor: BinaryTreeNode?
-
-func recurseTree(_ root: BinaryTreeNode?, _ node1: BinaryTreeNode?, _ node2: BinaryTreeNode?) -> Bool {
-    
-    guard root != nil else {
-       return false
+func lowestCommonAncestor(_ root: BinaryTreeNode?, _ node1: BinaryTreeNode?, _ node2: BinaryTreeNode?) -> BinaryTreeNode? {
+    if root == nil || root?.value == node1?.value || root?.value == node2?.value {
+        return root
     }
-
-    let left = recurseTree(root?.left, node1, node2) ? 1 : 0
-
-    let right = recurseTree(root?.right, node1, node2) ? 1 : 0
-
-    let mid = (root?.value == node1?.value || root?.value == node2?.value) ? 1 : 0
     
-    if mid + left + right >= 2 {
-        lowestCommonAncestor = root
-    }
-
-    return (mid + left + right > 0)
-}
-
-func lowestCommonAncestor(_ root: BinaryTreeNode?, _ node1: BinaryTreeNode?, _ node2: BinaryTreeNode?) {
-    recurseTree(root, node1, node2)
+    let left = lowestCommonAncestor(root?.left, node1, node2)
+    let right = lowestCommonAncestor(root?.right, node1, node2)
+    return left == nil ? right : (right == nil ? left : root)
 }
 
 let root = BinaryTreeNode(value: 3, left: BinaryTreeNode(value: 5, left: BinaryTreeNode(value: 6, left: nil, right: nil), right: BinaryTreeNode(value: 2, left: BinaryTreeNode(value: 7, left: nil, right: nil), right: BinaryTreeNode(value: 4, left: nil, right: nil))), right: BinaryTreeNode(value: 1, left: BinaryTreeNode(value: 0, left: nil, right: nil), right: BinaryTreeNode(value: 8, left: nil, right: nil)))
 
-lowestCommonAncestor(root, BinaryTreeNode(value: 5, left: BinaryTreeNode(value: 6, left: nil, right: nil), right: BinaryTreeNode(value: 2, left: BinaryTreeNode(value: 7, left: nil, right: nil), right: BinaryTreeNode(value: 4, left: nil, right: nil))), BinaryTreeNode(value: 1, left: BinaryTreeNode(value: 0, left: nil, right: nil), right: BinaryTreeNode(value: 8, left: nil, right: nil)))
+let node = lowestCommonAncestor(root, BinaryTreeNode(value: 5, left: BinaryTreeNode(value: 6, left: nil, right: nil), right: BinaryTreeNode(value: 2, left: BinaryTreeNode(value: 7, left: nil, right: nil), right: BinaryTreeNode(value: 4, left: nil, right: nil))), BinaryTreeNode(value: 1, left: BinaryTreeNode(value: 0, left: nil, right: nil), right: BinaryTreeNode(value: 8, left: nil, right: nil)))
 
-print(lowestCommonAncestor?.value ?? 0)
+
+if let node = node {
+    print(node.value)
+}
 ```
+
+**时间复杂度：O(n)**
 
 ***
 
@@ -604,6 +657,71 @@ print(medianSlidingWindow(array, 3) ?? [])
 
 ***
 
+## 703.数据流中的第K大元素
+
+[数据流中的第K大元素.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/数据流中的第K大元素.playground)
+
+题目：设计一个找到数据流中第K大元素的类（class）。注意是排序后的第K大元素，不是第K个不同的元素。
+
+你的 KthLargest 类需要一个同时接收整数 k 和整数数组nums 的构造器，它包含数据流中的初始元素。每次调用 KthLargest.add，返回当前数据流中第K大的元素。
+
+示例：
+
+```
+int k = 3;
+int[] arr = [4,5,8,2];
+KthLargest kthLargest = new KthLargest(3, arr);
+kthLargest.add(3);   // returns 4
+kthLargest.add(5);   // returns 5
+kthLargest.add(10);  // returns 5
+kthLargest.add(9);   // returns 8
+kthLargest.add(4);   // returns 8
+```
+
+```
+class KthLargest {
+    var heap = Heap<Int>(sort: <)
+    let k : Int
+    init(_ k : Int, _ nums : [Int]) {
+        self.k = k
+        for num in nums {
+            self.heap.insert(num)
+            if self.heap.count > k {
+                self.heap.remove()
+            }
+        }
+    }
+    
+    func add(_ num : Int) -> Int {
+        if self.heap.count < k {
+            self.heap.insert(num)
+        }
+        if heap.peek()! < num {
+            self.heap.remove()
+            self.heap.insert(num)
+        }
+        return heap.peek()!
+    }
+}
+
+let kthLargest = KthLargest(3, [4, 5, 8, 2])
+let result = kthLargest.add(3)
+let result1 = kthLargest.add(5)
+let result2 = kthLargest.add(10)
+let result3 = kthLargest.add(9)
+let result4 = kthLargest.add(4)
+
+print(result)
+print(result1)
+print(result2)
+print(result3)
+print(result4)
+```
+
+**时间复杂度：O(log<sub>2</sub>n)**
+
+***
+
 ## 704.二分查找
 
 [二分查找.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/二分查找.playground)
@@ -624,9 +742,9 @@ func search(_ nums: [Int], _ target: Int) -> Int? {
         return 0
     }
     
-    var lo = 0, hi = nums.count - 1
+    var lo = 0, hi = nums.count - 1, mid = 0
     while lo <= hi {
-        let mid = lo + (hi - lo) / 2
+        mid = lo + (hi - lo) / 2
         if nums[mid] == target {
             return mid
         } else if nums[mid] < target {

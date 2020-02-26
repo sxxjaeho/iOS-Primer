@@ -1,0 +1,48 @@
+import UIKit
+
+// 题目：给定一个二叉树，判断其是否是一个有效的二叉搜索树。
+
+// 假设一个二叉搜索树具有如下特征：
+// 节点的左子树只包含小于当前节点的数。
+// 节点的右子树只包含大于当前节点的数。
+// 所有左子树和右子树自身必须也是二叉搜索树。
+
+/*
+示例 1:
+
+输入:
+    2
+   / \
+  1   3
+输出: true
+*/
+
+class BinaryTreeNode {
+    var left: BinaryTreeNode?
+    var right: BinaryTreeNode?
+    var value: Int
+    
+    init(value: Int, left: BinaryTreeNode?, right: BinaryTreeNode?) {
+        self.value = value
+        self.left = left
+        self.right = right
+    }
+}
+
+func isValidBST(_ root: BinaryTreeNode?, min : Int?, max : Int?) -> Bool {
+   guard let root = root else {
+        return true
+    }
+    // 左子树的最大值要小于根节点的值
+    if let max = max, root.value >= max  {
+        return false
+    }
+    // 右子树的最小值要大于根节点的值
+    if let min = min, root.value <= min {
+        return false
+    }
+    return isValidBST(root.left, min: min, max: root.value) && isValidBST(root.right, min: root.value, max: max)
+}
+
+let root = BinaryTreeNode(value: 2, left: BinaryTreeNode(value: 1, left: nil, right: nil), right: BinaryTreeNode(value: 3, left: nil, right: nil))
+print(isValidBST(root, min: nil, max: nil))

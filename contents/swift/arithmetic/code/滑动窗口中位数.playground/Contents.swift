@@ -48,9 +48,9 @@ func medianSlidingWindow(_ nums: [Int], _ k: Int) -> [Double]? {
             } else {
                 max.remove(node: nums[removeIndex])
             }
+            balance()
         }
         
-        balance()
         
         if index >= k - 1 {
             if k % 2 == 0 {
@@ -71,6 +71,7 @@ func balance() {
     if min.count < max.count {
         min.insert(max.remove()!)
     }
+    print(max)
 }
 
 let array = [1, 3, -1, -3, 5, 3, 6, 7]

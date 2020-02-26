@@ -7,9 +7,9 @@ func search(_ nums: [Int], _ target: Int) -> Int? {
         return 0
     }
     
-    var left = 0, right = nums.count - 1
+    var left = 0, right = nums.count - 1, mid = 0
     while left <= right {
-        let mid = left + (right - left) / 2
+        mid = left + (right - left) / 2
         if nums[mid] == target {
             return mid
         } else if nums[mid] < target {
