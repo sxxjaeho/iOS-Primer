@@ -2,16 +2,21 @@
    * [LeetCode-部分算法题解](#LeetCode-部分算法题解)
       * [1.两数之和](#1两数之和)
       * [24.两两交换链表中的节点](#24两两交换链表中的节点)
+      * [50.Pow(x, n)](#50Pow(x, n))
       * [88.合并两个有序数组](#88合并两个有序数组)
       * [98.验证二叉搜索树](#98验证二叉搜索树)
       * [100.相同的树](#100相同的树)
+      * [102.二叉树的层次遍历](#102二叉树的层次遍历)
       * [141.环形链表](#141环形链表)
       * [226.翻转二叉树](#226翻转二叉树)
       * [236.二叉树的最近公共祖先](#236二叉树的最近公共祖先)
+      * [239.滑动窗口最大值](#239滑动窗口最大值)
       * [443.压缩字符串](#443压缩字符串)
+      * [468.验证IP地址](#468验证IP地址)
       * [480.滑动窗口中位数](#480滑动窗口中位数)
       * [703.数据流中的第K大元素](#703数据流中的第K大元素)
       * [704.二分查找](#704二分查找)
+      * [709.转换成小写字母](709转换成小写字母)
       * [912.排序数组](#912排序数组)
 
 # LeetCode-部分算法题解
@@ -100,6 +105,39 @@ if let result = swapPairs(head) {
 ```
 
 **时间复杂度：O(n)**
+
+***
+
+## 50.Pow(x, n)
+
+[Pow(x, n).playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/Pow(x, n).playground)
+
+题目：实现 pow(x, n) ，即计算 x 的 n 次幂函数。
+
+```
+示例 1:
+
+输入: 2.00000, 10
+输出: 1024.00000
+```
+
+```
+func myPow(_ x: Double, _ n: Int) -> Double {
+    if n == 0 {
+        return 1
+    }
+    if n < 0 {
+        return 1 / myPow(x, -n);
+    }
+    if n % 2 == 1 {
+        return x * myPow(x, n - 1);
+    }
+    return myPow(x * x, n / 2)
+}
+print(myPow(2, 10))
+```
+
+**时间复杂度：O(logn)**
 
 ***
 
@@ -293,6 +331,77 @@ print(isSameTree(node1, node2))
 print(isSameTree(node3, node4))
 print(isSameTree(node5, node6))
 ```
+
+***
+
+## 102.二叉树的层次遍历
+
+[二叉树的层次遍历.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/二叉树的层次遍历.playground)
+
+题目：给定一个二叉树，返回其按层次遍历的节点值。 （即逐层地，从左到右访问所有节点）。
+
+```
+例如:
+给定二叉树: [3,9,20,null,null,15,7],
+
+    3
+   / \
+  9  20
+    /  \
+   15   7
+返回其层次遍历结果：
+
+[
+  [3],
+  [9,20],
+  [15,7]
+]
+```
+
+```
+class BinaryTreeNode {
+    var left: BinaryTreeNode?
+    var right: BinaryTreeNode?
+    var value: Int
+    
+    init(value: Int, left: BinaryTreeNode?, right: BinaryTreeNode?) {
+        self.value = value
+        self.left = left
+        self.right = right
+    }
+}
+
+func levelOrderTraversal(_ root: BinaryTreeNode?) -> [[Int]] {
+    
+    guard let root = root else { return [] }
+    
+    var queue: [BinaryTreeNode] = [root]
+    
+    var result: [[Int]] = []
+    
+    while !queue.isEmpty {
+        var currentLevel: [Int] = []
+        
+        for _ in queue {
+            let node = queue.removeFirst()
+            currentLevel.append(node.value)
+            if let left = node.left {
+                queue.append(left)
+            }
+            if let right = node.right {
+                queue.append(right)
+            }
+        }
+        result.append(currentLevel)
+    }
+    return result
+}
+
+let root = BinaryTreeNode(value: 3, left: BinaryTreeNode(value: 9, left:  nil, right: nil), right: BinaryTreeNode(value: 20, left:  BinaryTreeNode(value: 15, left: nil, right: nil), right: BinaryTreeNode(value: 7, left: nil, right: nil)))
+print(levelOrderTraversal(root))
+```
+
+**时间复杂度：O(n)**
 
 ***
 
@@ -523,6 +632,65 @@ if let node = node {
 
 ***
 
+## 239.滑动窗口最大值
+
+[滑动窗口最大值.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/滑动窗口最大值.playground)
+
+题目：给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。
+
+返回滑动窗口中的最大值。
+
+示例:
+
+```
+输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3
+输出: [3,3,5,5,6,7] 
+解释: 
+
+        滑动窗口的位置         最大值
+--------------------------    -----
+[1  3  -1] -3  5  3  6  7       3
+ 1 [3  -1  -3] 5  3  6  7       3
+ 1  3 [-1  -3  5] 3  6  7       5
+ 1  3  -1 [-3  5  3] 6  7       5
+ 1  3  -1  -3 [5  3  6] 7       6
+ 1  3  -1  -3  5 [3  6  7]      7
+```
+
+```
+var max = Heap<Int>(sort: >)
+
+func maxSlidingWindow(_ nums: [Int], _ k: Int) -> [Int]? {
+    if nums.count == 0 { return nil }
+    
+    var res = [Int]()
+    
+    for (index, value) in nums.enumerated() {
+        max.insert(value)
+        
+        let removeIndex = index - k
+        if removeIndex >= 0 {
+            max.remove(node: nums[removeIndex])
+        }
+        
+        if max.count == k {
+            res.append(max.peek()!)
+        }
+    }
+    
+    return res
+}
+
+let array = [1, 3, -1, -3, 5, 3, 6, 7]
+if let result = maxSlidingWindow(array, 3) {
+    print(result)
+}
+```
+
+**时间复杂度：O(n*logn)**
+
+***
+
 ## 443.压缩字符串
 
 [压缩字符串.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/压缩字符串.playground)
@@ -570,6 +738,124 @@ func compress(_ chars: inout[Character]) {
 var chars = Array("aaabbccc")
 compress(&chars)
 print(String(chars))
+```
+
+***
+
+## 468.验证IP地址
+
+[验证IP地址.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/验证IP地址.playground)
+
+编写一个函数来验证输入的字符串是否是有效的 IPv4 或 IPv6 地址。
+
+IPv4 地址由十进制数和点来表示，每个地址包含4个十进制数，其范围为 0 - 255， 用(".")分割。比如，172.16.254.1；
+
+同时，IPv4 地址内的数不会以 0 开头。比如，地址 172.16.254.01 是不合法的。
+
+IPv6 地址由8组16进制的数字来表示，每组表示 16 比特。这些组数字通过 (":")分割。比如,  2001:0db8:85a3:0000:0000:8a2e:0370:7334 是一个有效的地址。而且，我们可以加入一些以 0 开头的数字，字母可以使用大写，也可以是小写。所以， 2001:db8:85a3:0:0:8A2E:0370:7334 也是一个有效的 IPv6 address地址 (即，忽略 0 开头，忽略大小写)。
+
+然而，我们不能因为某个组的值为 0，而使用一个空的组，以至于出现 (::) 的情况。 比如， 2001:0db8:85a3::8A2E:0370:7334 是无效的 IPv6 地址。
+
+同时，在 IPv6 地址中，多余的 0 也是不被允许的。比如， 02001:0db8:85a3:0000:0000:8a2e:0370:7334 是无效的。
+
+说明: 你可以认为给定的字符串里没有空格或者其他特殊字符。
+
+```
+func validIPAddress(_ IP: String) -> String {
+    if isValidIPv41(IP) {
+        return "IPv4"
+    } else if isValidIPv61(IP) {
+        return "IPv6"
+        
+    } else {
+        return "Neither"
+    }
+}
+
+func isValidIPv4(_ IP: String) -> Bool {
+    if IP.count < 7 { return false }
+    if IP[0] == "." { return false }
+    if IP[IP.count - 1] == "." { return false }
+    
+    let component: [String] = IP.components(separatedBy: ".")
+    if component.count != 4  { return false }
+    for address in component {
+        if !isValidIPv4Component(address) { return false }
+    }
+    return true
+}
+
+func isValidIPv4Component(_ component: String) -> Bool {
+    if component.hasPrefix("0") && component.count > 1 { return false }
+    
+    if let element = Int(component) {
+        if element < 0 || element > 255 { return false }
+        return true
+    } else {
+        return false
+    }
+}
+
+func isValidIPv41(_ IP: String) -> Bool {
+    let args = "((2[0-5][0-5]|1[0-9][0-9]|[1-9][0-9]|[0-9])\\.){3}(2[0-5][0-5]|1[0-9][0-9]|[1-9][0-9]|[0-9])"
+    let predicate = NSPredicate(format: "SELF MATCHES %@", args)
+    return  predicate.evaluate(with: IP)
+}
+
+func isValidIPv6(_ IP: String) -> Bool {
+    if IP.count < 15 { return false }
+    if IP[0] == ":" { return false }
+    if IP[IP.count - 1] == ":" { return false }
+    let component: [String] = IP.components(separatedBy:":")
+    if component.count != 8  { return false }
+    for element in component {
+        if !isValidIPv6Component(element) { return false }
+    }
+    return true
+}
+
+func isValidIPv6Component(_ component: String) -> Bool {
+    if component.count == 0 || component.count > 4 { return false }
+    
+    for element in Array(component) {
+        let isDigit: Bool = element.ascii >= 48 && element.ascii <= 57
+        let isUppercase: Bool = element.ascii >= 65 && element.ascii <= 70
+        let isLowercase: Bool = element.ascii >= 97 && element.ascii <= 102
+        if !(isDigit || isUppercase || isLowercase) {
+            return false
+        }
+    }
+    return true
+}
+
+func isValidIPv61(_ IP: String) -> Bool {
+    let args = "(([0-9]|[a-f]|[A-F]){1,4}:){7}(([0-9]|[a-f]|[A-F]){1,4})"
+    let predicate = NSPredicate(format: "SELF MATCHES %@", args)
+    return  predicate.evaluate(with: IP)
+}
+
+extension String {
+    subscript (_ i: Int) -> Character {
+        get { return self[index(startIndex, offsetBy: i)] }
+    }
+}
+
+extension Character {
+    var ascii: Int {
+        get {
+            let value = String(self).unicodeScalars
+            return Int(value[value.startIndex].value)
+        }
+    }
+}
+
+let IP1 = "172.16.254.1"
+let IP2 = "2001:0db8:85a3:0:0:8A2E:0370:733"
+let IP3 = "256.256.256.256"
+
+print(validIPAddress(IP1))
+print(validIPAddress(IP2))
+print(validIPAddress(IP3))
 ```
 
 ***
@@ -758,6 +1044,64 @@ func search(_ nums: [Int], _ target: Int) -> Int? {
 
 let nums = [-1, 0, 3, 5, 9, 12]
 print(search(nums, 9) as Any)
+```
+
+***
+
+### 709.转换成小写字母
+
+[转换成小写字母.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/转换成小写字母.playground)
+
+```
+题目：实现函数 ToLowerCase()，该函数接收一个字符串参数 str，并将该字符串中的大写字母转换成小写字母，之后返回新的字符串。
+
+示例 1：
+
+输入: "Hello"
+输出: "hello"
+```
+
+```
+func toLowerCase(_ str: String) -> String {
+    return String(str.unicodeScalars.map { (s) -> Character in
+        if s.value >= 65 && s.value <= 90 {
+                return Character(UnicodeScalar(s.value + 32)!)
+        }
+        return Character(UnicodeScalar(s))
+    })
+}
+
+func toLowerCase1(_ str: String) -> String {
+    var arr = Array(str)
+    var res = String()
+    if arr.count <= 0 {
+        return res
+    } else {
+        var char: Character = arr.first!
+        if char >= "A" && char <= "Z" {
+            char = (char.ascii + 32).ASCII
+        }
+        res.append(char)
+        arr.removeFirst()
+    }
+    return res + toLowerCase(String(arr))
+}
+
+extension Character {
+    var ascii: Int {
+        get {
+            let value = String(self).unicodeScalars
+            return Int(value[value.startIndex].value)
+        }
+    }
+}
+
+extension Int {
+    var ASCII: Character {
+        get { return Character(UnicodeScalar(self)!)} }
+}
+
+print(toLowerCase1("Hello"))
 ```
 
 ***

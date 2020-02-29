@@ -71,7 +71,6 @@ func balance() {
     if min.count < max.count {
         min.insert(max.remove()!)
     }
-    print(max)
 }
 
 let array = [1, 3, -1, -3, 5, 3, 6, 7]
