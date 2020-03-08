@@ -9,19 +9,24 @@ import UIKit
 输出: 1024.00000
  */
 
+// 2^5 = 32
 func myPow(_ x: Double, _ n: Int) -> Double {
     if n == 0 {
+        // 5.     1
         return 1
     }
     if n < 0 {
         return 1 / myPow(x, -n);
     }
     if n % 2 == 1 {
+        // 1.     2 * (2, 4)
+        // 4.     16 * (16, 0)
         return x * myPow(x, n - 1);
     }
+    // 2.     (4, 2)
+    // 3.     (16, 1)
     return myPow(x * x, n / 2)
 }
-
 
 func myPow1(_ x: Double, _ n: Int) -> Double {
     var x = x, n = n
@@ -40,4 +45,4 @@ func myPow1(_ x: Double, _ n: Int) -> Double {
     return pow
 }
 
-print(myPow(2, 10))
+print(myPow(2, 5))

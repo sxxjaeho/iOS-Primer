@@ -24,14 +24,21 @@ class ListNode {
 func swapPairs(_ head: ListNode?) -> ListNode? {
     let dumb = ListNode(0)
     dumb.next = head
-    var pre = dumb
-    while pre.next != nil && pre.next?.next != nil {
-        let a = pre.next!
+    // 交换两个节点前的前一个节点 = 空节点
+    var prev = dumb
+    while prev.next != nil && prev.next?.next != nil {
+        // 1
+        let a = prev.next!
+        // 2
         let b = a.next!
-        pre.next = b
+        // 空节点->2
+        prev.next = b
+        // 1->3
         a.next = b.next
+        // 2->1
         b.next = a
-        pre = a
+        // 交换两个节点前的前一个节点 = 2
+        prev = a
     }
     return dumb.next
 }

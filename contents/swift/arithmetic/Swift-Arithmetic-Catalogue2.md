@@ -2,7 +2,7 @@
    * [LeetCode-部分算法题解](#LeetCode-部分算法题解)
       * [1.两数之和](#1两数之和)
       * [24.两两交换链表中的节点](#24两两交换链表中的节点)
-      * [50.Pow(x, n)](#50Pow(x, n))
+      * [50.Pow(x, n)](#50powx-n)
       * [88.合并两个有序数组](#88合并两个有序数组)
       * [98.验证二叉搜索树](#98验证二叉搜索树)
       * [100.相同的树](#100相同的树)
@@ -30,11 +30,9 @@
 
 ```
 func twoSum(_ nums: [Int], _ target: Int) -> [[Int]] {
-    // key:数 value:下标
     var dictionary = [Int: Int]()
     var result = [[Int]]()
     for (index, value) in nums.enumerated() {
-        // differenceIndex:与当前遍历的数作和等于目标值的数的下标(之前遍历过的一个数)
         if let differenceIndex = dictionary[target - value] {
             result.append([differenceIndex, index])
         }
@@ -166,7 +164,6 @@ nums2 = [2,5,6],       n = 3
 ```
 
 ```
-// 双指针 / 从后往前
 func merge(_ nums1: inout [Int], _ m: Int, _ nums2: [Int], _ n: Int) {
     var i = m - 1, j = n - 1
     if i < 0 {
@@ -174,7 +171,7 @@ func merge(_ nums1: inout [Int], _ m: Int, _ nums2: [Int], _ n: Int) {
     } else if j < 0 {
     } else {
         while i >= 0 || j >= 0 {
-            if j < 0 || (i >= 0 && j >= 0 && nums1[i] > nums2[j]){
+            if j < 0 || (i >= 0 && j >= 0 && nums1[i] > nums2[j]) {
                 nums1[i + j + 1] = nums1[i]
                 i -= 1
             } else {
@@ -183,12 +180,12 @@ func merge(_ nums1: inout [Int], _ m: Int, _ nums2: [Int], _ n: Int) {
             }
         }
     }
-    print(nums1)
 }
 
 var nums1 = [1, 2, 3, 0, 0, 0]
 var nums2 = [2, 5, 6]
 merge(&nums1, 3, nums2, 3)
+print(nums1)
 ```
 
 **时间复杂度：O(n+m) 空间复杂度：O(1)**
@@ -234,11 +231,9 @@ func isValidBST(_ root: BinaryTreeNode?, min : Int?, max : Int?) -> Bool {
    guard let root = root else {
         return true
     }
-    // 左子树的最大值要小于根节点的值
     if let max = max, root.value >= max  {
         return false
     }
-    // 右子树的最小值要大于根节点的值
     if let min = min, root.value <= min {
         return false
     }
@@ -402,6 +397,43 @@ func levelOrderTraversal(_ root: BinaryTreeNode?) -> [[Int]] {
 
 let root = BinaryTreeNode(value: 3, left: BinaryTreeNode(value: 9, left:  nil, right: nil), right: BinaryTreeNode(value: 20, left:  BinaryTreeNode(value: 15, left: nil, right: nil), right: BinaryTreeNode(value: 7, left: nil, right: nil)))
 print(levelOrderTraversal(root))
+
+// 二叉树前序遍历
+func preorderTraversal(_ root: BinaryTreeNode?) -> [Int] {
+    guard let root = root else { return [] }
+    
+    var res: [Int] = []
+    res.append(root.value)
+    res += preorderTraversal(root.left)
+    res += preorderTraversal(root.right)
+    
+    return res
+}
+
+// 二叉树中序遍历
+func inorderTraversal(_ root: BinaryTreeNode?) -> [Int] {
+    guard let root = root else { return [] }
+
+    var res: [Int] = []
+    res += inorderTraversal(root.left)
+    res.append(root.value)
+    res += inorderTraversal(root.right)
+    
+    return res
+}
+
+// 二叉树后序遍历
+func postorderTraversal(_ root: BinaryTreeNode?) -> [Int] {
+    guard let root = root else { return [] }
+    
+    var res: [Int] = []
+    res += postorderTraversal(root.left)
+    res += postorderTraversal(root.right)
+    res.append(root.value)
+    
+    return res
+}
+
 ```
 
 **时间复杂度：O(n)**
@@ -557,31 +589,6 @@ print(preorderTraversal(root))
 
 let invertRoot = invertTree(root)
 print(preorderTraversal(invertRoot))
-
-// 二叉树中序遍历
-func inorderTraversal(_ root: BinaryTreeNode?) -> [Int] {
-    guard let root = root else { return [] }
-
-    var res: [Int] = []
-    res += inorderTraversal(root.left)
-    res.append(root.value)
-    res += inorderTraversal(root.right)
-    
-    return res
-}
-
-// 二叉树后序遍历
-func postorderTraversal(_ root: BinaryTreeNode?) -> [Int] {
-    guard let root = root else { return [] }
-    
-    var res: [Int] = []
-    res += postorderTraversal(root.left)
-    res += postorderTraversal(root.right)
-    res.append(root.value)
-    
-    return res
-}
- 
 ```
 
 ***
@@ -630,11 +637,8 @@ class LRUCache {
     }
     
     func removeNode(_ node: DLinkedNode) {
-        let prev = node.prev
-        let new = node.next
-
-        prev?.next = new
-        new?.prev = prev
+        node.prev?.next = node.next
+        node.next?.prev = node.prev
     }
     
     func moveToHead(_ node: DLinkedNode) {

@@ -41,6 +41,10 @@ func isValidBST(_ root: BinaryTreeNode?, min : Int?, max : Int?) -> Bool {
     if let min = min, root.value <= min {
         return false
     }
+    // (当前节点的左节点, 当前节点的值作为最大值) && (当前节点的右节点, 当前节点的值作为最小值)
+    // 1.     (1, nil, 2) && (3, 2, nil)
+    // 2.     (nil, nil, 1) && (nil, 1, nil)
+    // 3.     treue && true
     return isValidBST(root.left, min: min, max: root.value) && isValidBST(root.right, min: root.value, max: max)
 }
 

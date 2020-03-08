@@ -43,11 +43,8 @@ class LRUCache {
     }
     
     func removeNode(_ node: DLinkedNode) {
-        let prev = node.prev
-        let new = node.next
-
-        prev?.next = new
-        new?.prev = prev
+        node.prev?.next = node.next
+        node.next?.prev = node.prev
     }
     
     func moveToHead(_ node: DLinkedNode) {
@@ -66,10 +63,12 @@ class LRUCache {
     }
     
     var count = 0
+    // 用哈希表，辅以双向链表记录键值对的信息
     var cache = Dictionary<Int, DLinkedNode>()
     
     func get(_ key: Int) -> Int {
         if let node = cache[key] {
+            // 5.     <->head<->1<->2<->tail
             moveToHead(node)
             return node.value!
         } else {
@@ -84,16 +83,24 @@ class LRUCache {
         } else {
             let newNode = DLinkedNode(key: key, value: value)
             
+            // 1.     {1 : 1}
+            // 3.     {1 : 1, 2 : 2}
+            // 6.     {1 : 1, 2 : 2, 3 : 3}
             cache[key] = newNode
             count += 1
 
             if count > capacity {
+                // 7.     <->head<->1<->tail
                 let tail = popTail()!
-                cache.removeValue(forKey: tail.key!)
+                // 8.     <->head<->3<->1<->tail
                 addNode(newNode)
-                
+                // * 通过末尾节点的 key,移除字典d中该节点的记录
+                // 9.     {1 : 1, 3 : 3}
+                cache.removeValue(forKey: tail.key!)
                 count -= 1
             } else {
+                // 2.     <->head<->1<->tail
+                // 4.     <->head<->2<->1<->tail
                 addNode(newNode)
             }
         }

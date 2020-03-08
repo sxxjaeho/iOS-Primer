@@ -39,9 +39,11 @@ func hasCycle(_ head: ListNode?) -> Bool {
     if (head == nil || head?.next == nil) {
         return false
     }
+    // 慢指针
     var slow = head
+    // 快指针
     var fast = head?.next
-    while(slow !== fast) {
+    while(slow !== fast) { // 快慢指针未相遇(比较其内存地址可采用"===")
         if (fast ==  nil || fast?.next == nil) {
            return false
         }
