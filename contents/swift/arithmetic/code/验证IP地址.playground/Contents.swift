@@ -14,9 +14,9 @@ import UIKit
  */
 
 func validIPAddress(_ IP: String) -> String {
-    if isValidIPv41(IP) {
+    if isValidIPv4(IP) {
         return "IPv4"
-    } else if isValidIPv61(IP) {
+    } else if isValidIPv6(IP) {
         return "IPv6"
         
     } else {
@@ -24,13 +24,17 @@ func validIPAddress(_ IP: String) -> String {
     }
 }
 
-
 func isValidIPv4(_ IP: String) -> Bool {
+    // 至少包含4个数字,3个"."
     if IP.count < 7 { return false }
+    // 第一个不能是"."
     if IP[0] == "." { return false }
+    // 最后一个不能是"."
     if IP[IP.count - 1] == "." { return false }
     
+    // 以"."分割
     let component: [String] = IP.components(separatedBy: ".")
+    // 需要4组
     if component.count != 4  { return false }
     for address in component {
         if !isValidIPv4Component(address) { return false }
@@ -39,9 +43,11 @@ func isValidIPv4(_ IP: String) -> Bool {
 }
 
 func isValidIPv4Component(_ component: String) -> Bool {
+    // 每组不能以0开头,至少含一个数
     if component.hasPrefix("0") && component.count > 1 { return false }
     
     if let element = Int(component) {
+        // 范围:0-255
         if element < 0 || element > 255 { return false }
         return true
     } else {
@@ -49,11 +55,11 @@ func isValidIPv4Component(_ component: String) -> Bool {
     }
 }
 
-func isValidIPv41(_ IP: String) -> Bool {
-    let args = "((2[0-5][0-5]|1[0-9][0-9]|[1-9][0-9]|[0-9])\\.){3}(2[0-5][0-5]|1[0-9][0-9]|[1-9][0-9]|[0-9])"
-    let predicate = NSPredicate(format: "SELF MATCHES %@", args)
-    return  predicate.evaluate(with: IP)
-}
+//func isValidIPv41(_ IP: String) -> Bool {
+//    let args = "((2[0-5][0-5]|1[0-9][0-9]|[1-9][0-9]|[0-9])\\.){3}(2[0-5][0-5]|1[0-9][0-9]|[1-9][0-9]|[0-9])"
+//    let predicate = NSPredicate(format: "SELF MATCHES %@", args)
+//    return  predicate.evaluate(with: IP)
+//}
 
 func isValidIPv6(_ IP: String) -> Bool {
     if IP.count < 15 { return false }
@@ -81,11 +87,11 @@ func isValidIPv6Component(_ component: String) -> Bool {
     return true
 }
 
-func isValidIPv61(_ IP: String) -> Bool {
-    let args = "(([0-9]|[a-f]|[A-F]){1,4}:){7}(([0-9]|[a-f]|[A-F]){1,4})"
-    let predicate = NSPredicate(format: "SELF MATCHES %@", args)
-    return  predicate.evaluate(with: IP)
-}
+//func isValidIPv61(_ IP: String) -> Bool {
+//    let args = "(([0-9]|[a-f]|[A-F]){1,4}:){7}(([0-9]|[a-f]|[A-F]){1,4})"
+//    let predicate = NSPredicate(format: "SELF MATCHES %@", args)
+//    return  predicate.evaluate(with: IP)
+//}
 
 extension String {
     subscript (_ i: Int) -> Character {

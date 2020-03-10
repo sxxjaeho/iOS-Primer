@@ -1,6 +1,8 @@
 
    * [LeetCode-部分算法题解](#LeetCode-部分算法题解)
       * [1.两数之和](#1两数之和)
+      * [20.有效的括号](#20有效的括号)
+      * [22.括号生成](#22括号生成)
       * [24.两两交换链表中的节点](#24两两交换链表中的节点)
       * [50.Pow(x, n)](#50powx-n)
       * [88.合并两个有序数组](#88合并两个有序数组)
@@ -44,6 +46,97 @@ func twoSum(_ nums: [Int], _ target: Int) -> [[Int]] {
 print(twoSum([2, 7, 5, 1, 2, 4], 9))
 
 ```
+
+## 20.有效的括号
+
+[有效的括号.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/有效的括号.playground)
+
+题目：给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串，判断字符串是否有效。
+
+有效字符串需满足：
+
+1.左括号必须用相同类型的右括号闭合。
+2.左括号必须以正确的顺序闭合。
+
+注意空字符串可被认为是有效字符串。
+
+
+
+```
+func isValid(_ string: String) -> Bool {
+    var stack = [Character]()
+    let dictionary = [")": "(", "]": "[", "}": "{"]
+
+    for character in string {
+        if !dictionary.keys.contains(String(character)) {
+            stack.append(character)
+        } else if !(!stack.isEmpty && String(stack.popLast()!) == dictionary[String(character)]) {
+            return false
+        }
+    }
+    return stack.isEmpty
+}
+
+print(isValid("()"))
+print(isValid("()[]{}"))
+print(isValid("(]"))
+print(isValid("([)]"))
+print(isValid("{[]}"))
+```
+
+**时间复杂度：O(n)**
+
+***
+
+## 22.括号生成
+
+[括号生成.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/括号生成.playground)
+
+题目：给出 n 代表生成括号的对数，请你写出一个函数，使其能够生成所有可能的并且有效的括号组合。
+
+例如，给出 n = 3，生成结果为：
+
+```
+[
+  "((()))",
+  "(()())",
+  "(())()",
+  "()(())",
+  "()()()"
+]
+```
+
+![括号生成](media/Swift-Arithmetic-Catalogue2/括号生成.png)
+
+```
+var list = [String]()
+func _gen(_ left: Int, _ right: Int,  _ n: Int, _ result: String) {
+    if left == n && right == n {
+        list.append(result)
+        return
+    }
+    if left < n {
+        _gen(left + 1, right, n, result + "(")
+    }
+    if left > right && right < n {
+        _gen(left, right + 1, n, result + ")")
+    }
+}
+
+func generateParenthesis(_ n: Int) -> [String] {
+    if n <= 0 {
+        return []
+    }
+    _gen(0, 0,  n, "")
+    return list
+}
+
+print(generateParenthesis(3))
+```
+
+**时间复杂度：O(n<sup>2</sup>)**
+
+***
 
 ## 24.两两交换链表中的节点
 
@@ -1045,7 +1138,7 @@ func medianSlidingWindow(_ nums: [Int], _ k: Int) -> [Double]? {
             if k % 2 == 0 {
                 res.append(Double((min.peek()! + max.peek()!)) / 2)
             } else {
-                res.append(Double(min.peek()!))
+                res.append(Double(max.peek()!))
             }
         }
     }
@@ -1054,17 +1147,20 @@ func medianSlidingWindow(_ nums: [Int], _ k: Int) -> [Double]? {
 }
 
 func balance() {
-    if max.count < min.count - 1 {
-        max.insert(min.remove()!)
-    }
-    if min.count < max.count {
+    if min.count < max.count - 1 {
         min.insert(max.remove()!)
+    }
+    if max.count < min.count {
+        max.insert(min.remove()!)
     }
 }
 
 let array = [1, 3, -1, -3, 5, 3, 6, 7]
 print(medianSlidingWindow(array, 3) ?? [])
 ```
+
+**时间复杂度：O(Nlogk)，其中 N 是数组的长度
+空间复杂度：O(N)**
 
 ***
 

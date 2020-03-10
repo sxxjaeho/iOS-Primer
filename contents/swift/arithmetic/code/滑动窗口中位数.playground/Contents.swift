@@ -34,8 +34,16 @@ func medianSlidingWindow(_ nums: [Int], _ k: Int) -> [Double]? {
     
     for (index, value) in nums.enumerated() {
         if max.isEmpty || value <= max.peek()! {
+            // 1.     max = [1], min = []
+            // 3.     max = [1, -1], min = [3]
+            // 4.     max = [1, -1, -3], min = [3]
             max.insert(value)
         } else {
+            // 2.     max = [1], min = [3]
+            // 5.     max = [-1, -3], min = [3, 5]
+            // 6.     max = [-1, -3], min = [3, 5]
+            // 7.     max = [3, -3], min = [5, 6]
+            // 8.     max = [5, 3], min = [6, 7]
             min.insert(value)
         }
         
@@ -44,8 +52,13 @@ func medianSlidingWindow(_ nums: [Int], _ k: Int) -> [Double]? {
         let removeIndex = index - k
         if removeIndex >= 0 {
             if nums[removeIndex] > max.peek()! {
+                // 4.     max = [-1, -3], min = [3]
+                // 6.     max = [-3], min = [5, 3]
+                // 7.     max = [3], min = [5, 6]
+                // 8.     max = [3], min = [6, 7]
                 min.remove(node: nums[removeIndex])
             } else {
+                // 5.     max = [-1, -3], min = [5]
                 max.remove(node: nums[removeIndex])
             }
             balance()
@@ -56,7 +69,13 @@ func medianSlidingWindow(_ nums: [Int], _ k: Int) -> [Double]? {
             if k % 2 == 0 {
                 res.append(Double((min.peek()! + max.peek()!)) / 2)
             } else {
-                res.append(Double(min.peek()!))
+                // 3.    res = [1]
+                // 4.    res = [1, -1]
+                // 5.    res = [1, -1, -1]
+                // 6.    res = [1, -1, -1, 3]
+                // 7.    res = [1, -1, -1, 3, 5]
+                // 8.    res = [1, -1, -1, 3, 5, 6]
+                res.append(Double(max.peek()!))
             }
         }
     }
@@ -65,11 +84,17 @@ func medianSlidingWindow(_ nums: [Int], _ k: Int) -> [Double]? {
 }
 
 func balance() {
-    if max.count < min.count - 1 {
-        max.insert(min.remove()!)
-    }
-    if min.count < max.count {
+    // 最大堆数多于最小堆数2个
+    if min.count < max.count - 1 {
+        // 4.     max = [-1, -3], min = [1, 3]
         min.insert(max.remove()!)
+    }
+    // 最小堆数多于最大堆数
+    if max.count < min.count {
+        // 6.     max = [3, -3], min = [5]
+        // 7.     max = [5, 3], min = [6]
+        // 8.     max = [6, 3], min = [7]
+        max.insert(min.remove()!)
     }
 }
 

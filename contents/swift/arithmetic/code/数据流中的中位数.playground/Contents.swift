@@ -10,26 +10,37 @@ func getMedian(_ nums: [Int]) -> Double? {
 
     for num in nums {
         if max.isEmpty || num <= max.peek()! {
-           max.insert(num)
+            // 1.     max = [5], min = []
+            // 2.     max = [5], min = [8]
+            // 3.     max = [5, 1], min = [8]
+            // 4.     max = [5, 3, 1], min = [8]
+            // 6.     max = [5, 3, 2, 1], min = [6, 8]
+            max.insert(num)
+            print(max, min)
         } else {
-           min.insert(num)
+            // 5.     max = [3, 1], min = [5, 6, 8]
+            // 7.     max = [3, 2, 1], min = [5, 6, 8, 9]
+            min.insert(num)
         }
         balance()
     }
-    let size = min.count + max.count
-    if size % 2 == 0 {
+    if nums.count % 2 == 0 {
         return Double((min.peek()! + max.peek()!)) / 2
     } else {
-        return Double(min.peek()!)
+        return Double(max.peek()!)
     }
 }
 
 func balance() {
-    if max.count < min.count - 1 {
-        max.insert(min.remove()!)
-    }
-    if min.count < max.count {
+    if min.count < max.count - 1 {
+        // 4.     max = [3, 1], min = [5, 8]
+        // 6.     max = [3, 2, 1], max = [5, 6, 8]
         min.insert(max.remove()!)
+    }
+    if max.count < min.count {
+        // 5.     max = [5, 3, 1], min = [6, 8]
+        // 7.     max = [5, 3, 2, 1], min = [6, 8, 9]
+        max.insert(min.remove()!)
     }
 }
 

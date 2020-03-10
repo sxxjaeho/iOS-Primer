@@ -522,25 +522,27 @@ func getMedian(_ nums: [Int]) -> Double? {
         balance()
     }
     let size = min.count + max.count
-    if size % 2 == 0 {
+    if nums.count % 2 == 0 {
         return Double((min.peek()! + max.peek()!)) / 2
     } else {
-        return Double(min.peek()!)
+        return Double(max.peek()!)
     }
 }
 
 func balance() {
-    if max.count < min.count - 1 {
-        max.insert(min.remove()!)
-    }
-    if min.count < max.count {
+    if min.count < max.count - 1 {
         min.insert(max.remove()!)
+    }
+    if max.count < min.count {
+        max.insert(min.remove()!)
     }
 }
 
 let array = [5, 8, 1, 3, 6, 2, 9];
 print(getMedian(array) ?? 0)
 ```
+
+**时间复杂度：O(logn) 空间复杂度：O(n)**
 
 ***
 

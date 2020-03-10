@@ -10,17 +10,24 @@ func compress(_ chars: inout[Character]) {
     var length = 0, count = 1
     for i in 0..<chars.count {
         if i == chars.count - 1 || chars[i] != chars[i+1] {
+            // 4.     i = 3
+            // 5.     [a]
             chars[length] = chars[i]
             length += 1
             if count > 1 {
                 for char in String(count) {
+                    // 6.     [a3]
                     chars[length] = char
                     length += 1
                 }
+                // 7.     count = 1
                 count = 1
             }
         } else {
-           count += 1
+            // 1.    i = 0, count = 1
+            // 2.    i = 1, count = 2
+            // 3.    i = 2, count = 3
+            count += 1
         }
     }
     chars = Array(chars.prefix(upTo: length))

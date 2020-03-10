@@ -31,14 +31,24 @@ func maxSlidingWindow(_ nums: [Int], _ k: Int) -> [Int]? {
     var res = [Int]()
     
     for (index, value) in nums.enumerated() {
+        // 1.     [1]
+        // 2.     [1, 3]
+        // 3.     [1, 3, -1]
+        // 5.     [1, 3, -1, -3]
+        // 8.     [3, -1, -3, 5]
         max.insert(value)
         
         let removeIndex = index - k
         if removeIndex >= 0 {
+            // 6.     [3, -1, -3]
+            // 9.     [-1, -3, 5]
             max.remove(node: nums[removeIndex])
         }
         
         if max.count == k {
+            // 4.     res = [3]
+            // 7.     res = [3, 3]
+            // 10.     res = [3, 3, 5]
             res.append(max.peek()!)
         }
     }
