@@ -1,6 +1,7 @@
 
    * [LeetCode-部分算法题解](#LeetCode-部分算法题解)
       * [1.两数之和](#1两数之和)
+      * [15.三数之和](#15三数之和)
       * [20.有效的括号](#20有效的括号)
       * [22.括号生成](#22括号生成)
       * [24.两两交换链表中的节点](#24两两交换链表中的节点)
@@ -46,6 +47,77 @@ func twoSum(_ nums: [Int], _ target: Int) -> [[Int]] {
 print(twoSum([2, 7, 5, 1, 2, 4], 9))
 
 ```
+
+## 15.三数之和
+
+[三数之和.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/三数之和.playground)
+
+给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有满足条件且不重复的三元组。
+
+注意：答案中不可以包含重复的三元组。
+
+示例：
+
+```
+给定数组 nums = [-1, 0, 1, 2, -1, -4]，
+
+满足要求的三元组集合为：
+[
+  [-1, 0, 1],
+  [-1, -1, 2]
+]
+```
+
+```
+func threeSum(_ nums: [Int], _ target: Int) -> [[Int]] {
+    guard nums.count > 3 else {
+        return [[]]
+    }
+    
+    //    let sortedNums = nums.sorted()
+    let sortedNums = sortArray(nums)
+    
+    var result = [[Int]]()
+
+    for (index, value) in sortedNums.enumerated() {
+        guard index < sortedNums.count - 2 else {
+            break
+        }
+        var ahead = sortedNums.count - 1
+        var behind = index + 1
+        while ahead > behind {
+            let curSum = sortedNums[ahead] + sortedNums[behind]
+            print(sortedNums[ahead], sortedNums[behind])
+            if curSum == target - value {
+                result.append([value, sortedNums[ahead], sortedNums[behind]])
+                break
+            } else if curSum > target - value {
+                ahead -= 1
+            } else {
+                behind += 1
+            }
+        }
+    }
+    return result
+}
+
+func sortArray(_ nums: [Int]) -> [Int] {
+    guard nums.count > 1 else {
+        return nums
+    }
+    let pivot = nums[nums.count / 2]
+    let left = nums.filter { $0 < pivot}
+    let middle = nums.filter { $0 == pivot}
+    let right = nums.filter { $0 > pivot}
+    return sortArray(left) + middle + sortArray(right)
+}
+
+print(threeSum([-1, 0, 1, 2, -1, -4], 0))
+```
+
+**时间复杂度：O(n^2)**
+
+***
 
 ## 20.有效的括号
 
@@ -1244,27 +1316,27 @@ print(result4)
 ```
 
 ```
-func search(_ nums: [Int], _ target: Int) -> Int? {
+func search(_ nums: [Int], _ target: Int) -> Int {
     guard nums.count != 1 else {
-        return 0
+        return nums.first! == target ? 0 : -1
     }
     
-    var lo = 0, hi = nums.count - 1, mid = 0
-    while lo <= hi {
-        mid = lo + (hi - lo) / 2
+    var left = 0, right = nums.count - 1, mid = 0
+    while left <= right {
+        mid = left + (right - left) / 2
         if nums[mid] == target {
             return mid
         } else if nums[mid] < target {
-            lo = mid + 1
+            left = mid + 1
         } else {
-            hi = mid - 1
+            right = mid - 1
         }
     }
-    return nil
+    return -1
 }
 
 let nums = [-1, 0, 3, 5, 9, 12]
-print(search(nums, 9) as Any)
+print(search(nums, 9))
 ```
 
 ***

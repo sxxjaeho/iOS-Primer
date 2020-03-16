@@ -17,6 +17,7 @@ kthLargest.add(4);   // returns 8   // 10 8 9
 */
 
 class KthLargest {
+    // 最小堆
     var heap = Heap<Int>(sort: <)
     let k : Int
     init(_ k : Int, _ nums : [Int]) {
@@ -24,6 +25,7 @@ class KthLargest {
         for num in nums {
             self.heap.insert(num)
             if self.heap.count > k {
+                // 1.     [8, 5, 4]
                 self.heap.remove()
             }
         }
@@ -34,9 +36,20 @@ class KthLargest {
             self.heap.insert(num)
         }
         if heap.peek()! < num {
+            // 3.     [8, 5]
+            // 6.     [8, 5]
+            // 9.     [10, 8]
             self.heap.remove()
+            // 4.     [8, 5, 5]
+            // 7.     [10, 8, 5]
+            // 10.    [10, 9, 8]
             self.heap.insert(num)
         }
+        // 2.     4
+        // 5.     5
+        // 8.     5
+        // 11.     8
+        // 12.     8
         return heap.peek()!
     }
 }
