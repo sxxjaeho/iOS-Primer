@@ -12,6 +12,7 @@
       * [102.二叉树的层次遍历](#102二叉树的层次遍历)
       * [141.环形链表](#141环形链表)
       * [146.LRU缓存机制](#146LRU缓存机制)
+      * [191.位1的个数](#191位1的个数)
       * [226.翻转二叉树](#226翻转二叉树)
       * [236.二叉树的最近公共祖先](#236二叉树的最近公共祖先)
       * [239.滑动窗口最大值](#239滑动窗口最大值)
@@ -681,6 +682,49 @@ node3.next = node1
 
 print(hasCycle(head))
 ```
+
+***
+
+## 191.位1的个数
+[位1的个数.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/位1的个数.playground)
+
+题目：编写一个函数，输入是一个无符号整数，返回其二进制表达式中数字位数为 ‘1’ 的个数（也被称为汉明重量）。
+
+示例 1：
+
+```
+输入：00000000000000000000000000001011
+输出：3
+解释：输入的二进制串 00000000000000000000000000001011 中，共有三位为 '1'。
+```
+
+```
+func hammingWeight(_ n: UInt32) -> Int {
+    var n = n
+    var res = 0
+    for _ in 0..<32 {
+        if n & 1 == 1 {
+            res += 1
+        }
+        n = n >> 1
+    }
+    return res
+}
+
+func hammingWeight1(_ n: UInt32) -> Int {
+    var n = n
+    var res = 0
+    while n != 0 {
+        res += 1
+        n = n & (n - 1)
+    }
+    return res
+}
+
+print(hammingWeight(0b00000000000000000000000000001011))
+```
+
+**时间复杂度：O(1)**
 
 ***
 
