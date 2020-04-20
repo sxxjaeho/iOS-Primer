@@ -20,7 +20,12 @@ func fibonacciLoop(_ num : Int) -> Int {
     }
     var (prev, curr) = (0, 1)
     for _ in 1..<num {
-        (curr, prev) = (curr + prev, curr)
+        // 1.     num = 2 (1, 1)
+        // 2.           3 (1, 2)
+        // 3.           4 (2, 3)
+        // 4.           5 (3, 5)
+        // 5.           6 (5, 8)
+        (prev, curr) = (curr, curr + prev)
     }
     return curr
 }

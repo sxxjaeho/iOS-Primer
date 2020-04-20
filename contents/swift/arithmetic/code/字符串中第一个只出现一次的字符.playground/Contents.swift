@@ -13,7 +13,6 @@ func firstNotRepeatingChar(_ string: String) -> Character? {
             dictionary[char]! += 1
         }
     }
-    print(dictionary)
     for char in chars {
         if dictionary[char]! == 1 {
             return char

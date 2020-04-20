@@ -33,7 +33,6 @@ func threeSum(_ nums: [Int], _ target: Int) -> [[Int]] {
         var behind = index + 1
         while ahead > behind {
             let curSum = sortedNums[ahead] + sortedNums[behind]
-            print(sortedNums[ahead], sortedNums[behind])
             if curSum == target - value {
                 result.append([value, sortedNums[ahead], sortedNums[behind]])
                 break

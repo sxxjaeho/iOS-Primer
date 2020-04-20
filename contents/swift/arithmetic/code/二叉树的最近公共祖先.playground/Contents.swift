@@ -21,7 +21,7 @@ class BinaryTreeNode {
         self.right = right
     }
 }
-// 1.     (3, 5, 1) -> 3
+// 1.     (3, 5, 1)
 func lowestCommonAncestor(_ root: BinaryTreeNode?, _ node1: BinaryTreeNode?, _ node2: BinaryTreeNode?) -> BinaryTreeNode? {
     if root == nil || root?.value == node1?.value || root?.value == node2?.value {
         return root

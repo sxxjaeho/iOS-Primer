@@ -234,7 +234,7 @@ func fibonacciLoop(_ num : Int) -> Int {
     }
     var (prev, curr) = (0, 1)
     for _ in 1..<num {
-        (curr, prev) = (curr + prev, curr)
+        (prev, curr) = (curr, curr + prev)
     }
     return curr
 }
@@ -591,7 +591,6 @@ func firstNotRepeatingChar(_ string: String) -> Character? {
             dictionary[char]! += 1
         }
     }
-    print(dictionary)
     for char in chars {
         if dictionary[char]! == 1 {
             return char

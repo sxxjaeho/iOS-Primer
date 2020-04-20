@@ -12,6 +12,7 @@
       * [102.二叉树的层次遍历](#102二叉树的层次遍历)
       * [141.环形链表](#141环形链表)
       * [146.LRU缓存机制](#146LRU缓存机制)
+      * [179.最大数](#179最大数)
       * [191.位1的个数](#191位1的个数)
       * [226.翻转二叉树](#226翻转二叉树)
       * [236.二叉树的最近公共祖先](#236二叉树的最近公共祖先)
@@ -46,8 +47,11 @@ func twoSum(_ nums: [Int], _ target: Int) -> [[Int]] {
 }
 
 print(twoSum([2, 7, 5, 1, 2, 4], 9))
-
 ```
+
+**时间复杂度：O(n)**
+
+***
 
 ## 15.三数之和
 
@@ -88,7 +92,6 @@ func threeSum(_ nums: [Int], _ target: Int) -> [[Int]] {
         var behind = index + 1
         while ahead > behind {
             let curSum = sortedNums[ahead] + sortedNums[behind]
-            print(sortedNums[ahead], sortedNums[behind])
             if curSum == target - value {
                 result.append([value, sortedNums[ahead], sortedNums[behind]])
                 break
@@ -277,7 +280,7 @@ if let result = swapPairs(head) {
 
 ## 50.Pow(x, n)
 
-[Pow(x, n).playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/Pow(x, n).playground)
+[Pow\(x, n\).playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/Pow(x, n).playground)
 
 题目：实现 pow(x, n) ，即计算 x 的 n 次幂函数。
 
@@ -685,6 +688,166 @@ print(hasCycle(head))
 
 ***
 
+## 146.LRU缓存机制
+
+[LRU缓存机制.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/LRU缓存机制.playground)
+
+题目：运用你所掌握的数据结构，设计和实现一个  LRU (最近最少使用) 缓存机制。它应该支持以下操作： 获取数据 get 和 写入数据 put 。
+
+获取数据 get(key) - 如果密钥 (key) 存在于缓存中，则获取密钥的值（总是正数），否则返回 -1。
+写入数据 put(key, value) - 如果密钥不存在，则写入其数据值。当缓存容量达到上限时，它应该在写入新数据之前删除最近最少使用的数据值，从而为新的数据值留出空间。
+
+```
+class DLinkedNode {
+    var key: Int?
+    var value: Int?
+    var next: DLinkedNode?
+    var prev: DLinkedNode?
+    
+    init(key: Int? = nil, value: Int? = nil) {
+        self.key = key
+        self.value = value
+    }
+}
+
+class LRUCache {
+
+    var capacity = 0
+    let head = DLinkedNode()
+    let tail = DLinkedNode()
+    
+    init(_ capacity: Int) {
+        self.capacity = capacity
+        
+        head.next = tail
+        tail.prev = head
+    }
+    
+    func addNode(_ node: DLinkedNode) {
+        node.prev = head
+        node.next = head.next
+
+        head.next!.prev = node
+        head.next = node
+    }
+    
+    func removeNode(_ node: DLinkedNode) {
+        node.prev?.next = node.next
+        node.next?.prev = node.prev
+    }
+    
+    func moveToHead(_ node: DLinkedNode) {
+        removeNode(node)
+        addNode(node)
+    }
+    
+    func popTail() -> DLinkedNode? {
+        let res = tail.prev!
+        if res.value != nil {
+            removeNode(res)
+            return res
+        } else {
+            return nil
+        }
+    }
+    
+    var count = 0
+    var cache = Dictionary<Int, DLinkedNode>()
+    
+    func get(_ key: Int) -> Int {
+        if let node = cache[key] {
+            moveToHead(node)
+            return node.value!
+        } else {
+            return -1
+        }
+    }
+    
+    func put(_ key: Int, _ value: Int) {
+        if let node = cache[key] {
+            node.value = value
+            moveToHead(node)
+        } else {
+            let newNode = DLinkedNode(key: key, value: value)
+            
+            cache[key] = newNode
+            count += 1
+
+            if count > capacity {
+                let tail = popTail()!
+                cache.removeValue(forKey: tail.key!)
+                addNode(newNode)
+                
+                count -= 1
+            } else {
+                addNode(newNode)
+            }
+        }
+    }
+}
+
+var cache = LRUCache(2 /* 缓存容量 */ )
+cache.put(1, 1);
+cache.put(2, 2);
+print(cache.get(1));       // 返回  1
+cache.put(3, 3);    // 该操作会使得密钥 2 作废
+print(cache.get(2));       // 返回 -1 (未找到)
+cache.put(4, 4);    // 该操作会使得密钥 1 作废
+print(cache.get(1));       // 返回 -1 (未找到)
+print(cache.get(3));       // 返回  3
+print(cache.get(4));       // 返回  4
+```
+
+**时间复杂度：对于 put 和 get 都是 O(1) 
+空间复杂度：O(capacity)，因为哈希表和双向链表最多存储 capacity + 1 个元素**
+
+***
+
+### 179.最大数
+[最大数.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/最大数.playground)
+
+题目：给定一组非负整数，重新排列它们的顺序使之组成一个最大的整数。
+
+示例 1:
+
+```
+输入: [10,2]
+输出: 210
+```
+
+示例 2:
+
+```
+输入: [3,30,34,5,9]
+输出: 9534330
+```
+
+说明: 输出结果可能非常大，所以你需要返回一个字符串而不是整数。
+
+```
+func largestNumber(_ nums: [Int]) -> String {
+    var nums = nums.map { (num) -> String in
+        return String(num)
+    }
+    nums = nums.sorted { (num1, num2) -> Bool in
+        return num1 + num2 > num2 + num1
+    }
+    if nums.count > 0 {
+        if (nums[0] as NSString).isEqual(to: "0") {
+            return "0"
+        }
+    }
+    
+    return (nums as NSArray).componentsJoined(by: "")
+}
+
+print(largestNumber([3,30,34,5,9]))
+```
+
+**时间复杂度：O(nlgn)**
+
+***
+
 ## 191.位1的个数
 [位1的个数.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/位1的个数.playground)
 
@@ -802,121 +965,6 @@ print(preorderTraversal(invertRoot))
 
 ***
 
-## 146.LRU缓存机制
-
-[LRU缓存机制.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/LRU缓存机制.playground)
-
-题目：运用你所掌握的数据结构，设计和实现一个  LRU (最近最少使用) 缓存机制。它应该支持以下操作： 获取数据 get 和 写入数据 put 。
-
-获取数据 get(key) - 如果密钥 (key) 存在于缓存中，则获取密钥的值（总是正数），否则返回 -1。
-写入数据 put(key, value) - 如果密钥不存在，则写入其数据值。当缓存容量达到上限时，它应该在写入新数据之前删除最近最少使用的数据值，从而为新的数据值留出空间。
-
-```
-class DLinkedNode {
-    var key: Int?
-    var value: Int?
-    var next: DLinkedNode?
-    var prev: DLinkedNode?
-    
-    init(key: Int? = nil, value: Int? = nil) {
-        self.key = key
-        self.value = value
-    }
-}
-
-class LRUCache {
-
-    var capacity = 0
-    let head = DLinkedNode()
-    let tail = DLinkedNode()
-    
-    init(_ capacity: Int) {
-        self.capacity = capacity
-        
-        head.next = tail
-        tail.prev = head
-    }
-    
-    func addNode(_ node: DLinkedNode) {
-        node.prev = head
-        node.next = head.next
-
-        head.next!.prev = node
-        head.next = node
-    }
-    
-    func removeNode(_ node: DLinkedNode) {
-        node.prev?.next = node.next
-        node.next?.prev = node.prev
-    }
-    
-    func moveToHead(_ node: DLinkedNode) {
-        removeNode(node)
-        addNode(node)
-    }
-    
-    func popTail() -> DLinkedNode? {
-        let res = tail.prev!
-        if res.value != nil {
-            removeNode(res)
-            return res
-        } else {
-            return nil
-        }
-    }
-    
-    var count = 0
-    var cache = Dictionary<Int, DLinkedNode>()
-    
-    func get(_ key: Int) -> Int {
-        if let node = cache[key] {
-            moveToHead(node)
-            return node.value!
-        } else {
-            return -1
-        }
-    }
-    
-    func put(_ key: Int, _ value: Int) {
-        if let node = cache[key] {
-            node.value = value
-            moveToHead(node)
-        } else {
-            let newNode = DLinkedNode(key: key, value: value)
-            
-            cache[key] = newNode
-            count += 1
-
-            if count > capacity {
-                let tail = popTail()!
-                cache.removeValue(forKey: tail.key!)
-                addNode(newNode)
-                
-                count -= 1
-            } else {
-                addNode(newNode)
-            }
-        }
-    }
-}
-
-var cache = LRUCache(2 /* 缓存容量 */ )
-cache.put(1, 1);
-cache.put(2, 2);
-print(cache.get(1));       // 返回  1
-cache.put(3, 3);    // 该操作会使得密钥 2 作废
-print(cache.get(2));       // 返回 -1 (未找到)
-cache.put(4, 4);    // 该操作会使得密钥 1 作废
-print(cache.get(1));       // 返回 -1 (未找到)
-print(cache.get(3));       // 返回  3
-print(cache.get(4));       // 返回  4
-```
-
-**时间复杂度：对于 put 和 get 都是 O(1) 
-空间复杂度：O(capacity)，因为哈希表和双向链表最多存储 capacity + 1 个元素**
-
-***
-
 ## 236.二叉树的最近公共祖先
 
 [二叉树的最近公共祖先.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/arithmetic/code/二叉树的最近公共祖先.playground)
@@ -928,6 +976,14 @@ print(cache.get(4));       // 返回  4
 例如，给定如下二叉树:  root = [3,5,1,6,2,0,8,null,null,7,4]
 
 ![二叉树的最近公共祖先](media/Swift-Arithmetic-Catalogue2/二叉树的最近公共祖先.png)
+
+示例 1:
+
+```
+输入: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
+输出: 3
+解释: 节点 5 和节点 1 的最近公共祖先是节点 3。
+```
 
 ```
 class BinaryTreeNode {
