@@ -397,9 +397,7 @@ class BinaryTreeNode {
 }
 
 func isValidBST(_ root: BinaryTreeNode?, min : Int?, max : Int?) -> Bool {
-   guard let root = root else {
-        return true
-    }
+    guard let root = root else { return true }
     if let max = max, root.value >= max  {
         return false
     }

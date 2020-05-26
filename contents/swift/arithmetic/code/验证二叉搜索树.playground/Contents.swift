@@ -30,9 +30,7 @@ class BinaryTreeNode {
 }
 
 func isValidBST(_ root: BinaryTreeNode?, min : Int?, max : Int?) -> Bool {
-   guard let root = root else {
-        return true
-    }
+    guard let root = root else { return true }
     // 左子树的最大值要小于根节点的值
     if let max = max, root.value >= max  {
         return false

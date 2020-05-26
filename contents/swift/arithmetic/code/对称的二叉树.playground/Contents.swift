@@ -14,7 +14,6 @@ class BinaryTreeNode {
     }
 }
 
-
 func isSymmetrical(_ root: BinaryTreeNode?) -> Bool{
     return isSymmetrical(root, root)
 }

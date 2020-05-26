@@ -34,7 +34,22 @@ func sum4(_ n: Int, _ m: Int) -> Int {
     if n == m {
         return n
     }
-    return sum4(n, m - 1) +  m
+    return m + sum4(n, m - 1)
 }
 
-print(sum4(99, 100))
+print(sum4(1, 100))
+
+// 题目：计算 n 加 s 到 m 的值
+func sum5(_ n: Int, _ m: Int, _ s: Int) -> Int {
+    if n > m {
+        return 0
+    }
+    // 1 + sum(3)
+    // 1 + 3 + sum(5)
+    // 1 + 3 + 5 + sum(7)
+    // 1 + 3 + 5 + 7 + sum(9)
+    // 1 + 3 + 5 + 7 + 9 + sum(11)
+    return n + sum5(n + s, m, s)
+}
+
+print(sum5(1, 10, 2))
