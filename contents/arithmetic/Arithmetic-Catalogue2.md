@@ -281,7 +281,7 @@ if let result = swapPairs(head) {
 
 ## 50.Pow(x, n)
 
-[Pow\(x, n\).playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/Pow(x,\ n).playground)
+[Pow(x, n).playground](https://github.com/sxxjaeho/iOS-Primer/tree/master/contents/arithmetic/code/Pow(x%2C%20n).playground)
 
 题目：实现 pow(x, n) ，即计算 x 的 n 次幂函数。
 
