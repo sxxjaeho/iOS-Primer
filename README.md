@@ -11,7 +11,6 @@
             详情
         </td>
     </tr>
-    
     <tr align="center">
         <td>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/c/primer/C-Note-Catalogue.md">学习笔记</a>
@@ -23,7 +22,6 @@
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/c/primer/C-Note-Catalogue.md">...</a><br>
         </td>
     </tr>
-    
     <tr align="center">
         <td>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/c/primer/C-Code-Catalogue.md">练习代码</a>
@@ -33,7 +31,6 @@
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/c/primer/C-Code-Catalogue.md">...</a><br>
         </td>
     </tr>
-    
     <tr align="center">
         <td colspan="2">
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/c/C-Catalogue.md">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;更多...&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</a>
@@ -55,7 +52,6 @@
             详情
         </td>
     </tr>
-    
     <tr>
         <td>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/primer/Swift-Code-Catalogue.md">练习代码</a>
@@ -64,46 +60,34 @@
             ▪ Swift 简介&emsp;
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/primer/code/MyPlayground.playground">MyPlayground.playground</a>&emsp;
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/primer/code/LiveView.playground">LiveView.playground</a><br>
-            
             ▪ 基本数据类型&emsp;
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/primer/code/BasicTypes.playground">BasicTypes.playground</a><br>
-            
             ▪ 运算符&emsp;
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/primer/code/Operator.playground">Operator.playground</a><br>
-            
             ▪ 流程控制&emsp;
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/primer/code/ControlFlow.playground">ControlFlow.playground</a><br>
-            
             ▪ 集合类&emsp;
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/primer/code/Collection.playground">Collection.playground</a><br>
-            
             ▪ 函数和闭包&emsp;
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/primer/code/Function.playground">Function.playground</a><br>
-            
             ▪ 面向对象编程&emsp;
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/primer/code/OOP.playground">OOP.playground</a>&emsp;
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/primer/code/Protocol.playground">Protocol.playground</a><br>
-            
             ▪ 泛型&emsp;
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/primer/code/Generic.playground">Generic.playground</a><br>
-            
             ▪ 多线程&emsp;
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/primer/code/Thread.playground">Thread.playground</a><br>
-            
             ▪ SwiftUI&emsp;
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/primer/code/Landmarks">Landmarks</a><br>
-            
             ▪ 其他话题&emsp;
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/primer/code/ErrorHandle.playground">ErrorHandle.playground</a>&emsp;
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/primer/code/swiftOther">swiftOther</a>&emsp;
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/primer/code/Opaque.playground">Opaque.playground</a><br>
-            
         </td>
     </tr>
-    
     <tr align="center">
         <td colspan="2">
-            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/Swift-Catalogue.md">更多...</a>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/Swift-Catalogue.md">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;更多...&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</a>
         </td>
     </tr>
     
@@ -122,7 +106,6 @@
             详情
         </td>
     </tr>
-    
     <tr align="center">
         <td>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md">剑指OFFER 名企面试官精讲典型编程题<br>部分算法题解</a>
@@ -140,7 +123,6 @@
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md">...</a><br>
         </td>
     </tr>
-    
     <tr align="center">
         <td>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md">LeetCode<br>部分算法题解</a>
@@ -159,7 +141,6 @@
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md">...</a><br>
         </td>
     </tr>
-    
     <tr align="center">
         <td>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue3.md">探索字节跳动<br>部分算法题解</a>
@@ -168,8 +149,7 @@
             -
         </td>
     </tr>
-    
-    <tr align="center", >
+    <tr align="center">
         <td colspan="2"><a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue.md">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;更多...&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</a></td>
     </tr>
     
@@ -188,7 +168,6 @@
             详情
         </td>
     </tr>
-    
     <tr align="center">
         <td>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/interview/contents/15712112980765.md">全新角度剖析--iOS面试</a>
@@ -204,7 +183,6 @@
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/interview/contents/15712112980765.md">...</a><br>
         </td>
     </tr>
-    
     <tr align="center">
         <td>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/interview/contents/15809578923617.md">iOS 面试总结</a>
@@ -228,7 +206,6 @@
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/interview/contents/15809578923617.md">...</a><br>
         </td>
     </tr>
-    
     <tr align="center">
         <td colspan="2">
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/interview/Interview-Catalogue.md">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;更多...&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</a>
