@@ -111,15 +111,16 @@
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md">剑指OFFER 名企面试官精讲典型编程题<br>部分算法题解</a>
         </td>
         <td>
-            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/找出数组中重复的数字.playground">3.数组中重复的数字</a><br>
-            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/斐波那契函数.playground">10.斐波那契函数</a><br>
-            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/反转链表.playground">24.反转链表</a><br>
-            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/合并两个排序的链表.playground">25.合并两个排序的链表</a><br>
-            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/对称的二叉树.playground">28.对称的二叉树</a><br>
-            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/数据流中的中位数.playground">41.数据流中的中位数</a><br>
-            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/字符串中第一个只出现一次的字符.playground">50.第一个只出现一次的字符</a><br>
-            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/和为s的数字.playground">57.和为 s 的数字</a><br>
-            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/翻转字符串.playground">58.翻转字符串</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md#3数组中重复的数字">3.数组中重复的数字</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md#10斐波那契函数">10.斐波那契函数</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md#24反转链表">24.反转链表</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md#25合并两个排序的链表">25.合并两个排序的链表</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md#28对称的二叉树">28.对称的二叉树</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md#41数据流中的中位数">41.数据流中的中位数</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md#50第一个只出现一次的字符">50.第一个只出现一次的字符</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md#55二叉树深度">55.二叉树深度</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md#57和为-s-的数字">57.和为 s 的数字</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md#58翻转字符串">58.翻转字符串</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md">...</a><br>
         </td>
     </tr>
@@ -128,16 +129,17 @@
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md">LeetCode<br>部分算法题解</a>
         </td>
         <td>
-            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/两数之和.playground">1.两数之和</a><br>
-            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/三数之和.playground">15.三数之和</a><br>
-            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/合并两个有序数组.playground">88.合并两个有序数组</a><br>
-            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/环形链表.playground">141.环形链表</a><br>
-            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/LRU缓存机制.playground">146.LRU缓存机制</a><br>
-            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/二叉树的最近公共祖先.playground">236.二叉树的最近公共祖先</a><br>
-            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/滑动窗口最大值.playground">239.滑动窗口最大值</a><br>
-            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/滑动窗口中位数.playground">480.滑动窗口中位数</a><br>
-            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/数据流中的第K大元素.playground">703.数据流中的第K大元素</a><br>
-            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/二分查找.playground">704.二分查找</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#1两数之和">1.两数之和</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#15三数之和">15.三数之和</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#88合并两个有序数组">88.合并两个有序数组</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#98验证二叉搜索树">98.验证二叉搜索树</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#141环形链表">141.环形链表</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#146LRU缓存机制">146.LRU缓存机制</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#236二叉树的最近公共祖先">236.二叉树的最近公共祖先</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#239滑动窗口最大值">239.滑动窗口最大值</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#480滑动窗口中位数">480.滑动窗口中位数</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#703数据流中的第K大元素">703.数据流中的第K大元素</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#704二分查找">704.二分查找</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md">...</a><br>
         </td>
     </tr>
