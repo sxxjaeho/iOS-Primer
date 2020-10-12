@@ -17,6 +17,7 @@
 		1887C85B253087AF00A63B44 /* swiftAndOCUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1887C85A253087AF00A63B44 /* swiftAndOCUITests.swift */; };
 		1887C86E253087D100A63B44 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1887C86D253087D100A63B44 /* MyViewController.m */; };
 		1887C87325308C3A00A63B44 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1887C87225308C3A00A63B44 /* Person.swift */; };
+		1887C87F25309B4900A63B44 /* Teacher.m in Sources */ = {isa = PBXBuildFile; fileRef = 1887C87E25309B4900A63B44 /* Teacher.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,8 @@
 		1887C86C253087D100A63B44 /* MyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
 		1887C86D253087D100A63B44 /* MyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
 		1887C87225308C3A00A63B44 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		1887C87D25309B4900A63B44 /* Teacher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Teacher.h; sourceTree = "<group>"; };
+		1887C87E25309B4900A63B44 /* Teacher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Teacher.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +114,8 @@
 				1887C86C253087D100A63B44 /* MyViewController.h */,
 				1887C86D253087D100A63B44 /* MyViewController.m */,
 				1887C87225308C3A00A63B44 /* Person.swift */,
+				1887C87D25309B4900A63B44 /* Teacher.h */,
+				1887C87E25309B4900A63B44 /* Teacher.m */,
 				1887C83E253087AD00A63B44 /* Main.storyboard */,
 				1887C841253087AF00A63B44 /* Assets.xcassets */,
 				1887C843253087AF00A63B44 /* LaunchScreen.storyboard */,
@@ -269,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1887C87F25309B4900A63B44 /* Teacher.m in Sources */,
 				1887C87325308C3A00A63B44 /* Person.swift in Sources */,
 				1887C83D253087AD00A63B44 /* ViewController.swift in Sources */,
 				1887C839253087AD00A63B44 /* AppDelegate.swift in Sources */,
