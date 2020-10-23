@@ -14,8 +14,12 @@ import UIKit
  
  */
 
-// a.DP状态的定义 DP(n):到第n阶的总走法个数
-// b.DP方程 DP(n) = DP(n-1) + DP(n-2)
+// DP状态的定义:
+// DP(n):到第n阶的总走法个数
+
+// DP方程:
+// DP(n) = DP(n-1) + DP(n-2)
+
 func climbStairs(_ n: Int) -> Int {
     if n <= 2  {
         return n

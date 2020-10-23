@@ -17,7 +17,7 @@ import UIKit
  */
 
 var list = [String]()
-func _gen(_ left: Int, _ right: Int,  _ n: Int, _ result: String) {
+func _gen(_ left: Int, _ right: Int, _ n: Int, _ result: String) {
     if left == n && right == n {
         list.append(result)
         return
