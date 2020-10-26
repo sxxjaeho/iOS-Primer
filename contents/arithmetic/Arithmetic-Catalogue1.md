@@ -547,6 +547,38 @@ print(getMedian(array) ?? 0)
 
 ## 42.连续子数组的最大和
 
+[连续子数组的最大和.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/连续子数组的最大和.playground)
+
+题目：输入一个整型数组，数组中的一个或连续多个整数组成一个子数组。求所有子数组的和的最大值。
+
+要求时间复杂度为O(n)。
+
+示例：
+
+```
+输入: nums = [-2,1,-3,4,-1,2,1,-5,4]
+输出: 6
+解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。
+```
+
+```
+func maxSubArray(_ nums: [Int]) -> Int {
+    guard nums.count > 0 else {
+        return 0
+    }
+    var dp = nums
+    var maxSum = nums[0]
+    for i in 1..<nums.count {
+        dp[i] = max(dp[i-1], 0) + nums[i]
+        maxSum = max(maxSum, dp[i])
+    }
+    return maxSum
+}
+```
+
+**时间复杂度：O(n) 空间复杂度：O(n)**
+
+***
 
 ## 43.1 ~ n 整数中 1 出现的次数
 

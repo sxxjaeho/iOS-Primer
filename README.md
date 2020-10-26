@@ -117,6 +117,7 @@
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md#25合并两个排序的链表">25.合并两个排序的链表</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md#28对称的二叉树">28.对称的二叉树</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md#41数据流中的中位数">41.数据流中的中位数</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md#42连续子数组的最大和">42.连续子数组的最大和</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md#50第一个只出现一次的字符">50.第一个只出现一次的字符</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md#55二叉树深度">55.二叉树深度</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md#57和为-s-的数字">57.和为 s 的数字</a><br>
