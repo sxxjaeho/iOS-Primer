@@ -10,7 +10,7 @@
 
 [无重复字符的最长子串.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/无重复字符的最长子串.playground)
 
-题目：给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
+题目：给定一个字符串，请你找出其中不含有重复字符的最长子串的长度。
 
 示例 1：
 
@@ -38,9 +38,31 @@
 ```
 
 ```
+func lengthOfLongestSubstring(_ s: String) -> Int {
+    let characters = Array(s)
+    guard characters.count > 0 else {
+        return 0
+    }
+    
+    var dic = [Character : Int]()
+    var start = 0, length = 0;
+    
+    for end in 0..<characters.count {
+        let character = characters[end]
+        if let dummy = dic[character] {
+            start = max(dummy, start)
+        }
+        length = max(end - start + 1, length)
+        dic[character] = end + 1
+    }
+    return length
+}
+
+print(lengthOfLongestSubstring("pwwkew"))
 ```
 
-**时间复杂度：空间复杂度：**
+**时间复杂度：O(n) 
+空间复杂度：O(∣Σ∣)，其中 Σ 表示字符集（即字符串中可以出现的字符），∣Σ∣ 表示字符集的大小**
 
 ***
 
