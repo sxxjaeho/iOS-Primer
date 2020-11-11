@@ -7,7 +7,7 @@ import UIKit
 */
 
 func threeSum(_ nums: [Int], _ target: Int) -> [[Int]] {
-    guard nums.count > 3 else {
+    guard nums.count >= 3 else {
         return [[]]
     }
     

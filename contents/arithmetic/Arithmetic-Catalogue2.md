@@ -77,7 +77,7 @@ print(twoSum([2, 7, 5, 1, 2, 4], 9))
 
 ```
 func threeSum(_ nums: [Int], _ target: Int) -> [[Int]] {
-    guard nums.count > 3 else {
+    guard nums.count >= 3 else {
         return [[]]
     }
     
