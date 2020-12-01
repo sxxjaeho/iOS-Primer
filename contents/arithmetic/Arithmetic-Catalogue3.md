@@ -4,6 +4,8 @@
         * [1.无重复字符的最长子串](#1无重复字符的最长子串)
         * [5.翻转字符串里的单词](#5翻转字符串里的单词)
         * [6.简化路径](#6简化路径)
+      * [数组与排序](#数组与排序)
+        * [4.最长连续递增序列](#4最长连续递增序列)
 
 # 探索字节跳动-部分算法题解
 ## 挑战字符串
@@ -206,3 +208,54 @@ print(simplifyPath("/a//b////c/d//././/.."))
 **时间复杂度：O(n) 空间复杂度：O(n)**
 
 ***
+
+
+## 数组与排序
+
+### 4.最长连续递增序列
+
+[最长连续递增序列.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/最长连续递增序列.playground)
+
+[题目](https://leetcode-cn.com/problems/longest-continuous-increasing-subsequence/)：给定一个字符串，请你找出其中不含有重复字符的最长子串的长度。
+
+示例 1：
+
+```
+ 输入：nums = [1,3,5,4,7]
+ 输出：3
+ 解释：最长连续递增序列是 [1,3,5], 长度为3。
+ 尽管 [1,3,5,7] 也是升序的子序列, 但它不是连续的，因为 5 和 7 在原数组里被 4 隔开。
+```
+
+示例 2：
+
+```
+输入：nums = [2,2,2,2,2]
+输出：1
+解释：最长连续递增序列是 [2], 长度为1。
+```
+
+```
+func findLengthOfLCIS(_ nums: [Int]) -> Int {
+    guard nums.count > 0 else {
+        return 0
+    }
+    var len = 1;
+    var dp = Array(repeating: 1, count: nums.count)
+    dp[0] = 1
+    for i in 1..<nums.count {
+        if nums[i-1] < nums[i] {
+            dp[i] = dp[i-1] + 1
+        }
+        len = max(dp[i], len)
+    }
+    return len
+}
+
+print(findLengthOfLCIS([1, 3, 5, 4, 7]))
+```
+
+**时间复杂度：O(n) 空间复杂度：O(n)**
+
+***
+

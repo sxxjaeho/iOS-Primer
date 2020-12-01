@@ -149,7 +149,10 @@
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue3.md">探索字节跳动<br>部分算法题解</a>
         </td>
         <td>
-            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue3.md#3无重复字符的最长子串">3.无重复字符的最长子串</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue3.md#1无重复字符的最长子串">1.无重复字符的最长子串</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue3.md#5翻转字符串里的单词">5.翻转字符串里的单词</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue3.md#6简化路径">6.简化路径</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue3.md#4最长连续递增序列">4.最长连续递增序列</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue3.md">...</a><br>
         </td>
     </tr>
