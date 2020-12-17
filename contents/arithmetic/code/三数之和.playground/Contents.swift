@@ -8,14 +8,16 @@ import UIKit
 
 func threeSum(_ nums: [Int], _ target: Int) -> [[Int]] {
     guard nums.count >= 3 else {
-        return [[]]
+        return []
     }
     
     // 1.     [-4, -1, -1, 0, 1, 2]
     //    let sortedNums = nums.sorted()
     let sortedNums = sortArray(nums)
     
-    var result = [[Int]]()
+    var resultArray = [[Int]]()
+    
+    var resultSet: Set<Set<Int>> = []
 
     for (index, value) in sortedNums.enumerated() {
         guard index < sortedNums.count - 2 else {
@@ -34,8 +36,11 @@ func threeSum(_ nums: [Int], _ target: Int) -> [[Int]] {
         while ahead > behind {
             let curSum = sortedNums[ahead] + sortedNums[behind]
             if curSum == target - value {
-                result.append([value, sortedNums[ahead], sortedNums[behind]])
-                break
+                if !resultSet.contains([value, sortedNums[ahead], sortedNums[behind]]) {
+                    resultArray.append([value, sortedNums[ahead], sortedNums[behind]])
+                    resultSet.insert([value, sortedNums[ahead], sortedNums[behind]])
+                }
+                behind += 1
             } else if curSum > target - value {
                 ahead -= 1
             } else {
@@ -43,7 +48,7 @@ func threeSum(_ nums: [Int], _ target: Int) -> [[Int]] {
             }
         }
     }
-    return result
+    return resultArray
 }
 
 func sortArray(_ nums: [Int]) -> [Int] {

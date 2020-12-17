@@ -76,35 +76,41 @@ print(twoSum([2, 7, 5, 1, 2, 4], 9))
 ```
 
 ```
-func threeSum(_ nums: [Int], _ target: Int) -> [[Int]] {
+func threeSum(_ nums: [Int]) -> [[Int]] {
     guard nums.count >= 3 else {
-        return [[]]
+        return []
     }
-    
+
     //    let sortedNums = nums.sorted()
     let sortedNums = sortArray(nums)
-    
-    var result = [[Int]]()
+
+    var resultArray = [[Int]]()
+
+    var resultSet: Set<Set<Int>> = []
 
     for (index, value) in sortedNums.enumerated() {
         guard index < sortedNums.count - 2 else {
             break
         }
+
         var ahead = sortedNums.count - 1
         var behind = index + 1
         while ahead > behind {
             let curSum = sortedNums[ahead] + sortedNums[behind]
-            if curSum == target - value {
-                result.append([value, sortedNums[ahead], sortedNums[behind]])
-                break
-            } else if curSum > target - value {
+            if curSum == 0 - value {
+                if !resultSet.contains([value, sortedNums[ahead], sortedNums[behind]]) {
+                    resultArray.append([value, sortedNums[ahead], sortedNums[behind]])
+                    resultSet.insert([value, sortedNums[ahead], sortedNums[behind]])
+                }
+                behind += 1
+            } else if curSum > 0 - value {
                 ahead -= 1
             } else {
                 behind += 1
             }
         }
     }
-    return result
+    return resultArray
 }
 
 func sortArray(_ nums: [Int]) -> [Int] {
@@ -121,7 +127,7 @@ func sortArray(_ nums: [Int]) -> [Int] {
 print(threeSum([-1, 0, 1, 2, -1, -4], 0))
 ```
 
-**时间复杂度：O(n<sup>2</sup>)**
+**时间复杂度：O(n<sup>2</sup>) 空间复杂度：O(logN)**
 
 ***
 

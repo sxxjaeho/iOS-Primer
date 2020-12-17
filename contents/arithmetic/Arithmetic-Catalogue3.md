@@ -5,7 +5,10 @@
         * [5.翻转字符串里的单词](#5翻转字符串里的单词)
         * [6.简化路径](#6简化路径)
       * [数组与排序](#数组与排序)
+        * [1.三数之和](#1三数之和)
         * [4.最长连续递增序列](#4最长连续递增序列)
+      * [链表与树](#链表与树)
+        * [2.反转链表](#2反转链表)
 
 # 探索字节跳动-部分算法题解
 ## 挑战字符串
@@ -209,8 +212,69 @@ print(simplifyPath("/a//b////c/d//././/.."))
 
 ***
 
-
 ## 数组与排序
+
+### 1.三数之和
+
+[三数之和.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/三数之和.playground)
+
+[题目](https://leetcode-cn.com/problems/3sum/)：给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有满足条件且不重复的三元组。
+
+注意：答案中不可以包含重复的三元组。
+
+示例：
+
+```
+给定数组 nums = [-1, 0, 1, 2, -1, -4]，
+
+满足要求的三元组集合为：
+[
+  [-1, 0, 1],
+  [-1, -1, 2]
+]
+```
+
+```
+func threeSum(_ nums: [Int]) -> [[Int]] {
+    guard nums.count >= 3 else {
+        return []
+    }
+
+    let sortedNums = nums.sorted()
+
+    var resultArray = [[Int]]()
+
+    var resultSet: Set<Set<Int>> = []
+
+    for (index, value) in sortedNums.enumerated() {
+        guard index < sortedNums.count - 2 else {
+            break
+        }
+
+        var ahead = sortedNums.count - 1
+        var behind = index + 1
+        while ahead > behind {
+            let curSum = sortedNums[ahead] + sortedNums[behind]
+            if curSum == 0 - value {
+                if !resultSet.contains([value, sortedNums[ahead], sortedNums[behind]]) {
+                    resultArray.append([value, sortedNums[ahead], sortedNums[behind]])
+                    resultSet.insert([value, sortedNums[ahead], sortedNums[behind]])
+                }
+                behind += 1
+            } else if curSum > 0 - value {
+                ahead -= 1
+            } else {
+                behind += 1
+            }
+        }
+    }
+    return resultArray
+}
+```
+
+**时间复杂度：O(n<sup>2</sup>) 空间复杂度：O(logN)**
+
+***
 
 ### 4.最长连续递增序列
 
@@ -259,3 +323,50 @@ print(findLengthOfLCIS([1, 3, 5, 4, 7]))
 
 ***
 
+## 链表与树
+
+### 2.反转链表
+
+[反转链表.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/反转链表.playground)
+
+[题目](https://leetcode-cn.com/problems/reverse-linked-list/)：反转一个单链表。
+
+示例：
+
+```
+输入: 1->2->3->4->5->NULL
+输出: 5->4->3->2->1->NULL
+```
+
+```
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public var val: Int
+ *     public var next: ListNode?
+ *     public init(_ val: Int) {
+ *         self.val = val
+ *         self.next = nil
+ *     }
+ * }
+ */
+func reverseList(_ head: ListNode?) -> ListNode? {
+    var reversedHead: ListNode? = nil
+    var node: ListNode? = head
+    var prev: ListNode? = nil
+    while node != nil {
+        let next = node?.next
+        if next == nil {
+            reversedHead = node
+        }
+        node?.next = prev
+        prev = node
+        node = next
+    }
+    return reversedHead
+}
+```
+
+**时间复杂度：O(n) 空间复杂度：O(1)**
+
+***
