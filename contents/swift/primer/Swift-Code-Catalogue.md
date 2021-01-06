@@ -26,6 +26,10 @@
     * [ErrorHandle.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/primer/code/ErrorHandle.playground)
     * [swiftOther](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/primer/code/swiftOther)
     * [Opaque.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/primer/code/Opaque.playground)
+* Swfit和Objective-C混合编程
+    * [swiftAndOC](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/primer/code/swiftAndOC)
+* 实战开发
+    * [geetTime](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/swift/primer/code/geetTime)
 
     
 
