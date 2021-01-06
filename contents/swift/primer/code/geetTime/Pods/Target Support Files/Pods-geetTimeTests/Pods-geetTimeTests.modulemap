@@ -1,0 +1,6 @@
+framework module Pods_geetTimeTests {
+  umbrella header "Pods-geetTimeTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

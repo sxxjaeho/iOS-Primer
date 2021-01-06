@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-geetTime-geetTimeUITests/Pods-geetTime-geetTimeUITests-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework
+${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework
+${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
