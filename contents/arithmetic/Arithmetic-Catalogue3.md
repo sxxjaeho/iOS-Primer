@@ -7,10 +7,13 @@
       * [数组与排序](#数组与排序)
         * [1.三数之和](#1三数之和)
         * [4.最长连续递增序列](#4最长连续递增序列)
+        * [5.数组中的第K个最大元素](#5数组中的第K个最大元素)
       * [链表与树](#链表与树)
         * [2.反转链表](#2反转链表)
       * [动态或贪心](#动态或贪心)
+        * [4.最大子序和](#4最大子序和)
         * [5.三角形最小路径和](#5三角形最小路径和)
+
 
 # 探索字节跳动-部分算法题解
 ## 挑战字符串
@@ -325,6 +328,29 @@ print(findLengthOfLCIS([1, 3, 5, 4, 7]))
 
 ***
 
+### 5.数组中的第K个最大元素
+
+[数组中的第K个最大元素.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/数组中的第K个最大元素.playground)
+
+[题目](https://leetcode-cn.com/problems/kth-largest-element-in-an-array/)：在未排序的数组中找到第 k 个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素。
+
+示例：
+
+```
+输入: [3,2,1,5,6,4] 和 k = 2
+输出: 5
+```
+
+```
+func findKthLargest(_ nums: [Int], _ k: Int) -> Int {
+    return nums.sorted { return $0 > $1}[k - 1]
+}
+```
+
+**时间复杂度：O(nlogn) 空间复杂度：O(logn)**
+
+***
+
 ## 链表与树
 
 ### 2.反转链表
@@ -374,6 +400,42 @@ func reverseList(_ head: ListNode?) -> ListNode? {
 ***
 
 ## 动态或贪心
+
+### 4.最大子序和
+
+[最大子序和.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/最大子序和.playground)
+
+[题目](https://leetcode-cn.com/problems/maximum-subarray/)：给定一个整数数组 nums，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
+
+示例：
+
+```
+输入：nums = [-2,1,-3,4,-1,2,1,-5,4]
+输出：6
+解释：连续子数组 [4,-1,2,1] 的和最大，为 6 。
+```
+
+```
+func maxSubArray(_ nums: [Int]) -> Int {
+    guard nums.count > 1 else {
+        return nums.first!
+    }
+    var dp = [Int](repeating: 0, count: nums.count)
+    dp[0] = nums[0]
+    var sum = dp[0]
+    for i in 1..<nums.count {
+        dp[i] = max(dp[i-1]+nums[i], nums[i]);
+        sum = max(dp[i], sum)
+    }
+    return sum
+}
+
+print(maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]))
+```
+
+**时间复杂度：O(n) 空间复杂度：O(1)**
+
+***
 
 ### 5.三角形最小路径和
 
