@@ -9,7 +9,9 @@
         * [4.最长连续递增序列](#4最长连续递增序列)
         * [5.数组中的第K个最大元素](#5数组中的第K个最大元素)
       * [链表与树](#链表与树)
+        * [1.合并两个有序链表](#1合并两个有序链表) 
         * [2.反转链表](#2反转链表)
+        * [8.二叉树的最近公共祖先](#8二叉树的最近公共祖先)
       * [动态或贪心](#动态或贪心)
         * [1.买卖股票的最佳时机](#1买卖股票的最佳时机)
         * [2.买卖股票的最佳时机II](#2买卖股票的最佳时机II)
@@ -71,8 +73,6 @@ func lengthOfLongestSubstring(_ s: String) -> Int {
     }
     return length
 }
-
-print(lengthOfLongestSubstring("pwwkew"))
 ```
 
 **时间复杂度：O(n) 
@@ -147,13 +147,9 @@ func reverse(_ chars: inout Array<Character>, _ begin: Int, _ end: Int) {
     }
 }
 
-print(reverseWords("  hello  world  "))
-
 func reverseWords1(_ sentence: String) -> String {
     return sentence.split { $0.isWhitespace }.reversed().joined(separator: " ")
 }
-
-print(reverseWords1("  hello  world  "))
 ```
 
 **时间复杂度：O(n) 空间复杂度：O(n)**
@@ -211,8 +207,6 @@ func simplifyPath(_ path: String) -> String {
     }
     return "/" + resPathArray.joined(separator: "/")
 }
-
-print(simplifyPath("/a//b////c/d//././/.."))
 ```
 
 **时间复杂度：O(n) 空间复杂度：O(n)**
@@ -322,8 +316,6 @@ func findLengthOfLCIS(_ nums: [Int]) -> Int {
     }
     return len
 }
-
-print(findLengthOfLCIS([1, 3, 5, 4, 7]))
 ```
 
 **时间复杂度：O(n) 空间复杂度：O(n)**
@@ -354,6 +346,53 @@ func findKthLargest(_ nums: [Int], _ k: Int) -> Int {
 ***
 
 ## 链表与树
+
+### 1.合并两个有序链表
+
+[合并两个有序链表.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/合并两个排序的链表.playground)
+
+[题目](https://leetcode-cn.com/problems/merge-two-sorted-lists/)：将两个升序链表合并为一个新的**升序**链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。
+
+示例：
+
+```
+输入：l1 = [1,2,4], l2 = [1,3,4]
+输出：[1,1,2,3,4,4]
+```
+
+```
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public var val: Int
+ *     public var next: ListNode?
+ *     public init(_ val: Int) {
+ *         self.val = val
+ *         self.next = nil
+ *     }
+ * }
+ */
+func mergeTwoLists(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
+    if l1 == nil {
+        return l2
+    } else if l2 == nil {
+        return l1
+    }
+    var newHead: ListNode? = nil
+    if l1!.val < l2!.val {
+        newHead = l1
+        newHead?.next = mergeTwoLists(l1?.next, l2)
+    } else {
+        newHead = l2
+        newHead?.next = mergeTwoLists(l1, l2?.next)
+    }
+    return newHead
+}
+```
+
+**时间复杂度：O(n+m) 空间复杂度：O(n+m)**
+
+***
 
 ### 2.反转链表
 
@@ -401,6 +440,50 @@ func reverseList(_ head: ListNode?) -> ListNode? {
 
 ***
 
+### 8.二叉树的最近公共祖先
+
+[二叉树的最近公共祖先.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/二叉树的最近公共祖先.playground)
+
+[题目](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)：给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
+
+最近公共祖先的定义为：“对于有根树 T 的两个节点 p、q，最近公共祖先表示为一个节点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”
+
+示例：
+
+```
+输入：root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
+输出：3
+解释：节点 5 和节点 1 的最近公共祖先是节点 3 。
+```
+
+```
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public var val: Int
+ *     public var left: TreeNode?
+ *     public var right: TreeNode?
+ *     public init(_ val: Int) {
+ *         self.val = val
+ *         self.left = nil
+ *         self.right = nil
+ *     }
+ * }
+ */
+func lowestCommonAncestor(_ root: TreeNode?, _ p: TreeNode?, _ q: TreeNode?) -> TreeNode? {
+    if root == nil || root?.val == p?.val || root?.val == q?.val {
+        return root
+    }
+    let left = lowestCommonAncestor(root?.left, p, q)
+    let right = lowestCommonAncestor(root?.right, p, q)
+    return left == nil ? right : (right == nil ? left : root)
+}
+```
+
+**时间复杂度：O(n) 空间复杂度：O(n)**
+
+***
+
 ## 动态或贪心
 
 ### 1.买卖股票的最佳时机
@@ -437,8 +520,6 @@ func maxProfit(_ prices: [Int]) -> Int {
     }
     return maxProfit
 }
-
-print(maxProfit([7, 1, 5, 3, 6, 4]))
 ```
 
 **时间复杂度：O(n) 空间复杂度：O(1)**
@@ -475,8 +556,6 @@ func maxProfit(_ prices: [Int]) -> Int {
     }
     return dp[prices.count - 1][0];
 }
-
-print(maxProfit([7, 1, 5, 3, 6, 4]))
 ```
 
 **时间复杂度：O(n) 空间复杂度：O(n)**
@@ -511,8 +590,6 @@ func maxSubArray(_ nums: [Int]) -> Int {
     }
     return sum
 }
-
-print(maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]))
 ```
 
 **时间复杂度：O(n) 空间复杂度：O(1)**
@@ -547,8 +624,6 @@ func minimumTotal(_ triangle: [[Int]]) -> Int {
     }
     return mini[0]
 }
-
-print(minimumTotal([[2],[3,4],[6,5,7],[4,1,8,3]]))
 ```
 
 **时间复杂度：O(n<sup>2</sup>) 空间复杂度：O(n<sup>2</sup>)**
