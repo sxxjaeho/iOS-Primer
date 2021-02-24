@@ -8,6 +8,7 @@
         * [1.三数之和](#1三数之和)
         * [4.最长连续递增序列](#4最长连续递增序列)
         * [5.数组中的第K个最大元素](#5数组中的第K个最大元素)
+        * [6.最长连续序列](#6最长连续序列)
       * [链表与树](#链表与树)
         * [1.合并两个有序链表](#1合并两个有序链表) 
         * [2.反转链表](#2反转链表)
@@ -342,6 +343,46 @@ func findKthLargest(_ nums: [Int], _ k: Int) -> Int {
 ```
 
 **时间复杂度：O(nlogn) 空间复杂度：O(logn)**
+
+***
+
+### 6.最长连续序列
+
+[最长连续序列.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/最长连续序列.playground)
+
+[题目](https://leetcode-cn.com/problems/longest-consecutive-sequence/)：给定一个未排序的整数数组 nums ，找出数字连续的最长序列（不要求序列元素在原数组中连续）的长度。
+
+进阶：你可以设计并实现时间复杂度为 O(n) 的解决方案吗？
+
+示例：
+
+```
+输入：nums = [100,4,200,1,3,2]
+输出：4
+解释：最长数字连续序列是 [1, 2, 3, 4]。它的长度为 4。
+```
+
+```
+func longestConsecutive(_ nums: [Int]) -> Int {
+    guard nums.count > 1 else {
+        return nums.count
+    }
+    let numSet = Set(nums)
+    var maxLenght = 0
+    for num in numSet {
+        if !numSet.contains(num - 1) {
+            var currentNum = num + 1
+            while numSet.contains(currentNum) {
+                currentNum += 1
+            }
+            maxLenght = max(maxLenght, currentNum - num)
+        }
+    }
+    return maxLenght
+}
+```
+
+**时间复杂度：O(n) 空间复杂度：O(n)**
 
 ***
 

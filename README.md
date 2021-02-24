@@ -158,6 +158,8 @@
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue3.md#6简化路径">简化路径</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue3.md#1三数之和">三数之和</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue3.md#4最长连续递增序列">最长连续递增序列</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue3.md#5数组中的第K个最大元素">数组中的第K个最大元素</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue3.md#6最长连续序列">最长连续序列</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue3.md#1合并两个有序链表">合并两个有序链表</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue3.md#2反转链表">反转链表</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue3.md#8二叉树的最近公共祖先">二叉树的最近公共祖先</a><br>
