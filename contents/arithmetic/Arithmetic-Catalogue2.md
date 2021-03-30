@@ -5,6 +5,7 @@
       * [20.有效的括号](#20有效的括号)
       * [22.括号生成](#22括号生成)
       * [24.两两交换链表中的节点](#24两两交换链表中的节点)
+      * [25.K个一组翻转链表](#K个一组翻转链表)
       * [50.Pow(x, n)](#50powx-n)
       * [70.爬楼梯](#70爬楼梯)
       * [88.合并两个有序数组](#88合并两个有序数组)
@@ -33,7 +34,7 @@
 
 [两数之和.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/两数之和.playground)
 
-题目：给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。
+[题目](https://leetcode-cn.com/problems/two-sum/)：给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。
 
 ```
 func twoSum(_ nums: [Int], _ target: Int) -> [[Int]] {
@@ -51,7 +52,7 @@ func twoSum(_ nums: [Int], _ target: Int) -> [[Int]] {
 print(twoSum([2, 7, 5, 1, 2, 4], 9))
 ```
 
-**时间复杂度：O(n)**
+**时间复杂度：O(n) 空间复杂度：O(n)**
 
 ***
 
@@ -59,7 +60,7 @@ print(twoSum([2, 7, 5, 1, 2, 4], 9))
 
 [三数之和.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/三数之和.playground)
 
-题目：给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有满足条件且不重复的三元组。
+[题目](https://leetcode-cn.com/problems/3sum/)：给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有满足条件且不重复的三元组。
 
 注意：答案中不可以包含重复的三元组。
 
@@ -135,7 +136,7 @@ print(threeSum([-1, 0, 1, 2, -1, -4], 0))
 
 [有效的括号.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/有效的括号.playground)
 
-题目：给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串，判断字符串是否有效。
+[题目](https://leetcode-cn.com/problems/valid-parentheses/)：给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串，判断字符串是否有效。
 
 有效字符串需满足：
 
@@ -176,7 +177,7 @@ print(isValid("{[]}"))
 
 [括号生成.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/括号生成.playground)
 
-题目：给出 n 代表生成括号的对数，请你写出一个函数，使其能够生成所有可能的并且有效的括号组合。
+[题目](https://leetcode-cn.com/problems/generate-parentheses/)：给出 n 代表生成括号的对数，请你写出一个函数，使其能够生成所有可能的并且有效的括号组合。
 
 例如，给出 n = 3，生成结果为：
 
@@ -226,7 +227,7 @@ print(generateParenthesis(3))
 
 [两两交换链表中的节点.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/两两交换链表中的节点.playground)
 
-题目：给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。
+[题目](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)：给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。
 
 你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。
 
@@ -286,11 +287,91 @@ if let result = swapPairs(head) {
 
 ***
 
+## 25.K个一组翻转链表
+
+[K个一组翻转链表.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/K个一组翻转链表.playground)
+
+[题目](https://leetcode-cn.com/problems/reverse-nodes-in-k-group/)：给你一个链表，每 k 个节点一组进行翻转，请你返回翻转后的链表。
+
+k 是一个正整数，它的值小于或等于链表的长度。
+
+如果节点总数不是 k 的整数倍，那么请将最后剩余的节点保持原有顺序。
+
+进阶：
+
+你可以设计一个只使用常数额外空间的算法来解决此问题吗？
+你不能只是单纯的改变节点内部的值，而是需要实际进行节点交换。
+
+示例：
+
+```
+输入：head = [1,2,3,4,5], k = 2
+输出：[2,1,4,3,5]
+```
+
+```
+class ListNode {
+    var value: Int
+    var next: ListNode?
+    
+    init(_ value: Int) {
+        self.value = value
+    }
+    
+    func next(_ value: Int) -> ListNode {
+        let node = ListNode(value)
+        next = node
+        return node
+    }
+}
+
+func reverseKGroup(_ head: ListNode?, _ k: Int) -> ListNode? {
+    let dummy: ListNode = ListNode(0)
+    dummy.next = head
+    
+    var pre: ListNode? = dummy
+    var tail: ListNode? = dummy
+    
+    while tail != nil {
+        for _ in 1...k {
+            if tail == nil { break }
+            tail = tail?.next
+        }
+        if tail == nil { break }
+        
+        let head: ListNode? = pre?.next
+        let next: ListNode? = tail?.next
+        
+        tail?.next = nil
+        pre?.next = reverse(head)
+        head?.next = next
+        
+        pre = head
+        tail = head
+    }
+    return dummy.next
+}
+
+func reverse(_ head: ListNode?) -> ListNode? {
+    if head == nil || head?.next == nil {
+        return head
+    }
+    let temp = reverse(head?.next)
+    head?.next?.next = head
+    head?.next = nil
+    return temp
+}
+```
+
+**时间复杂度：O(n) 空间复杂度：O(1)**
+
+***
+
 ## 50.Pow(x, n)
 
 [Pow(x, n).playground](https://github.com/sxxjaeho/iOS-Primer/tree/master/contents/arithmetic/code/Pow(x%2C%20n).playground)
 
-题目：实现 pow(x, n) ，即计算 x 的 n 次幂函数。
+[题目](https://leetcode-cn.com/problems/powx-n/)：实现 pow(x, n) ，即计算 x 的 n 次幂函数。
 
 
 示例：
@@ -324,7 +405,7 @@ print(myPow(2, 10))
 
 [爬楼梯.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/爬楼梯.playground)
 
-题目：假设你正在爬楼梯。需要 n 阶你才能到达楼顶。
+[题目](https://leetcode-cn.com/problems/climbing-stairs/)：假设你正在爬楼梯。需要 n 阶你才能到达楼顶。
  每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢
 
 示例：
@@ -363,7 +444,7 @@ print(climbStairs(5))
 [合并两个有序数组.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/合并两个有序数组.playground)
 
 
-题目：给定两个有序整数数组 nums1 和 nums2，将 nums2 合并到 nums1 中，使得 num1 成为一个有序数组。
+[题目](https://leetcode-cn.com/problems/merge-sorted-array/)：给定两个有序整数数组 nums1 和 nums2，将 nums2 合并到 nums1 中，使得 num1 成为一个有序数组。
 
 说明:
 初始化 nums1 和 nums2 的元素数量分别为 m 和 n。
@@ -412,7 +493,7 @@ print(nums1)
 
 [验证二叉搜索树.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/验证二叉搜索树.playground)
 
-题目：给定一个二叉树，判断其是否是一个有效的二叉搜索树。
+[题目](https://leetcode-cn.com/problems/validate-binary-search-tree/)：给定一个二叉树，判断其是否是一个有效的二叉搜索树。
 
 假设一个二叉搜索树具有如下特征：
 
@@ -467,7 +548,7 @@ print(isValidBST(root, min: nil, max: nil))
 
 [相同的树.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/相同的树.playground)
 
-题目：给定两个二叉树，编写一个函数来检验它们是否相同。
+[题目](https://leetcode-cn.com/problems/same-tree/)：给定两个二叉树，编写一个函数来检验它们是否相同。
 
 如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。
 
@@ -554,7 +635,7 @@ print(isSameTree(node5, node6))
 
 [二叉树的层次遍历.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/二叉树的层次遍历.playground)
 
-题目：给定一个二叉树，返回其按层次遍历的节点值。 （即逐层地，从左到右访问所有节点）。
+[题目](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)：给定一个二叉树，返回其按层次遍历的节点值。 （即逐层地，从左到右访问所有节点）。
 
 ```
 例如:
@@ -662,7 +743,7 @@ func postorderTraversal(_ root: BinaryTreeNode?) -> [Int] {
 
 [三角形最小路径和.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/三角形最小路径和.playground)
 
-题目：给定一个三角形，找出自顶向下的最小路径和。每一步只能移动到下一行中相邻的结点上。
+[题目](https://leetcode-cn.com/problems/triangle/)：给定一个三角形，找出自顶向下的最小路径和。每一步只能移动到下一行中相邻的结点上。
 
  相邻的结点 在这里指的是 下标 与 上一层结点下标 相同或者等于 上一层结点下标 + 1 的两个结点。
 
@@ -698,7 +779,7 @@ func minimumTotal(_ triangle: [[Int]]) -> Int {
 
 [环形链表.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/环形链表.playground)
 
-题目：给定一个链表，判断链表中是否有环。
+[题目](https://leetcode-cn.com/problems/linked-list-cycle/)：给定一个链表，判断链表中是否有环。
 
 为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。
 
@@ -777,7 +858,7 @@ print(hasCycle(head))
 
 [LRU缓存机制.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/LRU缓存机制.playground)
 
-题目：运用你所掌握的数据结构，设计和实现一个  LRU (最近最少使用) 缓存机制。它应该支持以下操作： 获取数据 get 和 写入数据 put 。
+[题目](https://leetcode-cn.com/problems/lru-cache/)：运用你所掌握的数据结构，设计和实现一个  LRU (最近最少使用) 缓存机制。它应该支持以下操作： 获取数据 get 和 写入数据 put 。
 
 获取数据 get(key) - 如果密钥 (key) 存在于缓存中，则获取密钥的值（总是正数），否则返回 -1。
 写入数据 put(key, value) - 如果密钥不存在，则写入其数据值。当缓存容量达到上限时，它应该在写入新数据之前删除最近最少使用的数据值，从而为新的数据值留出空间。
@@ -891,7 +972,7 @@ print(cache.get(4));       // 返回  4
 ### 179.最大数
 [最大数.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/最大数.playground)
 
-题目：给定一组非负整数，重新排列它们的顺序使之组成一个最大的整数。
+[题目](https://leetcode-cn.com/problems/largest-number/)：给定一组非负整数，重新排列它们的顺序使之组成一个最大的整数。
 
 示例 1：
 
@@ -936,7 +1017,7 @@ print(largestNumber([3,30,34,5,9]))
 ## 191.位1的个数
 [位1的个数.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/位1的个数.playground)
 
-题目：编写一个函数，输入是一个无符号整数，返回其二进制表达式中数字位数为 ‘1’ 的个数（也被称为汉明重量）。
+[题目](https://leetcode-cn.com/problems/number-of-1-bits/)：编写一个函数，输入是一个无符号整数，返回其二进制表达式中数字位数为 ‘1’ 的个数（也被称为汉明重量）。
 
 示例：
 
@@ -980,7 +1061,7 @@ print(hammingWeight(0b00000000000000000000000000001011))
 
 [翻转二叉树.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/翻转二叉树.playground)
 
-题目：翻转一棵二叉树。
+[题目](https://leetcode-cn.com/problems/invert-binary-tree/)：翻转一棵二叉树。
 输入：
 
 ```
@@ -1054,7 +1135,7 @@ print(preorderTraversal(invertRoot))
 
 [二叉树的最近公共祖先.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/二叉树的最近公共祖先.playground)
 
-题目：给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
+[题目](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)：给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
 
 百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”
 
@@ -1111,7 +1192,7 @@ if let node = node {
 
 [滑动窗口最大值.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/滑动窗口最大值.playground)
 
-题目：给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。
+[题目](https://leetcode-cn.com/problems/sliding-window-maximum/)：给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。
 
 返回滑动窗口中的最大值。
 
@@ -1170,7 +1251,7 @@ if let result = maxSlidingWindow(array, 3) {
 
 [压缩字符串.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/压缩字符串.playground)
 
-题目：给定一组字符，使用原地算法将其压缩。
+[题目](https://leetcode-cn.com/problems/string-compression/)：给定一组字符，使用原地算法将其压缩。
 压缩后的长度必须始终小于或等于原数组长度。
 数组的每个元素应该是长度为1 的字符（不是 int 整数类型）。
 在完成原地修改输入数组后，返回数组的新长度。
@@ -1221,7 +1302,7 @@ print(String(chars))
 
 [验证IP地址.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/验证IP地址.playground)
 
-编写一个函数来验证输入的字符串是否是有效的 IPv4 或 IPv6 地址。
+[题目](https://leetcode-cn.com/problems/validate-ip-address/)：编写一个函数来验证输入的字符串是否是有效的 IPv4 或 IPv6 地址。
 
 IPv4 地址由十进制数和点来表示，每个地址包含4个十进制数，其范围为 0 - 255， 用(".")分割。比如，172.16.254.1；
 
@@ -1339,7 +1420,7 @@ print(validIPAddress(IP3))
 
 [滑动窗口中位数.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/滑动窗口中位数.playground)
 
-题目：中位数是有序序列最中间的那个数。如果序列的大小是偶数，则没有最中间的数；此时中位数是最中间的两个数的平均数。
+[题目](https://leetcode-cn.com/problems/sliding-window-median/)：中位数是有序序列最中间的那个数。如果序列的大小是偶数，则没有最中间的数；此时中位数是最中间的两个数的平均数。
 
 例如：
 [2,3,4]，中位数是 3
@@ -1425,7 +1506,7 @@ print(medianSlidingWindow(array, 3) ?? [])
 
 [数据流中的第K大元素.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/数据流中的第K大元素.playground)
 
-题目：设计一个找到数据流中第K大元素的类（class）。注意是排序后的第K大元素，不是第K个不同的元素。
+[题目](https://leetcode-cn.com/problems/kth-largest-element-in-a-stream/)：设计一个找到数据流中第K大元素的类（class）。注意是排序后的第K大元素，不是第K个不同的元素。
 
 你的 KthLargest 类需要一个同时接收整数 k 和整数数组nums 的构造器，它包含数据流中的初始元素。每次调用 KthLargest.add，返回当前数据流中第K大的元素。
 
@@ -1490,7 +1571,7 @@ print(result4)
 
 [二分查找.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/二分查找.playground)
 
-题目：给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target  ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。
+[题目](https://leetcode-cn.com/problems/binary-search/)：给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target  ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。
 
 示例：
 
@@ -1530,7 +1611,7 @@ print(search(nums, 9))
 
 [转换成小写字母.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/转换成小写字母.playground)
 
-题目：实现函数 ToLowerCase()，该函数接收一个字符串参数 str，并将该字符串中的大写字母转换成小写字母，之后返回新的字符串。
+[题目](https://leetcode-cn.com/problems/to-lower-case/)：实现函数 ToLowerCase()，该函数接收一个字符串参数 str，并将该字符串中的大写字母转换成小写字母，之后返回新的字符串。
 
 
 示例：
@@ -1589,7 +1670,7 @@ print(toLowerCase1("Hello"))
 
 [排序数组.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/排序数组.playground)
 
-题目：给定一个整数数组 nums，将该数组升序排列。
+[题目](https://leetcode-cn.com/problems/sort-an-array/)：给定一个整数数组 nums，将该数组升序排列。
 
 示例：
 
