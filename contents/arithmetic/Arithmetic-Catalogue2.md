@@ -1506,9 +1506,9 @@ func search(_ nums: [Int], _ target: Int) -> Int {
         return nums.first! == target ? 0 : -1
     }
     
-    var left = 0, right = nums.count - 1, mid = 0
+    var left = 0, right = nums.count - 1
     while left <= right {
-        mid = left + (right - left) / 2
+        let mid = left + (right - left) / 2
         if nums[mid] == target {
             return mid
         } else if nums[mid] < target {

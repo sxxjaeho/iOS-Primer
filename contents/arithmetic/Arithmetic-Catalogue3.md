@@ -2,6 +2,8 @@
    * [探索字节跳动-部分算法题解](#探索字节跳动-部分算法题解)
       * [挑战字符串](#挑战字符串)
         * [1.无重复字符的最长子串](#1无重复字符的最长子串)
+        * [2.最长公共前缀](#2最长公共前缀)
+        * [3.字符串的排列](#3字符串的排列)
         * [5.翻转字符串里的单词](#5翻转字符串里的单词)
         * [6.简化路径](#6简化路径)
       * [数组与排序](#数组与排序)
@@ -78,6 +80,143 @@ func lengthOfLongestSubstring(_ s: String) -> Int {
 
 **时间复杂度：O(n) 
 空间复杂度：O(∣Σ∣)，其中 Σ 表示字符集（即字符串中可以出现的字符），∣Σ∣ 表示字符集的大小**
+
+***
+
+### 2.字符串的排列
+
+[字符串的排列.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/字符串的排列.playground)
+
+[题目](https://leetcode-cn.com/problems/permutation-in-string/)：给定两个字符串 s1 和 s2，写一个函数来判断 s2 是否包含 s1 的排列。
+
+换句话说，第一个字符串的排列之一是第二个字符串的 子串 。
+
+示例 1：
+
+```
+输入: s1 = "ab" s2 = "eidbaooo"
+输出: True
+解释: s2 包含 s1 的排列之一 ("ba").
+```
+
+示例 2：
+
+```
+输入: s1= "ab" s2 = "eidboaoo"
+输出: False
+```
+
+```
+func checkInclusion(_ s1: String, _ s2: String) -> Bool {
+    let s2Array = Array(s2)
+    
+    var window =  Dictionary<Character, Int>()
+    var target = Dictionary<Character, Int>()
+    
+    for character in s1 {
+        target[character, default: 0] += 1
+    }
+    
+    var left = 0, right = 0
+    var counter = 0
+    
+    while right < s2Array.count {
+        let rightItem = s2Array[right]
+        right += 1
+        
+        if target[rightItem] != nil {
+            window[rightItem, default: 0] += 1
+            if window[rightItem] == target[rightItem] {
+                counter += 1
+            }
+        } else {
+            continue
+        }
+        
+        while counter == target.count {
+            if right - left == s1.count {
+                return true
+            }
+            
+            let leftItem = s2Array[left]
+            left += 1
+            if target[leftItem] != nil {
+                if window[leftItem] == target[leftItem] {
+                    counter -= 1
+                }
+                window[leftItem]! -= 1
+            }
+        }
+    }
+    return false
+}
+
+print(checkInclusion("ab", "eiadboaooo"))
+```
+
+**时间复杂度：O(n+m+∣Σ∣)
+空间复杂度：O(∣Σ∣)**
+
+***
+
+### 3.最长公共前缀
+
+[最长公共前缀.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/最长公共前缀.playground)
+
+[题目](https://leetcode-cn.com/problems/longest-common-prefix/)：编写一个函数来查找字符串数组中的最长公共前缀。
+
+如果不存在公共前缀，返回空字符串 ""。
+
+示例 1：
+
+```
+输入：strs = ["flower","flow","flight"]
+输出："fl"
+```
+
+示例 2：
+
+```
+输入：strs = ["dog","racecar","car"]
+输出：""
+解释：输入不存在公共前缀。
+```
+
+```
+func longestCommonPrefix(_ strs: [String]) -> String {
+    if strs.count == 0 {
+        return "";
+    }
+    var minLength = Int.max
+    for string in strs {
+        minLength = min(minLength, string.count)
+    }
+    var left = 0, right = minLength - 1
+    while left <= right {
+        let mid = left + (right - left) / 2
+        if isCommonPrefix(strs, mid + 1) {
+            left = mid + 1
+        } else {
+            right = mid - 1
+        }
+    }
+    return String(String(strs.first!.prefix(left)))
+}
+
+func isCommonPrefix(_ strs: [String], _ mid: Int) -> Bool {
+    let prefix = String(strs.first!.prefix(mid))
+    for string in strs {
+        if !string.hasPrefix(prefix) {
+            return false
+        }
+    }
+    return true
+}
+
+print(longestCommonPrefix(["flower","flow","flight"]))
+```
+
+**时间复杂度：O(mnlogm) 空间复杂度：O(1)**
 
 ***
 
