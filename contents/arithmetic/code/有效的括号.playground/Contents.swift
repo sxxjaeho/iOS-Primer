@@ -16,13 +16,14 @@ func isValid(_ string: String) -> Bool {
     // 如果栈顶是左括号,以当前遍历的字符为 key,找出 value 就是左括号 √
     let dictionary = [")": "(", "]": "[", "}": "{"]
     
-//    // 如果栈顶是左括号,以当前遍历的字符为 value,找出 key 就是左括号
+//    // 如果栈顶是右括号,以当前遍历的字符为 value,找出 key 就是左括号
 //    let dictionary1 = ["(": ")", "[": "]", "{": "}"]
     
     for character in string {
         if !dictionary.keys.contains(String(character)) { // 左括号
             stack.append(character)
         } else if !(!stack.isEmpty && String(stack.popLast()!) == dictionary[String(character)]) { // 栈顶元素是否与左括号匹配
+            print(stack)
             return false
         }
     }

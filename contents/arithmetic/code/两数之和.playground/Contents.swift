@@ -12,7 +12,6 @@ func twoSum(_ nums: [Int], _ target: Int) -> [[Int]] {
             result.append([differenceIndex, index])
         }
         dictionary[value] = index
-        print(dictionary)
     }
     return result
 }
