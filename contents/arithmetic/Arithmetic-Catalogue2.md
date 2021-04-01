@@ -13,6 +13,7 @@
       * [100.相同的树](#100相同的树)
       * [102.二叉树的层次遍历](#102二叉树的层次遍历)
       * [120.三角形最小路径和](#120三角形最小路径和)
+      * [124.二叉树中的最大路径和](#124二叉树中的最大路径和)
       * [141.环形链表](#141环形链表)
       * [146.LRU缓存机制](#146LRU缓存机制)
       * [179.最大数](#179最大数)
@@ -772,6 +773,62 @@ func minimumTotal(_ triangle: [[Int]]) -> Int {
 ```
 
 **时间复杂度：O(n<sup>2</sup>) 空间复杂度：O(n<sup>2</sup>)**
+
+***
+
+## 124.二叉树中的最大路径和
+
+[二叉树中的最大路径和.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/二叉树中的最大路径和.playground)
+
+[题目](https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/)：题目：给你一个二叉树的根节点 root ，返回其 最大路径和 。
+
+示例：
+```
+   -10
+   / \
+  9  20
+    /  \
+   15   7
+ 
+输入：root = [-10,9,20,null,null,15,7]
+输出：42
+解释：最优路径是 15 -> 20 -> 7 ，路径和为 15 + 20 + 7 = 42
+```
+
+```
+class TreeNode {
+    var val: Int
+    var left: TreeNode?
+    var right: TreeNode?
+    
+    init(val: Int, left: TreeNode?, right: TreeNode?) {
+        self.val = val
+        self.left = left
+        self.right = right
+    }
+}
+
+var maxSum = Int.min
+func maxPathSum(_ root: TreeNode?) -> Int {
+    _ = maxGain(root);
+    return maxSum;
+}
+
+func maxGain(_ node :TreeNode?) -> Int {
+    guard let node = node else { return 0 }
+
+    let leftGain = max(maxGain(node.left), 0);
+    let rightGain = max(maxGain(node.right), 0);
+
+    let priceNewpath = node.val + leftGain + rightGain;
+
+    maxSum = max(maxSum, priceNewpath);
+
+    return node.val + max(leftGain, rightGain);
+}
+```
+
+**时间复杂度：O(n) 空间复杂度：O(n)**
 
 ***
 
