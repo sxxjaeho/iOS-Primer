@@ -33,7 +33,7 @@ func reverseList(_ head: ListNode?) -> ListNode? {
     return reversedHead
 }
 
-func traverseList(_ head : ListNode?) {
+func traverseList(_ head: ListNode?) {
     var node = head
     while node != nil {
         print(node?.value ?? 0)

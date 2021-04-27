@@ -27,7 +27,9 @@
       * [703.数据流中的第K大元素](#703数据流中的第K大元素)
       * [704.二分查找](#704二分查找)
       * [709.转换成小写字母](#709转换成小写字母)
+      * [718.最长重复子数组](#718最长重复子数组)
       * [912.排序数组](#912排序数组)
+      * [1143.最长公共子序列](#1143最长公共子序列)
 
 # LeetCode-部分算法题解
 
@@ -886,15 +888,15 @@ func hasCycle(_ head: ListNode?) -> Bool {
         return false
     }
     var slow = head
-    var fast = head?.next
-    while(slow !== fast) {
-        if (fast ==  nil || fast?.next == nil) {
-           return false
-        }
+    var fast = head
+    while(fast != nil && fast?.next != nil) {
         slow = slow?.next
         fast = fast?.next?.next
+        if (fast === slow) {
+           return true
+        }
     }
-    return true
+    return false
 }
 
 let head = ListNode(3)
@@ -1723,6 +1725,49 @@ print(toLowerCase1("Hello"))
 
 ***
 
+### 718. 最长重复子数组
+
+[最长重复子数组.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/最长重复子数组.playground)
+
+[题目](https://leetcode-cn.com/problems/maximum-length-of-repeated-subarray/)：给两个整数数组 A 和 B ，返回两个数组中公共的、长度最长的子数组的长度。
+
+
+示例：
+
+```
+输入：
+A: [1,2,3,2,1]
+B: [3,2,1,4,7]
+输出：3
+解释：
+长度最长的公共子数组是 [3, 2, 1] 。
+```
+
+```
+func findLength(_ nums1: [Int], _ nums2: [Int]) -> Int {
+    var dp = Array(repeating: Array(repeating: 0, count: nums2.count+1), count: nums1.count+1)
+    var ans = 0
+    for i in 1...nums1.count {
+        for j in 1...nums2.count {
+            if nums1[i-1] == nums2[j-1] {
+                dp[i][j] = dp[i-1][j-1] + 1
+                ans = max(dp[i][j], ans)
+            } else {
+                dp[i][j] = 0
+            }
+        }
+    }
+    return ans
+}
+
+print(findLength([1, 2, 3, 2, 1], [3, 2, 1, 4, 7]));
+```
+
+**时间复杂度：O(N x M) 
+空间复杂度：O(N x M)**
+
+***
+
 ## 912.排序数组
 
 [排序数组.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/排序数组.playground)
@@ -1782,6 +1827,54 @@ sortArray(&nums)
 print(nums)
 
 ```
+
+***
+
+### 1143. 最长公共子序列
+
+[最长公共子序列.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/最长公共子序列.playground)
+
+[题目](https://leetcode-cn.com/problems/longest-common-subsequence/)：给定两个字符串 text1 和 text2，返回这两个字符串的最长 公共子序列 的长度。如果不存在 公共子序列 ，返回 0 。
+
+一个字符串的 子序列 是指这样一个新的字符串：它是由原字符串在不改变字符的相对顺序的情况下删除某些字符（也可以不删除任何字符）后组成的新字符串。
+
+例如，"ace" 是 "abcde" 的子序列，但 "aec" 不是 "abcde" 的子序列。
+两个字符串的 公共子序列 是这两个字符串所共同拥有的子序列。
+
+示例：
+
+```
+输入：text1 = "abcde", text2 = "ace" 
+输出：3  
+解释：最长公共子序列是 "ace" ，它的长度为 3 。
+```
+
+```
+func longestCommonSubsequence(_ text1: String, _ text2: String) -> Int {
+    let chars1 = Array(text1)
+    let chars2 = Array(text2)
+    let m = chars1.count
+    let n = chars2.count
+    var dp = Array(repeating: Array(repeating: 0, count: n+1), count: m+1)
+    var maxLen = 0
+    for i in (1...chars1.count) {
+        for j in (1...chars2.count) {
+            if chars1[i-1] == chars2[j-1] {
+                dp[i][j] = dp[i-1][j-1] + 1
+                maxLen = max(dp[i][j], maxLen)
+            } else {
+                dp[i][j] = 0
+            }
+        }
+    }
+    return maxLen
+}
+
+print(longestCommonSubsequence("abcde", "ace"))
+```
+
+**时间复杂度：O(N x M) 
+空间复杂度：O(N x M)**
 
 ***
 

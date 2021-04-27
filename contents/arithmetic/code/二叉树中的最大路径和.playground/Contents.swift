@@ -27,17 +27,27 @@ class TreeNode {
     }
 }
 
+// maxGain(-10)
+// leftGain = 9, rightGain = maxGain(20) = 35  ←－
+// maxSum = max(-10 + 9 + 35 = 34, 42)           |
+// return -10 + 35 = 25                          |
+//                                               |
+// maxGain(20)                                   |
+// leftGain = 15, rightGain = 7                  |
+// maxSum = max(20 + 15 + 7 = 42, Int.min)       |
+// return 20 + 15 = 35                           |
+
 var maxSum = Int.min
 func maxPathSum(_ root: TreeNode?) -> Int {
-    _ = maxGain(root);                                       // maxGain(-10)
-    return maxSum;                                           // leftGain = 9, rightGain = maxGain(20) = 35  ←－
-}                                                            // maxSum = max(-10 + 9 + 35 = 34, 42)           |
-                                                             // return -10 + 35 = 25                          |
-func maxGain(_ node :TreeNode?) -> Int {                     //                                               |
-    guard let node = node else { return 0 }                  // maxGain(20)                                   |
-                                                             // leftGain = 15, rightGain = 7                  |
-    let leftGain = max(maxGain(node.left), 0);               // maxSum = max(20 + 15 + 7 = 42, Int.min)       |
-    let rightGain = max(maxGain(node.right), 0);             // return 20 + 15 = 35                           |
+    _ = maxGain(root);
+    return maxSum;
+}
+                                                             
+func maxGain(_ node :TreeNode?) -> Int {
+    guard let node = node else { return 0 }
+                                                             
+    let leftGain = max(maxGain(node.left), 0);
+    let rightGain = max(maxGain(node.right), 0);
  
     let priceNewpath = node.val + leftGain + rightGain;
     

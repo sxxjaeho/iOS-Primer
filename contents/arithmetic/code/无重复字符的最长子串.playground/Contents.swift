@@ -28,7 +28,6 @@ func lengthOfLongestSubstring(_ s: String) -> Int {
     for end in 0..<characters.count {
         let character = characters[end]
         if let dummy = dic[character] {
-            print(dummy, start)
             // (2, 0)
             // (3, 2)
             // (1, 3)

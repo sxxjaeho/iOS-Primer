@@ -46,7 +46,7 @@ func reverseKGroup(_ head: ListNode?, _ k: Int) -> ListNode? {
         
         tail?.next = nil                  // 尾部断链
         pre?.next = reverse(head)         // 反转后的头部
-        head?.next = next                 // 头部连链
+        head?.next = next                 // 尾部连链
         
         pre = head                        // pre 1
         tail = head                       // tail 1
