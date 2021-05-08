@@ -21,6 +21,25 @@ class DLinkedNode {
     }
 }
 
+//class Solution {
+//    func LRU ( _ operators: [[Int]],  _ k: Int) -> [Int] {
+//        let cache = LRUCache(k)
+//        var res = [Int]()
+//
+//        for op in operators {
+//            if op.count < 2 {
+//                return res
+//            }
+//            if op[0] == 1 {
+//                cache.put(op[1], op[2])
+//            } else {
+//                res.append(cache.get(op[1]))
+//            }
+//        }
+//        return res
+//    }
+//}
+
 class LRUCache {
 
     var capacity = 0
@@ -118,4 +137,5 @@ print(cache.get(1));       // 返回 -1 (未找到)
 print(cache.get(3));       // 返回  3
 print(cache.get(4));       // 返回  4
 
-
+//var solution = Solution()
+//print(solution.LRU([[1,1,1],[1,2,2],[1,3,2],[2,1],[1,4,4],[2,2],[1,5,5]], 3))

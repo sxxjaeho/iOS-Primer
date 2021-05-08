@@ -1,7 +1,9 @@
 
    * [LeetCode-部分算法题解](#LeetCode-部分算法题解)
       * [1.两数之和](#1两数之和)
+      * [5.最长回文子串](#5最长回文子串)
       * [15.三数之和](#15三数之和)
+      * [19.删除链表的倒数第N个结点](#19删除链表的倒数第N个结点)
       * [20.有效的括号](#20有效的括号)
       * [22.括号生成](#22括号生成)
       * [24.两两交换链表中的节点](#24两两交换链表中的节点)
@@ -15,7 +17,9 @@
       * [120.三角形最小路径和](#120三角形最小路径和)
       * [124.二叉树中的最大路径和](#124二叉树中的最大路径和)
       * [141.环形链表](#141环形链表)
+      * [142.环形链表II](#142环形链表II)
       * [146.LRU缓存机制](#146LRU缓存机制)
+      * [160.相交链表](#160相交链表)
       * [179.最大数](#179最大数)
       * [191.位1的个数](#191位1的个数)
       * [226.翻转二叉树](#226翻转二叉树)
@@ -56,6 +60,62 @@ print(twoSum([2, 7, 5, 1, 2, 4], 9))
 ```
 
 **时间复杂度：O(n) 空间复杂度：O(n)**
+
+***
+
+## 5.最长回文子串
+
+[最长回文子串.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/最长回文子串.playground)
+
+[题目](https://leetcode-cn.com/problems/longest-palindromic-substring/)：给你一个字符串 s，找到 s 中最长的回文子串。
+
+示例 1：
+
+```
+输入：s = "babad"
+输出："bab"
+解释："aba" 同样是符合题意的答案。
+```
+
+示例 2：
+
+```
+输入：s = "cbbd"
+输出："bb"
+```
+
+```
+func longestPalindrome(_ s: String) -> String {
+    if s.count < 2  {
+        return s
+    }
+    let s = Array(s)
+    var dp = Array(repeating: Array(repeating: false, count: s.count), count: s.count)
+    var start = 0
+    var maxLen = 0
+    for j in 0..<s.count {
+        for i in 0...j {
+            if s[j] == s[i] {
+                if j-1 - (i+1) + 1 < 2 {
+                    dp[i][j] = true
+                } else {
+                    dp[i][j] = dp[i+1][j-1]
+                }
+                if j - i + 1 > maxLen && dp[i][j] {
+                    start = i
+                    maxLen = j - i + 1
+                }
+            } else {
+                dp[i][j] = false
+            }
+        }
+    }
+    return String(s[start..<start+maxLen])
+}
+print(longestPalindrome("aaaa"))
+```
+
+**时间复杂度：O(n<sup>2</sup>) 空间复杂度：O(n<sup>2</sup>)**
 
 ***
 
@@ -135,6 +195,60 @@ print(threeSum([-1, 0, 1, 2, -1, -4], 0))
 
 ***
 
+## 19.删除链表的倒数第N个结点
+
+[删除链表的倒数第N个结点.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/删除链表的倒数第N个结点.playground)
+
+[题目](https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/)：题目：给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。
+ 
+进阶：你能尝试使用一趟扫描实现吗？
+
+示例：
+
+```
+输入：head = [1,2,3,4,5], n = 2
+输出：[1,2,3,5]
+```
+
+```
+class ListNode {
+    var val: Int
+    var next: ListNode?
+    
+    init(_ val: Int) {
+        self.val = val
+    }
+    
+    func next(_ val: Int) -> ListNode {
+        let node = ListNode(val)
+        next = node
+        return node
+    }
+}
+
+func removeNthFromEnd(_ head: ListNode?, _ n: Int) -> ListNode? {
+    let dummy = ListNode.init(0)
+    dummy.next = head
+    
+    var fast = dummy;
+    var slow = dummy;
+    for _ in 0..<n {
+        fast = fast.next!
+    }
+    while (fast.next != nil) {
+        fast = fast.next!
+        slow = slow.next!
+    }
+    slow.next = slow.next!.next
+    return dummy.next
+}
+```
+
+**时间复杂度：O(L)，其中 L 是链表的长度
+空间复杂度：O(1)**
+
+***
+
 ## 20.有效的括号
 
 [有效的括号.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/有效的括号.playground)
@@ -148,7 +262,12 @@ print(threeSum([-1, 0, 1, 2, -1, -4], 0))
 
 注意空字符串可被认为是有效字符串。
 
+示例：
 
+```
+输入：s = "()"
+输出：true
+```
 
 ```
 func isValid(_ string: String) -> Bool {
@@ -867,7 +986,6 @@ func maxGain(_ node :TreeNode?) -> Int {
 ```
 
 ```
-// 双指针解法
 class ListNode {
     var value: Int
     var next: ListNode?
@@ -909,6 +1027,81 @@ node2.next = node3
 node3.next = node1
 
 print(hasCycle(head))
+```
+
+***
+
+## 142.环形链表II
+
+[环形链表II.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/环形链表II.playground)
+
+[题目](https://leetcode-cn.com/problems/linked-list-cycle-ii/)：给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。
+
+为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。注意，pos 仅仅是用于标识环的情况，并不会作为参数传递到函数中。
+
+说明：不允许修改给定的链表。
+
+进阶：
+你是否可以使用 O(1) 空间解决此题？
+
+示例 ：
+
+```
+输入：head = [3,2,0,-4], pos = 1
+输出：true
+解释：链表中有一个环，其尾部连接到第二个节点。
+```
+
+```
+class ListNode {
+    var value: Int
+    var next: ListNode?
+    
+    init(_ value: Int) {
+        self.value = value
+    }
+    
+    func next(_ value: Int) -> ListNode {
+        let node = ListNode(value)
+        next = node
+        return node
+    }
+}
+
+func detectCycle(_ head: ListNode?) -> ListNode? {
+    if (head == nil || head?.next == nil) {
+        return nil
+    }
+    var slow = head
+    var fast = head
+    while (fast != nil && fast?.next != nil) {
+        slow = slow?.next
+        fast = fast?.next?.next
+        if (fast === slow) {
+            var ptr = head
+            while ptr !== slow {
+                ptr = ptr?.next
+                slow = slow?.next
+            }
+            return ptr
+        }
+    }
+    return nil
+}
+
+let head = ListNode(3)
+let node1 = ListNode(2)
+let node2 = ListNode(0)
+let node3 = ListNode(-4)
+
+head.next = node1
+node1.next = node2
+node2.next = node3
+node3.next = node1
+
+if let node = detectCycle(head) {
+    print(node.value)
+}
 ```
 
 ***
@@ -1025,6 +1218,58 @@ print(cache.get(4));       // 返回  4
 
 **时间复杂度：对于 put 和 get 都是 O(1) 
 空间复杂度：O(capacity)，因为哈希表和双向链表最多存储 capacity + 1 个元素**
+
+***
+
+### 160.相交链表
+[相交链表.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/相交链表.playground)
+
+[题目](https://leetcode-cn.com/problems/intersection-of-two-linked-lists/)：编写一个程序，找到两个单链表相交的起始节点。
+
+示例：
+
+```
+输入：intersectVal = 8, listA = [4,1,8,4,5], listB = [5,0,1,8,4,5], skipA = 2, skipB = 3
+输出：Reference of the node with value = 8
+输入解释：相交节点的值为 8 （注意，如果两个链表相交则不能为 0）。从各自的表头开始算起，链表 A 为 [4,1,8,4,5]，链表 B 为 [5,0,1,8,4,5]。在 A 中，相交节点前有 2 个节点；在 B 中，相交节点前有 3 个节点。
+```
+
+```
+func getIntersectionNode(_ headA: ListNode?, _ headB: ListNode?) -> ListNode? {
+    var node1 = headA
+    var node2 = headB
+    while node1 !== node2 {
+        node1 = (node1 != nil) ? node1?.next : headB
+        node2 = (node2 != nil) ? node2?.next : headA
+    }
+    return node1
+}
+
+let headA = ListNode(4)
+let node1 = ListNode(1)
+let node2 = ListNode(8)
+let node3 = ListNode(4)
+let node4 = ListNode(5)
+headA.next = node1
+node1.next = node2
+node2.next = node3
+node3.next = node4
+
+let headB = ListNode(5)
+let node5 = ListNode(0)
+let node6 = ListNode(1)
+headB.next = node5
+node5.next = node6
+node6.next = node2
+node2.next = node3
+node3.next = node4
+
+if let res = getIntersectionNode(headA, headB) {
+    print(res.val)
+}
+```
+
+**时间复杂度：O(m+n) 空间复杂度：O(1)**
 
 ***
 
