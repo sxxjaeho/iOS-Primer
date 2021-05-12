@@ -14,6 +14,8 @@
       * [98.验证二叉搜索树](#98验证二叉搜索树)
       * [100.相同的树](#100相同的树)
       * [102.二叉树的层次遍历](#102二叉树的层次遍历)
+      * [103.二叉树的锯齿形层序遍历](#103二叉树的锯齿形层序遍历)
+      * [110.平衡二叉树](#110平衡二叉树)
       * [112.路径总和](#112路径总和)
       * [113.路径总和II](#113路径总和II)
       * [120.三角形最小路径和](#120三角形最小路径和)
@@ -22,6 +24,7 @@
       * [142.环形链表II](#142环形链表II)
       * [146.LRU缓存机制](#146LRU缓存机制)
       * [160.相交链表](#160相交链表)
+      * [165.比较版本号](#165比较版本号)
       * [179.最大数](#179最大数)
       * [191.位1的个数](#191位1的个数)
       * [226.翻转二叉树](#226翻转二叉树)
@@ -57,8 +60,6 @@ func twoSum(_ nums: [Int], _ target: Int) -> [[Int]] {
     }
     return result
 }
-
-print(twoSum([2, 7, 5, 1, 2, 4], 9))
 ```
 
 **时间复杂度：O(n) 空间复杂度：O(n)**
@@ -71,19 +72,12 @@ print(twoSum([2, 7, 5, 1, 2, 4], 9))
 
 [题目](https://leetcode-cn.com/problems/longest-palindromic-substring/)：给你一个字符串 s，找到 s 中最长的回文子串。
 
-示例 1：
+示例：
 
 ```
 输入：s = "babad"
 输出："bab"
 解释："aba" 同样是符合题意的答案。
-```
-
-示例 2：
-
-```
-输入：s = "cbbd"
-输出："bb"
 ```
 
 ```
@@ -114,7 +108,6 @@ func longestPalindrome(_ s: String) -> String {
     }
     return String(s[start..<start+maxLen])
 }
-print(longestPalindrome("aaaa"))
 ```
 
 **时间复杂度：O(n<sup>2</sup>) 空间复杂度：O(n<sup>2</sup>)**
@@ -189,8 +182,6 @@ func sortArray(_ nums: [Int]) -> [Int] {
     let right = nums.filter { $0 > pivot}
     return sortArray(left) + middle + sortArray(right)
 }
-
-print(threeSum([-1, 0, 1, 2, -1, -4], 0))
 ```
 
 **时间复杂度：O(n<sup>2</sup>) 空间复杂度：O(logN)**
@@ -285,15 +276,10 @@ func isValid(_ string: String) -> Bool {
     }
     return stack.isEmpty
 }
-
-print(isValid("()"))
-print(isValid("()[]{}"))
-print(isValid("(]"))
-print(isValid("([)]"))
-print(isValid("{[]}"))
 ```
 
-**时间复杂度：O(n)**
+**时间复杂度：O(n)，其中 n 是字符串 s 的长度
+空间复杂度：O(n+∣Σ∣)，其中 Σ 表示字符集，本题中字符串只包含 6 种括号，∣Σ∣=6。栈中的字符数量为 O(n)，而哈希表使用的空间为 O(∣Σ∣)，相加即可得到总空间复杂度。**
 
 ***
 
@@ -303,9 +289,11 @@ print(isValid("{[]}"))
 
 [题目](https://leetcode-cn.com/problems/generate-parentheses/)：给出 n 代表生成括号的对数，请你写出一个函数，使其能够生成所有可能的并且有效的括号组合。
 
-例如，给出 n = 3，生成结果为：
+示例：
 
 ```
+输入：n = 3
+输出：
 [
   "((()))",
   "(()())",
@@ -314,8 +302,6 @@ print(isValid("{[]}"))
   "()()()"
 ]
 ```
-
-![括号生成](media/Arithmetic-Catalogue2/括号生成.jpg)
 
 ```
 var list = [String]()
@@ -339,11 +325,9 @@ func generateParenthesis(_ n: Int) -> [String] {
     _gen(0, 0,  n, "")
     return list
 }
-
-print(generateParenthesis(3))
 ```
 
-**时间复杂度：O(n<sup>2</sup>)**
+**时间复杂度：O(2<sup>n</sup>) 空间复杂度：O(n)**
 
 ***
 
@@ -390,20 +374,6 @@ func swapPairs(_ head: ListNode?) -> ListNode? {
         pre = a
     }
     return dumb.next
-}
-
-func traverseList(_ head : ListNode?) {
-    var node = head
-    while node != nil {
-        print(node?.value ?? 0)
-        node = node?.next
-    }
-}
-
-let head = ListNode(1)
-head.next(2).next(3).next(4).next(5)
-if let result = swapPairs(head) {
-    traverseList(result)
 }
 ```
 
@@ -518,10 +488,9 @@ func myPow(_ x: Double, _ n: Int) -> Double {
     }
     return myPow(x * x, n / 2)
 }
-print(myPow(2, 10))
 ```
 
-**时间复杂度：O(logn)**
+**时间复杂度：O(logn) 空间复杂度：O(logn)**
 
 ***
 
@@ -555,8 +524,6 @@ func climbStairs(_ n: Int) -> Int {
     }
     return mem[n-1]
 }
-
-print(climbStairs(5))
 ```
 
 **时间复杂度：O(n) 空间复杂度：O(n)**
@@ -602,11 +569,6 @@ func merge(_ nums1: inout [Int], _ m: Int, _ nums2: [Int], _ n: Int) {
         }
     }
 }
-
-var nums1 = [1, 2, 3, 0, 0, 0]
-var nums2 = [2, 5, 6]
-merge(&nums1, 3, nums2, 3)
-print(nums1)
 ```
 
 **时间复杂度：O(n+m) 空间复杂度：O(1)**
@@ -659,9 +621,6 @@ func isValidBST(_ root: BinaryTreeNode?, min : Int?, max : Int?) -> Bool {
     }
     return isValidBST(root.left, min: min, max: root.value) && isValidBST(root.right, min: root.value, max: max)
 }
-
-let root = BinaryTreeNode(value: 2, left: BinaryTreeNode(value: 1, left: nil, right: nil), right: BinaryTreeNode(value: 3, left: nil, right: nil))
-print(isValidBST(root, min: nil, max: nil))
 ```
 
 **时间复杂度：O(n) 空间复杂度：O(n)**
@@ -676,7 +635,7 @@ print(isValidBST(root, min: nil, max: nil))
 
 如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。
 
-示例 1：
+示例：
 
 ```
 输入：   
@@ -687,32 +646,6 @@ print(isValidBST(root, min: nil, max: nil))
         [1,2,3],   [1,2,3]
 
 输出：true
-```
-
-示例 2：
-
-```
-输入：   
-           1         1
-          /           \
-         2             2
-
-        [1,2],     [1,null,2]
-
-输出： false
-```
-
-示例 3：
-
-```
-输入：    
-           1         1
-          / \       / \
-         2   1     1   2
-
-        [1,2,1],   [1,1,2]
-
-输出： false
 ```
 
 ```
@@ -740,18 +673,9 @@ func isSameTree(_ node1: BinaryTreeNode?, _ node2: BinaryTreeNode?) -> Bool {
     }
     return isSameTree(node1!.left, node2!.left) && isSameTree(node1!.right, node2!.right)
 }
-
-let node1 = BinaryTreeNode(value: 1, left: BinaryTreeNode(value: 2, left: nil, right: nil), right: BinaryTreeNode(value: 3, left: nil, right: nil))
-let node2 = BinaryTreeNode(value: 1, left: BinaryTreeNode(value: 2, left: nil, right: nil), right: BinaryTreeNode(value: 3, left: nil, right: nil))
-let node3 = BinaryTreeNode(value: 1, left: BinaryTreeNode(value: 2, left: nil, right: nil), right: nil)
-let node4 = BinaryTreeNode(value: 1, left: nil, right: BinaryTreeNode(value: 3, left: nil, right: nil))
-let node5 = BinaryTreeNode(value: 1, left: BinaryTreeNode(value: 2, left: nil, right: nil), right: BinaryTreeNode(value: 1, left: nil, right: nil))
-let node6 = BinaryTreeNode(value: 1, left: BinaryTreeNode(value: 1, left: nil, right: nil), right: BinaryTreeNode(value: 3, left: nil, right: nil))
-
-print(isSameTree(node1, node2))
-print(isSameTree(node3, node4))
-print(isSameTree(node5, node6))
 ```
+
+**时间复杂度：O(min(m, n)) 空间复杂度：O(min(m, n))**
 
 ***
 
@@ -761,8 +685,9 @@ print(isSameTree(node5, node6))
 
 [题目](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)：给定一个二叉树，返回其按层次遍历的节点值。 （即逐层地，从左到右访问所有节点）。
 
+示例：
+
 ```
-例如:
 给定二叉树: [3,9,20,null,null,15,7],
 
     3
@@ -818,9 +743,6 @@ func levelOrderTraversal(_ root: BinaryTreeNode?) -> [[Int]] {
     return result
 }
 
-let root = BinaryTreeNode(value: 3, left: BinaryTreeNode(value: 9, left:  nil, right: nil), right: BinaryTreeNode(value: 20, left:  BinaryTreeNode(value: 15, left: nil, right: nil), right: BinaryTreeNode(value: 7, left: nil, right: nil)))
-print(levelOrderTraversal(root))
-
 // 二叉树前序遍历
 func preorderTraversal(_ root: BinaryTreeNode?) -> [Int] {
     guard let root = root else { return [] }
@@ -859,7 +781,141 @@ func postorderTraversal(_ root: BinaryTreeNode?) -> [Int] {
 
 ```
 
-**时间复杂度：O(n)**
+**时间复杂度：O(n) 空间复杂度：O(n)**
+
+***
+
+## 103.二叉树的锯齿形层序遍历
+
+[二叉树的锯齿形层序遍历.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/二叉树的锯齿形层序遍历.playground)
+
+[题目](https://leetcode-cn.com/problems/binary-tree-zigzag-level-order-traversal/)：给定一个二叉树，返回其节点值的锯齿形层序遍历。（即先从左往右，再从右往左进行下一层遍历，以此类推，层与层之间交替进行）。
+
+```
+例如:
+给定二叉树: [3,9,20,null,null,15,7],
+
+    3
+   / \
+  9  20
+    /  \
+   15   7
+返回其层次遍历结果：
+
+[
+  [3],
+  [20,9],
+  [15,7]
+]
+```
+
+```
+class TreeNode {
+    var left: TreeNode?
+    var right: TreeNode?
+    var val: Int
+    
+    init(val: Int, left: TreeNode?, right: TreeNode?) {
+        self.val = val
+        self.left = left
+        self.right = right
+    }
+}
+
+func zigzagLevelOrder(_ root: TreeNode?) -> [[Int]] {
+    guard let root = root else { return [] }
+    
+    var queue: [TreeNode] = [root]
+    
+    var result: [[Int]] = []
+    
+    var levelNum = 0
+    
+    while !queue.isEmpty {
+        var currentLevel: [Int] = []
+        
+        for _ in queue {
+            let node = queue.removeFirst()
+            currentLevel.append(node.val)
+            
+            if let left = node.left {
+                queue.append(left)
+            }
+            if let right = node.right {
+                queue.append(right)
+            }
+        }
+        
+        levelNum += 1
+        
+        if levelNum % 2 == 0 {
+            currentLevel.reverse()
+        }
+        result.append(currentLevel)
+    }
+    return result
+}
+```
+
+**时间复杂度：O(n) 空间复杂度：O(n)**
+
+***
+
+## 110.平衡二叉树
+
+[平衡二叉树.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/平衡二叉树.playground)
+
+[题目](https://leetcode-cn.com/problems/balanced-binary-tree/)：给定一个二叉树，判断它是否是高度平衡的二叉树。
+ 
+本题中，一棵高度平衡二叉树定义为：
+
+一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过 1 。
+
+示例：
+
+```
+    3
+   / \
+  9  20
+     / \
+    15  7
+ 
+输入：root = [3,9,20,null,null,15,7]
+输出：true
+```
+
+```
+class TreeNode {
+    var left: TreeNode?
+    var right: TreeNode?
+    var val: Int
+    
+    init(val: Int, left: TreeNode?, right: TreeNode?) {
+        self.val = val
+        self.left = left
+        self.right = right
+    }
+}
+
+func isBalanced(_ root: TreeNode?) -> Bool {
+    return treeDepth(root) >= 0
+}
+
+func treeDepth(_ node: TreeNode?) -> Int {
+    guard node != nil else {
+        return 0
+    }
+    let leftHeight = treeDepth(node?.left)
+    let rightHeight = treeDepth(node?.right)
+    if leftHeight == -1 || rightHeight == -1 || abs(leftHeight - rightHeight) > 1 {
+        return -1
+    } else {
+        return max(leftHeight, rightHeight) + 1
+    }
+}
+```
+
+**时间复杂度：O(n) 空间复杂度：O(n)**
 
 ***
 
@@ -1104,28 +1160,12 @@ func maxGain(_ node :TreeNode?) -> Int {
 
 为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。
 
-示例 1：
+示例：
 
 ```
 输入：head = [3,2,0,-4], pos = 1
 输出：true
 解释：链表中有一个环，其尾部连接到第二个节点。
-```
-
-示例 2：
-
-```
-输入：head = [1,2], pos = 0
-输出：true
-解释：链表中有一个环，其尾部连接到第一个节点。
-```
-
-示例 3：
-
-```
-输入：head = [1], pos = -1
-输出：false
-解释：链表中没有环。
 ```
 
 ```
@@ -1159,18 +1199,9 @@ func hasCycle(_ head: ListNode?) -> Bool {
     }
     return false
 }
-
-let head = ListNode(3)
-let node1 = ListNode(2)
-let node2 = ListNode(0)
-let node3 = ListNode(-4)
-head.next = node1
-node1.next = node2
-node2.next = node3
-node3.next = node1
-
-print(hasCycle(head))
 ```
+
+**时间复杂度：O(n) 空间复杂度：O(1)**
 
 ***
 
@@ -1231,21 +1262,9 @@ func detectCycle(_ head: ListNode?) -> ListNode? {
     }
     return nil
 }
-
-let head = ListNode(3)
-let node1 = ListNode(2)
-let node2 = ListNode(0)
-let node3 = ListNode(-4)
-
-head.next = node1
-node1.next = node2
-node2.next = node3
-node3.next = node1
-
-if let node = detectCycle(head) {
-    print(node.value)
-}
 ```
+
+**时间复杂度：O(n) 空间复杂度：O(1)**
 
 ***
 
@@ -1387,32 +1406,56 @@ func getIntersectionNode(_ headA: ListNode?, _ headB: ListNode?) -> ListNode? {
     }
     return node1
 }
-
-let headA = ListNode(4)
-let node1 = ListNode(1)
-let node2 = ListNode(8)
-let node3 = ListNode(4)
-let node4 = ListNode(5)
-headA.next = node1
-node1.next = node2
-node2.next = node3
-node3.next = node4
-
-let headB = ListNode(5)
-let node5 = ListNode(0)
-let node6 = ListNode(1)
-headB.next = node5
-node5.next = node6
-node6.next = node2
-node2.next = node3
-node3.next = node4
-
-if let res = getIntersectionNode(headA, headB) {
-    print(res.val)
-}
 ```
 
 **时间复杂度：O(m+n) 空间复杂度：O(1)**
+
+***
+
+### 165.比较版本号
+[比较版本号.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/比较版本号.playground)
+
+[题目](https://leetcode-cn.com/problems/compare-version-numbers/)：给你两个版本号 version1 和 version2 ，请你比较它们。
+
+版本号由一个或多个修订号组成，各修订号由一个 '.' 连接。每个修订号由 多位数字 组成，可能包含 前导零 。每个版本号至少包含一个字符。修订号从左到右编号，下标从 0 开始，最左边的修订号下标为 0 ，下一个修订号下标为 1 ，以此类推。例如，2.5.33 和 0.1 都是有效的版本号。
+
+比较版本号时，请按从左到右的顺序依次比较它们的修订号。比较修订号时，只需比较 忽略任何前导零后的整数值 。也就是说，修订号 1 和修订号 001 相等 。如果版本号没有指定某个下标处的修订号，则该修订号视为 0 。例如，版本 1.0 小于版本 1.1 ，因为它们下标为 0 的修订号相同，而下标为 1 的修订号分别为 0 和 1 ，0 < 1 。
+
+返回规则如下：
+
+如果 version1 > version2 返回 1，
+如果 version1 < version2 返回 -1，
+除此之外返回 0。
+
+示例：
+
+```
+输入：version1 = "1.01", version2 = "1.001"
+输出：0
+解释：忽略前导零，"01" 和 "001" 都表示相同的整数 "1"
+```
+
+```
+func compareVersion(_ version1: String, _ version2: String) -> Int {
+    let version1 = version1.split(separator: ".")
+    let version2 = version2.split(separator: ".")
+    let version1Count = version1.count
+    let version2Count = version2.count
+    let maxCount = max(version1Count, version2Count)
+    for i in 0..<maxCount {
+        let v1 = i < version1Count ? Int(version1[i])! : 0
+        let v2 = i < version2Count ? Int(version2[i])! : 0
+        if v1 < v2 {
+            return -1
+        } else if v1 > v2 {
+            return 1
+        }
+    }
+    return 0
+}
+```
+
+**时间复杂度：O(N+M+max(N,M)) 空间复杂度：O(N+M)**
 
 ***
 
@@ -1421,18 +1464,11 @@ if let res = getIntersectionNode(headA, headB) {
 
 [题目](https://leetcode-cn.com/problems/largest-number/)：给定一组非负整数，重新排列它们的顺序使之组成一个最大的整数。
 
-示例 1：
+示例：
 
 ```
 输入：[10,2]
 输出：210
-```
-
-示例 2：
-
-```
-输入：[3,30,34,5,9]
-输出：9534330
 ```
 
 说明: 输出结果可能非常大，所以你需要返回一个字符串而不是整数。
@@ -1453,11 +1489,9 @@ func largestNumber(_ nums: [Int]) -> String {
     
     return (nums as NSArray).componentsJoined(by: "")
 }
-
-print(largestNumber([3,30,34,5,9]))
 ```
 
-**时间复杂度：O(nlgn)**
+**时间复杂度：O(nlogn) 空间复杂度：O(nlogn)**
 
 ***
 
@@ -1496,11 +1530,9 @@ func hammingWeight1(_ n: UInt32) -> Int {
     }
     return res
 }
-
-print(hammingWeight(0b00000000000000000000000000001011))
 ```
 
-**时间复杂度：O(1)**
+**时间复杂度：O(1) 空间复杂度：O(1)**
 
 ***
 
@@ -1568,13 +1600,9 @@ func preorderTraversal(_ root: BinaryTreeNode?) -> [Int] {
     
     return res
 }
-
-let root = BinaryTreeNode(value: 4, left: BinaryTreeNode(value: 2, left:  BinaryTreeNode(value: 1, left: nil, right: nil), right: BinaryTreeNode(value: 3, left: nil, right: nil)), right: BinaryTreeNode(value: 7, left:  BinaryTreeNode(value: 6, left: nil, right: nil), right: BinaryTreeNode(value: 9, left: nil, right: nil)))
-print(preorderTraversal(root))
-
-let invertRoot = invertTree(root)
-print(preorderTraversal(invertRoot))
 ```
+
+**时间复杂度：O(n) 空间复杂度：O(n)**
 
 ***
 
@@ -1628,18 +1656,9 @@ func lowestCommonAncestor(_ root: BinaryTreeNode?, _ node1: BinaryTreeNode?, _ n
     let right = lowestCommonAncestor(root?.right, node1, node2)
     return left == nil ? right : (right == nil ? left : root)
 }
-
-let root = BinaryTreeNode(value: 3, left: BinaryTreeNode(value: 5, left: BinaryTreeNode(value: 6, left: nil, right: nil), right: BinaryTreeNode(value: 2, left: BinaryTreeNode(value: 7, left: nil, right: nil), right: BinaryTreeNode(value: 4, left: nil, right: nil))), right: BinaryTreeNode(value: 1, left: BinaryTreeNode(value: 0, left: nil, right: nil), right: BinaryTreeNode(value: 8, left: nil, right: nil)))
-
-let node = lowestCommonAncestor(root, BinaryTreeNode(value: 5, left: BinaryTreeNode(value: 6, left: nil, right: nil), right: BinaryTreeNode(value: 2, left: BinaryTreeNode(value: 7, left: nil, right: nil), right: BinaryTreeNode(value: 4, left: nil, right: nil))), BinaryTreeNode(value: 1, left: BinaryTreeNode(value: 0, left: nil, right: nil), right: BinaryTreeNode(value: 8, left: nil, right: nil)))
-
-
-if let node = node {
-    print(node.value)
-}
 ```
 
-**时间复杂度：O(n)**
+**时间复杂度：O(n) 空间复杂度：O(n)**
 
 ***
 
@@ -1691,14 +1710,9 @@ func maxSlidingWindow(_ nums: [Int], _ k: Int) -> [Int]? {
     
     return res
 }
-
-let array = [1, 3, -1, -3, 5, 3, 6, 7]
-if let result = maxSlidingWindow(array, 3) {
-    print(result)
-}
 ```
 
-**时间复杂度：O(n*logn)**
+**时间复杂度：O(nlogn) 空间复杂度：O(n)**
 
 ***
 
@@ -1745,11 +1759,9 @@ func compress(_ chars: inout[Character]) {
     }
     chars = Array(chars.prefix(upTo: length))
 }
-
-var chars = Array("aaabbccc")
-compress(&chars)
-print(String(chars))
 ```
+
+**时间复杂度：O(n) 空间复杂度：O(1)**
 
 ***
 
@@ -1859,15 +1871,9 @@ extension Character {
         }
     }
 }
-
-let IP1 = "172.16.254.1"
-let IP2 = "2001:0db8:85a3:0:0:8A2E:0370:733"
-let IP3 = "256.256.256.256"
-
-print(validIPAddress(IP1))
-print(validIPAddress(IP2))
-print(validIPAddress(IP3))
 ```
+
+**时间复杂度：O(1) 空间复杂度：O(1)**
 
 ***
 
@@ -1947,9 +1953,6 @@ func balance() {
         max.insert(min.remove()!)
     }
 }
-
-let array = [1, 3, -1, -3, 5, 3, 6, 7]
-print(medianSlidingWindow(array, 3) ?? [])
 ```
 
 **时间复杂度：O(Nlogk)，其中 N 是数组的长度
@@ -2003,22 +2006,9 @@ class KthLargest {
         return heap.peek()!
     }
 }
-
-let kthLargest = KthLargest(3, [4, 5, 8, 2])
-let result = kthLargest.add(3)
-let result1 = kthLargest.add(5)
-let result2 = kthLargest.add(10)
-let result3 = kthLargest.add(9)
-let result4 = kthLargest.add(4)
-
-print(result)
-print(result1)
-print(result2)
-print(result3)
-print(result4)
 ```
 
-**时间复杂度：O(log<sub>2</sub>n)**
+**时间复杂度：O(log<sub></sub>n) 空间复杂度：O(n)**
 
 ***
 
@@ -2055,10 +2045,9 @@ func search(_ nums: [Int], _ target: Int) -> Int {
     }
     return -1
 }
-
-let nums = [-1, 0, 3, 5, 9, 12]
-print(search(nums, 9))
 ```
+
+**时间复杂度：O(log<sub></sub>n) 空间复杂度：O(1)**
 
 ***
 
@@ -2115,9 +2104,9 @@ extension Int {
     var ASCII: Character {
         get { return Character(UnicodeScalar(self)!)} }
 }
-
-print(toLowerCase1("Hello"))
 ```
+
+**时间复杂度：O(n) 空间复杂度：O(n)**
 
 ***
 
@@ -2155,8 +2144,6 @@ func findLength(_ nums1: [Int], _ nums2: [Int]) -> Int {
     }
     return ans
 }
-
-print(findLength([1, 2, 3, 2, 1], [3, 2, 1, 4, 7]));
 ```
 
 **时间复杂度：O(N x M) 
@@ -2217,12 +2204,74 @@ func sortArray(_ nums: inout [Int]) {
 //    let right = nums.filter { $0 > pivot}
 //    return sortArray(left) + middle + sortArray(right)
 //}
+```
 
-var nums = [5, 2, 3, 1]
-sortArray(&nums)
-print(nums)
+***
+
+## 958.二叉树的完全性检验
+
+[二叉树的完全性检验.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/二叉树的完全性检验.playground)
+
+[题目](https://leetcode-cn.com/problems/check-completeness-of-a-binary-tree/)：给定一个二叉树，确定它是否是一个完全二叉树。
+
+百度百科中对完全二叉树的定义如下：
+
+若设二叉树的深度为 h，除第 h 层外，其它各层 (1～h-1) 的结点数都达到最大个数，第 h 层所有的结点都连续集中在最左边，这就是完全二叉树。（注：第 h 层可能包含 1~ 2h 个节点。）
+
+
+示例：
 
 ```
+       1
+      / \
+     2   3
+    / \   \
+   4   5   7
+ 
+输入：[1,2,3,4,5,null,7]
+输出：false
+解释：值为 7 的结点没有尽可能靠向左侧。
+```
+
+```
+class TreeNode {
+    var left: TreeNode?
+    var right: TreeNode?
+    var val: Int
+    
+    init(val: Int, left: TreeNode?, right: TreeNode?) {
+        self.val = val
+        self.left = left
+        self.right = right
+    }
+}
+
+func isCompleteTree(_ root: TreeNode?) -> Bool {
+    guard let root = root else { return false }
+    
+    var queue: [TreeNode?] = [root]
+    var prevNode: TreeNode? = root
+    
+    while !queue.isEmpty {
+        for _ in queue {
+            let node = queue.removeFirst()
+            
+            if prevNode == nil && node != nil {
+                return false
+            }
+            if node != nil {
+                queue.append(node?.left)
+                queue.append(node?.right)
+            }
+            
+            prevNode = node
+        }
+    }
+    return true
+}
+```
+
+**时间复杂度：O(n) 空间复杂度：O(n)**
 
 ***
 
@@ -2265,8 +2314,6 @@ func longestCommonSubsequence(_ text1: String, _ text2: String) -> Int {
     }
     return maxLen
 }
-
-print(longestCommonSubsequence("abcde", "ace"))
 ```
 
 **时间复杂度：O(N x M) 
