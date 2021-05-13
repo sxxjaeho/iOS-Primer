@@ -27,7 +27,9 @@
       * [165.比较版本号](#165比较版本号)
       * [179.最大数](#179最大数)
       * [191.位1的个数](#191位1的个数)
+      * [200.岛屿数量](#200岛屿数量)
       * [226.翻转二叉树](#226翻转二叉树)
+      * [232.用栈实现队列](#232用栈实现队列)
       * [236.二叉树的最近公共祖先](#236二叉树的最近公共祖先)
       * [239.滑动窗口最大值](#239滑动窗口最大值)
       * [443.压缩字符串](#443压缩字符串)
@@ -223,12 +225,12 @@ func removeNthFromEnd(_ head: ListNode?, _ n: Int) -> ListNode? {
     let dummy = ListNode.init(0)
     dummy.next = head
     
-    var fast = dummy;
-    var slow = dummy;
+    var fast = dummy
+    var slow = dummy
     for _ in 0..<n {
         fast = fast.next!
     }
-    while (fast.next != nil) {
+    while fast.next != nil {
         fast = fast.next!
         slow = slow.next!
     }
@@ -1536,6 +1538,69 @@ func hammingWeight1(_ n: UInt32) -> Int {
 
 ***
 
+## 200.岛屿数量
+[位1的个数.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/位1的个数.playground)
+
+[题目](https://leetcode-cn.com/problems/number-of-islands/)：给你一个由 '1'（陆地）和 '0'（水）组成的的二维网格，请你计算网格中岛屿的数量。
+ 
+岛屿总是被水包围，并且每座岛屿只能由水平方向和/或竖直方向上相邻的陆地连接形成。
+
+此外，你可以假设该网格的四条边均被水包围。
+
+示例：
+
+```
+输入：grid = [
+  ["1","1","0","0","0"],
+  ["1","1","0","0","0"],
+  ["0","0","1","0","0"],
+  ["0","0","0","1","1"]
+]
+输出：3
+```
+
+```
+func numIslands(_ grid: [[Character]]) -> Int {
+    guard grid.count > 0 && grid[0].count > 0 else {
+        return 0
+    }
+    var grid = grid
+    var res = 0
+    for i in 0..<grid.count {
+        for j in 0..<grid[i].count {
+            if grid[i][j] == "1" {
+                dfs(&grid, i, j)
+                res += 1
+                print(grid)
+            }
+        }
+    }
+    return res
+}
+
+func dfs(_ grid: inout [[Character]], _ i: Int, _ j: Int) {
+    guard grid.count > i && i >= 0 else {
+        return
+    }
+    guard grid[i].count > j && j >= 0 else {
+        return
+    }
+    if grid[i][j] == "0" {
+        return
+    } else {
+        grid[i][j] = "0"
+    }
+    dfs(&grid, i - 1, j)
+    dfs(&grid, i, j - 1)
+    dfs(&grid, i + 1, j)
+    dfs(&grid, i, j + 1)
+}
+```
+
+**时间复杂度：O(mn) 空间复杂度：O(mn)**
+
+***
+
 ## 226.翻转二叉树
 
 [翻转二叉树.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/翻转二叉树.playground)
@@ -1603,6 +1668,72 @@ func preorderTraversal(_ root: BinaryTreeNode?) -> [Int] {
 ```
 
 **时间复杂度：O(n) 空间复杂度：O(n)**
+
+***
+
+## 232.用栈实现队列
+
+[用栈实现队列.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/用栈实现队列.playground)
+
+[题目](https://leetcode-cn.com/problems/implement-queue-using-stacks/)：请你仅使用两个栈实现先入先出队列。队列应当支持一般队列支持的所有操作（push、pop、peek、empty）：
+
+实现 MyQueue 类：
+
+void push(int x) 将元素 x 推到队列的末尾
+int pop() 从队列的开头移除并返回元素
+int peek() 返回队列开头的元素
+boolean empty() 如果队列为空，返回 true ；否则，返回 false
+
+示例：
+
+```
+输入：
+["MyQueue", "push", "push", "peek", "pop", "empty"]
+[[], [1], [2], [], [], []]
+输出：
+[null, null, null, 1, 1, false]
+```
+
+```
+class MyQueue {
+    
+    var addStack:Array<Int>
+    var removeStack:Array<Int>
+    
+    init() {
+        addStack = Array.init()
+        removeStack = Array.init()
+    }
+    
+    func push(_ x: Int) {
+        addStack.append(x)
+    }
+    
+    func pop() -> Int {
+        if removeStack.isEmpty {
+            addStack = addStack.reversed()
+            removeStack = addStack
+            addStack.removeAll()
+        }
+        return removeStack.popLast() ?? -1
+    }
+    
+    func peek() -> Int {
+        if removeStack.isEmpty {
+            addStack = addStack.reversed()
+            removeStack = addStack
+            addStack.removeAll()
+        }
+        return removeStack.last ?? -1
+    }
+    
+    func empty() -> Bool {
+        return addStack.isEmpty && removeStack.isEmpty
+    }
+}
+```
+
+**时间复杂度：O(1) 空间复杂度：O(n)**
 
 ***
 
@@ -2193,7 +2324,7 @@ func sortArray(_ nums: inout [Int]) {
     }
 }
 
-//// 快速排序
+//// 快速排序1
 //func sortArray(_ nums: [Int]) -> [Int] {
 //    guard nums.count > 1 else {
 //        return nums
@@ -2204,6 +2335,41 @@ func sortArray(_ nums: inout [Int]) {
 //    let right = nums.filter { $0 > pivot}
 //    return sortArray(left) + middle + sortArray(right)
 //}
+
+//// 快速排序2
+//func sortArray(_ nums: [Int]) -> [Int] {
+//    guard nums.count > 1 else {
+//        return nums
+//    }
+//    var nums = nums
+//    quickSort(&nums, left: 0, right: nums.count - 1)
+//    return nums
+//}
+//
+//func quickSort(_ arr: inout [Int], left: Int, right: Int) {
+//    if left < right {
+//        let pivot = partition(&arr, left: left, right: right)
+//        quickSort(&arr, left: left, right: pivot - 1)
+//        quickSort(&arr, left: pivot + 1, right: right)
+//    }
+//}
+//
+//func partition(_ arr: inout [Int], left: Int, right: Int) -> Int {
+//    let pivotIndex = Int.random(in: left...right)
+//
+//    let pivotValue = arr[pivotIndex]
+//    arr.swapAt(pivotIndex, right)
+//    var i = left
+//    for j in left..<right {
+//        if arr[j] <= pivotValue {
+//            arr.swapAt(i, j)
+//            i += 1
+//        }
+//    }
+//    arr.swapAt(right, i)
+//    return i
+//}
+
 ```
 
 ***
@@ -2275,7 +2441,7 @@ func isCompleteTree(_ root: TreeNode?) -> Bool {
 
 ***
 
-### 1143. 最长公共子序列
+### 1143.最长公共子序列
 
 [最长公共子序列.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/最长公共子序列.playground)
 

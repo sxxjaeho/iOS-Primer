@@ -29,12 +29,12 @@ func removeNthFromEnd(_ head: ListNode?, _ n: Int) -> ListNode? {
     let dummy = ListNode.init(0)
     dummy.next = head
     
-    var fast = dummy;
-    var slow = dummy;
+    var fast = dummy
+    var slow = dummy
     for _ in 0..<n {
         fast = fast.next!
     }
-    while (fast.next != nil) {
+    while fast.next != nil {
         fast = fast.next!
         slow = slow.next!
     }

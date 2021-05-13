@@ -162,7 +162,9 @@
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#165比较版本号">165.比较版本号</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#179最大数">179.最大数</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#191位1的个数">191.位1的个数</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#200岛屿数量">200.岛屿数量</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#226翻转二叉树">226.翻转二叉树</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#232用栈实现队列">232.用栈实现队列</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#236二叉树的最近公共祖先">236.二叉树的最近公共祖先</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#239滑动窗口最大值">239.滑动窗口最大值</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#443压缩字符串">443.压缩字符串</a><br>
@@ -207,6 +209,7 @@
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue4.md">牛客题霸-客户端爱考<br>部分算法题解</a>
         </td>
         <td>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue4.md#NC69链表中倒数第k个结点">链表中倒数第k个结点</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue4.md#NC127最长公共子串">最长公共子串</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue4.md">...</a><br>
         </td>

@@ -61,17 +61,32 @@ func quickSort(_ arr: inout [Int], left: Int, right: Int) {
 
 func partition(_ arr: inout [Int], left: Int, right: Int) -> Int {
     let pivotIndex = Int.random(in: left...right)
-    
     let pivotValue = arr[pivotIndex]
+    // index=2, value=3, right=3
+    
+    // index=0, value=2, right=1
     arr.swapAt(pivotIndex, right)
+    // arr=[5, 2, 1, 3]
+    
+    // arr=[1, 2, 3, 5]
     var i = left
+    // i=0
+    
+    // i=0
     for j in left..<right {
         if arr[j] <= pivotValue {
             arr.swapAt(i, j)
             i += 1
+            //j=1 arr=[2, 5, 1, 3], i=1
+            //j=2 arr=[2, 1, 5, 3], i=2
+            
+            //j=0 arr=[1, 2, 3, 5], i=1
         }
     }
     arr.swapAt(right, i)
+    // arr=[2, 1, 3, 5]
+    
+    // arr=[1, 2, 3, 5]
     return i
 }
 
