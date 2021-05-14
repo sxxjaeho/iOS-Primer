@@ -14,11 +14,12 @@ import UIKit
  如果 version1 < version2 返回 -1，
  除此之外返回 0。
  
- 示例 1：
-
+ 示例：
  输入：version1 = "1.01", version2 = "1.001.1"
  输出：0
  解释：忽略前导零，"01" 和 "001" 都表示相同的整数 "1"
+ 
+ 时间复杂度：O(N+M+max(N,M)) 空间复杂度：O(N+M)
  */
 
 func compareVersion(_ version1: String, _ version2: String) -> Int {

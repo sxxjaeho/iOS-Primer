@@ -118,7 +118,7 @@ if let result = duplicate(nums) {
 func find(_ matrix: [[Int]], _ num: Int) -> Bool {
     var row = 0
     var column = matrix.count - 1
-    while row <= matrix[0].count - 1 && column >= 0 {
+    while column <= matrix[0].count - 1 && row >= 0 {
         if matrix[row][column] > num {
             column -= 1
         } else if matrix[row][column] < num {
@@ -243,7 +243,7 @@ func fibonacciLoop(_ num : Int) -> Int {
 print(fibonacciLoop(6))
 ```
 
-**时间复杂度：O(n)**
+**时间复杂度：O(n) 空间复杂度：O(1)**
 
 ***
 

@@ -1,6 +1,12 @@
 import UIKit
 
-// 题目：请实现一个函数，把字符串中的每个空格替换成"%20"。例如输入“We are happy.”，则输出“We%20are%20happy.”
+/*
+ 题目：请实现一个函数，把字符串中的每个空格替换成"%20"。例如输入“We are happy.”，则输出“We%20are%20happy.”
+ 
+ 示例：
+ 输入：s = "We are happy."
+ 输出："We%20are%20happy."
+ */
 
 func replaceBlank(_ string: String) -> String? {
     let characters = Array(string)
@@ -44,6 +50,27 @@ func replaceBlank(_ string: String) -> String? {
     }
     
     return String(resultArray)
+}
+
+func replaceBlank1(_ s: String) -> String {
+    return s.replacingOccurrences(of: " ", with: "%20")
+}
+
+// 时间复杂度：O(n)。遍历字符串 s 一遍。
+// 空间复杂度：O(n)。额外创建字符数组，长度为 s 的长度的 3 倍。
+func replaceBlank2(_ s: String) -> String {
+    if(s.count == 0) {
+        return ""
+    }
+    var res = ""
+    for ch in s {
+        if(ch == " "){
+            res.append("%20")
+        } else {
+            res.append(ch)
+        }
+    }
+    return res
 }
 
 let string = "We are happy."

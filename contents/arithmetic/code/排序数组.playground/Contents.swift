@@ -17,6 +17,7 @@ import UIKit
 //}
 
 // 选择排序
+// 时间复杂度：O(n²) 空间复杂度：O(1)
 //func sortArray(_ nums: inout [Int]) {
 //    guard nums.count > 1 else {
 //        return
@@ -30,7 +31,7 @@ import UIKit
 //    }
 //}
 
-//// 快速排序
+// 快速排序
 //func sortArray(_ nums: [Int]) -> [Int] {
 //    guard nums.count > 1 else {
 //        return nums
@@ -51,6 +52,7 @@ func sortArray(_ nums: [Int]) -> [Int] {
     return nums
 }
 
+// 时间复杂度：O(nlogn) 空间复杂度：O(logn)
 func quickSort(_ arr: inout [Int], left: Int, right: Int) {
     if left < right {
         let pivot = partition(&arr, left: left, right: right)

@@ -1,6 +1,10 @@
 import UIKit
 
-// 题目：给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target  ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。
+/*
+ 题目：给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target  ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。
+ 
+ 时间复杂度：O(logn) 空间复杂度：O(1)
+ */
 
 func search(_ nums: [Int], _ target: Int) -> Int {
     guard nums.count != 1 else {
@@ -10,7 +14,6 @@ func search(_ nums: [Int], _ target: Int) -> Int {
     var left = 0, right = nums.count - 1
     while left <= right {
         let mid = left + (right - left) / 2
-        print(mid)
         if nums[mid] == target {
             return mid
         } else if nums[mid] < target {

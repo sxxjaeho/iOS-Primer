@@ -18,6 +18,8 @@ import UIKit
  输入：[1,2,3,4,5,null,7]
  输出：false
  解释：值为 7 的结点没有尽可能靠向左侧。
+ 
+ 时间复杂度：O(n) 空间复杂度：O(n)
  */
 
 class TreeNode {
@@ -32,6 +34,7 @@ class TreeNode {
     }
 }
 
+// bfs
 func isCompleteTree(_ root: TreeNode?) -> Bool {
     guard let root = root else { return false }
     
@@ -41,7 +44,7 @@ func isCompleteTree(_ root: TreeNode?) -> Bool {
     while !queue.isEmpty {
         for _ in queue {
             let node = queue.removeFirst()
-            
+            // 当前节点有值，前一个节点为空
             if prevNode == nil && node != nil {
                 return false
             }

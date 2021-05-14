@@ -1,6 +1,10 @@
 import UIKit
 
-// 题目：写一个函数，输入n，求斐波那契（Fibonacci）数列的第n项。
+/*
+ 题目：写一个函数，输入n，求斐波那契（Fibonacci）数列的第n项。
+ 
+ 时间复杂度：O(n) 空间复杂度：O(1)
+ */
 
 // 递归，效率低
 //func fibonacciRecursion(_ num : Int) -> Int {

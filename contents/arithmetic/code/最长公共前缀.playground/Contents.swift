@@ -8,8 +8,11 @@ import UIKit
  示例：
  输入：strs = ["flower","flow","flight"]
  输出："fl"
+ 
+ 时间复杂度：O(mnlogm) 空间复杂度：O(1)
  */
 
+// 二分查找
 func longestCommonPrefix(_ strs: [String]) -> String {
     if strs.count == 0 {
         return "";

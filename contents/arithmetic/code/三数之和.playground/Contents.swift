@@ -4,8 +4,15 @@ import UIKit
  题目：给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有满足条件且不重复的三元组。
 
  注意：答案中不可以包含重复的三元组
+ 
+ 示例：
+ 输入：nums = [-1,0,1,2,-1,-4]
+ 输出：[[-1,-1,2],[-1,0,1]]
+ 
+ 时间复杂度：O(n2) 空间复杂度：O(logN)
 */
 
+// 快排 + 双指针
 func threeSum(_ nums: [Int], _ target: Int) -> [[Int]] {
     guard nums.count >= 3 else {
         return []
@@ -36,8 +43,8 @@ func threeSum(_ nums: [Int], _ target: Int) -> [[Int]] {
         while ahead > behind {
             let curSum = sortedNums[ahead] + sortedNums[behind]
             if curSum == target - value {
-                if !resultSet.contains([value, sortedNums[ahead], sortedNums[behind]]) {
-                    resultArray.append([value, sortedNums[ahead], sortedNums[behind]])
+                if !resultSet.contains([value, sortedNums[behind], sortedNums[ahead]]) {
+                    resultArray.append([value, sortedNums[behind], sortedNums[ahead]])
                     resultSet.insert([value, sortedNums[ahead], sortedNums[behind]])
                 }
                 behind += 1

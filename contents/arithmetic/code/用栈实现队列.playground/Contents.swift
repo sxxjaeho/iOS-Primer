@@ -11,13 +11,13 @@ import UIKit
  boolean empty() 如果队列为空，返回 true ；否则，返回 false
 
  示例：
-
  输入：
  ["MyQueue", "push", "push", "peek", "pop", "empty"]
  [[], [1], [2], [], [], []]
  输出：
  [null, null, null, 1, 1, false]
  
+ 时间复杂度：O(1) 空间复杂度：O(n)
  */
 
 class MyQueue {

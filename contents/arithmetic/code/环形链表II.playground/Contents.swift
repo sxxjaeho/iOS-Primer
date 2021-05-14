@@ -11,11 +11,12 @@ import UIKit
 
  你是否可以使用 O(1) 空间解决此题？
  
- 示例 1：
-
+ 示例：
  输入：head = [3,2,0,-4], pos = 1
  输出：返回索引为 1 的链表节点
  解释：链表中有一个环，其尾部连接到第二个节点。
+ 
+ 时间复杂度：O(n) 空间复杂度：O(1)
  */
 
 class ListNode {
@@ -107,3 +108,24 @@ node3.next = node1
 if let node = detectCycle(head) {
     print(node.value)
 }
+
+//struct ListNode* detectCycle(struct ListNode* head ) {
+//    if (head == NULL || head->next == NULL) {
+//        return NULL;
+//    }
+//    struct ListNode *fast = head;
+//    struct ListNode *slow = head;
+//    while (fast != NULL && fast->next != NULL) {
+//        slow = slow->next;
+//        fast = fast->next->next;
+//        if (fast == slow) {
+//            struct ListNode *ptr = head;
+//            while (ptr != slow) {
+//                ptr = ptr->next;
+//                slow = slow->next;
+//            }
+//            return ptr;
+//        }
+//    }
+//    return NULL;
+//}

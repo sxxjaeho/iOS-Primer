@@ -1,8 +1,18 @@
 import UIKit
 
-// 题目：给定两个字符串 s1 和 s2，写一个函数来判断 s2 是否包含 s1 的排列。
+/*
+ 题目：给定两个字符串 s1 和 s2，写一个函数来判断 s2 是否包含 s1 的排列。
 
-// 换句话说，第一个字符串的排列之一是第二个字符串的子串。
+ 换句话说，第一个字符串的排列之一是第二个字符串的子串。
+ 
+ 示例
+ 输入：s1 = "ab" s2 = "eidbaooo"
+ 输出：True
+ 解释：s2 包含 s1 的排列之一 ("ba").
+ 
+ 时间复杂度：O(n+m+∣Σ∣)，其中 n 是字符串 s1 的长度，m 是字符串 s2 的长度，Σ 是字符集，这道题中的字符集是小写字母，∣Σ∣=26。
+ 空间复杂度：O(∣Σ∣)。
+ */
 
 func checkInclusion(_ s1: String, _ s2: String) -> Bool {
         let s2Array = Array(s2)
@@ -21,10 +31,8 @@ func checkInclusion(_ s1: String, _ s2: String) -> Bool {
             let rightItem = s2Array[right]
             right += 1
             
-            print("rightItem:\(rightItem)")
             if target[rightItem] != nil {
                 window[rightItem, default: 0] += 1
-                print("window:\(window)")
                 if window[rightItem] == target[rightItem] {
                     counter += 1                                      // window: @{"a":1}, counter:1
                 }                                                     // window: @{"a":1, "b":1}, counter:2
@@ -39,7 +47,7 @@ func checkInclusion(_ s1: String, _ s2: String) -> Bool {
                                                                       
                 let leftItem = s2Array[left]
                 left += 1
-                print("right:\(right), left:\(left), leftItem:\(leftItem)");
+                
                 if target[leftItem] != nil {
                     if window[leftItem] == target[leftItem] {
                         counter -= 1

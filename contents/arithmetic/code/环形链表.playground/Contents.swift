@@ -1,24 +1,16 @@
 import UIKit
-
-// 题目：给定一个链表，判断链表中是否有环。
-// 为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。
 /*
-示例 1：
-
-输入：head = [3,2,0,-4], pos = 1
-输出：true
-解释：链表中有一个环，其尾部连接到第二个节点。
-
-示例 2：
-输入：head = [1,2], pos = 0
-输出：true
-解释：链表中有一个环，其尾部连接到第一个节点。
-
-示例 3：
-输入：head = [1], pos = -1
-输出：false
-解释：链表中没有环。
-**/
+ 题目：给定一个链表，判断链表中是否有环。
+ 为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。
+ 
+ 示例：
+ 
+ 输入：head = [3,2,0,-4], pos = 1
+ 输出：true
+ 解释：链表中有一个环，其尾部连接到第二个节点。
+ 
+ 时间复杂度：O(n) 空间复杂度：O(1)
+ */
 
 class ListNode {
     var value: Int
@@ -68,3 +60,22 @@ node3.next = node1
 //let head = ListNode(1)
 
 print(hasCycle(head))
+
+
+//#include <stdbool.h>
+// 
+//bool hasCycle(struct ListNode* head ) {
+//    if (head == NULL || head->next == NULL) {
+//        return false;
+//    }
+//    struct ListNode *fast = head;
+//    struct ListNode *slow = head;
+//    while(fast != NULL && fast->next != NULL) {
+//        fast = fast->next->next;
+//        slow = slow->next;
+//        if(fast == slow) {
+//           return true;
+//        }
+//    }
+//    return false;
+//}

@@ -16,6 +16,8 @@ import UIKit
  
  输入：root = [3,9,20,null,null,15,7]
  输出：true
+ 
+ 时间复杂度：O(n) 空间复杂度：O(n)
  */
 
 class TreeNode {

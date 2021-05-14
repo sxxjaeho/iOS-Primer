@@ -8,6 +8,8 @@ import UIKit
  示例：
  输入：head = [1,2,3,4,5], n = 2
  输出：[1,2,3,5]
+ 
+ 时间复杂度：O(L)，其中 L 是链表的长度 空间复杂度：O(1)
  */
 
 class ListNode {
@@ -25,6 +27,7 @@ class ListNode {
     }
 }
 
+// 快慢指针
 func removeNthFromEnd(_ head: ListNode?, _ n: Int) -> ListNode? {
     let dummy = ListNode.init(0)
     dummy.next = head

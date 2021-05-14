@@ -83,7 +83,68 @@ func lengthOfLongestSubstring(_ s: String) -> Int {
 
 ***
 
-### 2.字符串的排列
+### 2.最长公共前缀
+
+[最长公共前缀.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/最长公共前缀.playground)
+
+[题目](https://leetcode-cn.com/problems/longest-common-prefix/)：编写一个函数来查找字符串数组中的最长公共前缀。
+
+如果不存在公共前缀，返回空字符串 ""。
+
+示例 1：
+
+```
+输入：strs = ["flower","flow","flight"]
+输出："fl"
+```
+
+示例 2：
+
+```
+输入：strs = ["dog","racecar","car"]
+输出：""
+解释：输入不存在公共前缀。
+```
+
+```
+func longestCommonPrefix(_ strs: [String]) -> String {
+    if strs.count == 0 {
+        return "";
+    }
+    var minLength = Int.max
+    for string in strs {
+        minLength = min(minLength, string.count)
+    }
+    var left = 0, right = minLength - 1
+    while left <= right {
+        let mid = left + (right - left) / 2
+        if isCommonPrefix(strs, mid + 1) {
+            left = mid + 1
+        } else {
+            right = mid - 1
+        }
+    }
+    return String(String(strs.first!.prefix(left)))
+}
+
+func isCommonPrefix(_ strs: [String], _ mid: Int) -> Bool {
+    let prefix = String(strs.first!.prefix(mid))
+    for string in strs {
+        if !string.hasPrefix(prefix) {
+            return false
+        }
+    }
+    return true
+}
+
+print(longestCommonPrefix(["flower","flow","flight"]))
+```
+
+**时间复杂度：O(mnlogm) 空间复杂度：O(1)**
+
+***
+
+### 3.字符串的排列
 
 [字符串的排列.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/字符串的排列.playground)
 
@@ -156,67 +217,6 @@ print(checkInclusion("ab", "eiadboaooo"))
 
 **时间复杂度：O(n+m+∣Σ∣)
 空间复杂度：O(∣Σ∣)**
-
-***
-
-### 3.最长公共前缀
-
-[最长公共前缀.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/最长公共前缀.playground)
-
-[题目](https://leetcode-cn.com/problems/longest-common-prefix/)：编写一个函数来查找字符串数组中的最长公共前缀。
-
-如果不存在公共前缀，返回空字符串 ""。
-
-示例 1：
-
-```
-输入：strs = ["flower","flow","flight"]
-输出："fl"
-```
-
-示例 2：
-
-```
-输入：strs = ["dog","racecar","car"]
-输出：""
-解释：输入不存在公共前缀。
-```
-
-```
-func longestCommonPrefix(_ strs: [String]) -> String {
-    if strs.count == 0 {
-        return "";
-    }
-    var minLength = Int.max
-    for string in strs {
-        minLength = min(minLength, string.count)
-    }
-    var left = 0, right = minLength - 1
-    while left <= right {
-        let mid = left + (right - left) / 2
-        if isCommonPrefix(strs, mid + 1) {
-            left = mid + 1
-        } else {
-            right = mid - 1
-        }
-    }
-    return String(String(strs.first!.prefix(left)))
-}
-
-func isCommonPrefix(_ strs: [String], _ mid: Int) -> Bool {
-    let prefix = String(strs.first!.prefix(mid))
-    for string in strs {
-        if !string.hasPrefix(prefix) {
-            return false
-        }
-    }
-    return true
-}
-
-print(longestCommonPrefix(["flower","flow","flight"]))
-```
-
-**时间复杂度：O(mnlogm) 空间复杂度：O(1)**
 
 ***
 

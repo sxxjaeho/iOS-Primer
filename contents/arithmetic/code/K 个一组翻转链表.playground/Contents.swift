@@ -10,6 +10,12 @@ import UIKit
  
  你可以设计一个只使用常数额外空间的算法来解决此问题吗？
  你不能只是单纯的改变节点内部的值，而是需要实际进行节点交换。
+ 
+ 示例：
+ 输入：head = [1,2,3,4,5], k = 2
+ 输出：[2,1,4,3,5]
+ 
+ **时间复杂度：O(n) 空间复杂度：O(1)**
  */
 
 class ListNode {
@@ -78,7 +84,7 @@ func reverse(_ head: ListNode?) -> ListNode? {
 //        }
 //    }
 //
-//    prev = reverseKGroup(prev?.next, k)
+//    prev = reverseKGroup1(prev?.next, k)
 //
 //    for _ in 1...k {
 //        let tmp = dummy?.next?.next       // 145
