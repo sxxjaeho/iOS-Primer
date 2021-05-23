@@ -23,7 +23,6 @@ func moveZeroes(_ nums: inout [Int]) {
         if nums[i] != 0 {
             nums.swapAt(i, j)
             j += 1
-            print(nums, j)
         }
     }
 }

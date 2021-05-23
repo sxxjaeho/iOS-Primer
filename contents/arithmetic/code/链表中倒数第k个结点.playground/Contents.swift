@@ -59,3 +59,20 @@ if let node = FindKthToTail(2, head) {
     print(node.val)
 }
 
+//
+// 1 -> 2 -> 3 -> 4 -> 5
+
+// slow/fast
+//   0      -> 1 -> 2 -> 3 -> 4 -> 5
+
+// slow       fast
+//   0 -> 1 -> 2 -> 3 -> 4 -> 5
+
+//       slow      fast
+//   0 -> 1 -> 2 -> 3 -> 4 -> 5
+
+//            slow      fast
+//   0 -> 1 -> 2 -> 3 -> 4 -> 5
+
+//                 slow     fast
+//   0 -> 1 -> 2 -> 3 -> 4 -> 5
