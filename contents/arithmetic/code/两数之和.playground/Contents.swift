@@ -16,4 +16,17 @@ func twoSum(_ nums: [Int], _ target: Int) -> [[Int]] {
     return result
 }
 
+func twoSum1 ( _ numbers: [Int],  _ target: Int) -> [Int] {
+    var dictionary = [Int: Int]()
+    var result = [Int]()
+    for (index, value) in numbers.enumerated() {
+        if let differenceIndex = dictionary[target - value] {
+            result.append(numbers[differenceIndex])
+            result.append(numbers[index])
+        }
+        dictionary[value] = index
+    }
+    return result
+}
+
 print(twoSum([2, 7, 5, 1, 2, 4], 9))

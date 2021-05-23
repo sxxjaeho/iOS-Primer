@@ -39,12 +39,16 @@ func reverseBetween(_ head: ListNode?, _ left: Int, _ right: Int) -> ListNode? {
     }
     // 1->2->3->4->5
     let curNode = prevNode.next
-    // curNode=2 next=3
-    // 1->2->4->5  // 3前后断环
-    // 3->2->4->5
-    // 1->3
+    // prevNode=1 curNode=2 next=3
+    // 1->2->4->5     // 3前后断环
+    // 3->2->4->5     // 3后连2
+    // 1->3->2->4->5  // 1后连3
     
-    // 1->3->2->4->5
+    // prevNode=1 curNode=2 next=4
+    // 1->3->2->5     // 4前后断环
+    // 4->3->2->5     // 4后连3
+    // 1->4->3->2->5  // 1后连4
+    
     for _ in left..<right {
         let next = curNode?.next
         curNode?.next = next?.next

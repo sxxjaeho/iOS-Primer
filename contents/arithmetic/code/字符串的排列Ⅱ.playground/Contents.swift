@@ -15,20 +15,24 @@ import UIKit
 func permutation(_ s: String) -> [String] {
     var c = [Character](s), res = [String]()
     func dfs(_ x: Int) {
+        print("|||||||||\(x)")
         if x == c.count - 1 {
+            print(String(c))
             res.append(String(c))
-            print(res)
             return
         }
         var set = Set<Character>()
         for i in x..<c.count {
+            print("---------\(i),\(x)")
             if set.contains(c[i]) {
                 continue    // 重复，因此剪枝
             }
             set.insert(c[i])
             c.swapAt(i, x); // 交换，将 c[i] 固定在第 x 位
+            print("发生交换\(String(c))")
             dfs(x + 1);     // 开启固定第 x + 1 位字符
             c.swapAt(i, x)  // 恢复交换
+            print("恢复交换\(String(c))")
         }
     }
     dfs(0)
@@ -36,3 +40,18 @@ func permutation(_ s: String) -> [String] {
 }
 
 print(permutation("abc"))
+    
+//   ↗  b  →  c   abc
+// a
+//   ↘  c  →  b   acb
+//
+//   ↗  a  →  c   bac
+// b
+//   ↘  c  →  a   bca
+
+// for循环i=1,x=0
+// abc,交换a,b得到bac
+// 交换a,a得到bac,输出bac,恢复到bac
+// 交换a,c得到bca,输出bca,恢复到bac
+// 恢复到abc
+

@@ -36,7 +36,7 @@ class TreeNode {
 //                                               |
 // maxGain(20)                                   |
 // leftGain = 15, rightGain = 7                  |
-// maxSum = max(20 + 15 + 7 = 42, Int.min)       |
+// maxSum = max(20 + 15 + 7 = 42, 0)             |
 // return 20 + 15 = 35                           |
 
 var maxSum = Int.min

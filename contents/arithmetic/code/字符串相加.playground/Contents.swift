@@ -6,6 +6,8 @@ import UIKit
  时间复杂度：O(max(len1, len2)) 空间复杂度：O(1)
  */
 
+
+// 类似竖式计算
 func addStrings(_ num1: String, _ num2: String) -> String {
     let num1 = [Character](num1)
     let num2 = [Character](num2)

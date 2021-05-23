@@ -16,6 +16,9 @@ class ListNode {
 }
 
 // 个位排在链表首部:
+// 7->1->6
+// 5->9->2
+
 // 0      -> nil
 // result -> nil
 
@@ -100,7 +103,7 @@ func addTwoNumbers2(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
     }
     
     if carry > 0 {
-        let temp = ListNode(1)
+        let temp = ListNode(carry)
         temp.next = result
         result = temp
     }
