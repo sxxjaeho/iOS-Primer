@@ -39,7 +39,7 @@
       * [37.序列化二叉树](#37序列化二叉树)
       * [38.字符串的排列](#38字符串的排列)
       * [39.数组中出现次数超过一半的数字](#39数组中出现次数超过一半的数字)
-      * [40.最小的 k 个数](#40最小的-k-个数)
+      * [40.最小的 k 个数✅](#40最小的-k-个数)
       * [41.数据流中的中位数✅](#41数据流中的中位数)
       * [42.连续子数组的最大和✅](#42连续子数组的最大和)
       * [43.1 ~ n 整数中 1 出现的次数](#431--n-整数中-1-出现的次数)
@@ -63,8 +63,8 @@
       * [61.扑克牌中的顺子](#61扑克牌中的顺子)
       * [62.圆圈中最后剩下的数字](#62圆圈中最后剩下的数字)
       * [63.股票的最大利润](#63股票的最大利润)
-      * [64.求 1+2...+n](#64求-12n)
-      * [65.不用加减乘除做加法](#65不用加减乘除做加法)
+      * [64.求 1+2...+n✅](#64求-12n)
+      * [65.不用加减乘除做加法✅](#65不用加减乘除做加法)
       * [66.构建乘积数组](#66构建乘积数组)
       * [67.把字符串转换成整数](#67把字符串转换成整数)
       * [68.树中两个节点的最低公共祖先](#68树中两个节点的最低公共祖先)
@@ -466,50 +466,44 @@ print(isSymmetrical(root1))
 ## 29.顺时针打印矩阵
 题目：输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字。
 
-[顺时针打印矩阵.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/顺时针打印矩阵.playground)
+[螺旋矩阵.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/螺旋矩阵.playground)
 
 ```
 func spiralOrder(_ matrix: [[Int]]) -> [Int] {
-    guard matrix.count != 0 else {
-        return []
-    }
+    guard !matrix.isEmpty && matrix.count > 0 && matrix[0].count > 0 else { return [] }
     
-    var left = 0
-    var top = 0
-    var right = matrix[top].count - 1
-    var bottom = matrix.count - 1
-    var result = [Int]()
+    var res = [Int]()
+    var left = 0, right = matrix[0].count - 1, top = 0, bottom = matrix.count - 1
     
-    while true {
-        if right < left { break }
-        for i in (left...right) {
-            result.append(matrix[top][i])
+    while left <= right && top <= bottom {
+        for column in left...right {
+            res.append(matrix[top][column])
         }
-        top += 1
-        
-        if top > bottom { break }
-        for i in (top...bottom) {
-            result.append(matrix[i][right])
+        if top + 1 <= bottom {
+            for row in top + 1...bottom {
+                res.append(matrix[row][right])
+            }
         }
-        right -= 1
-        
-        if right < left { break }
-        for i in (left...right).reversed() {
-            result.append(matrix[bottom][i])
-        }
-        bottom -= 1
-        
-        if top > bottom { break }
-        for i in (top...bottom).reversed() {
-            result.append(matrix[i][left])
+        if left <= right - 1 && top < bottom   {
+            for colunm in (left...right - 1).reversed() {
+                res.append(matrix[bottom][colunm])
+            }
+            if top + 1 <= bottom - 1 {
+                for row in (top + 1...bottom - 1).reversed() {
+                    res.append(matrix[row][left])
+                }
+            }
         }
         left += 1
+        right -= 1
+        top += 1
+        bottom -= 1
     }
-    return result
+    return res
 }
-
-print(spiralOrder([[1,2,3], [4,5,6], [7,8,9]]))
 ```
+
+**时间复杂度：O(mn) 空间复杂度：O(1)**
 
 ***
 
@@ -545,6 +539,30 @@ print(spiralOrder([[1,2,3], [4,5,6], [7,8,9]]))
 
 ## 40.最小的 k 个数
 
+[最小的K个数.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/最小的K个数.playground)
+
+题目：给定一个数组，找出其中最小的K个数。例如数组元素是4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4。如果K>数组的长度，那么返回一个空的数组
+
+示例：
+
+```
+输入：[4,5,1,6,2,7,3,8],4
+输出：[1,2,3,4]
+```
+
+```
+func GetLeastNumbers_Solution ( _ input: [Int],  _ k: Int) -> [Int] {
+    if k > input.count {
+        return []
+    }
+    let arry = input.sorted()
+    return Array(arry[0..<k])
+}
+```
+
+**时间复杂度：O(nlogn)) 空间复杂度：O(logn)**
+
+***
 
 ## 41.数据流中的中位数
 
@@ -650,15 +668,12 @@ func maxSubArray(_ nums: [Int]) -> Int {
 
 ## 50.第一个只出现一次的字符
 
-[字符串中第一个只出现一次的字符.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/字符串中第一个只出现一次的字符.playground)
+[第一个只出现一次的字符.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/第一个只出现一次的字符.playground)
 
 题目：字符串中第一个只出现一次的字符。
 在字符串中找出第一个只出现一次的字符。如输入“abaccdeff”，则输出“b”。
 
 ```
-// 题目：字符串中第一个只出现一次的字符。
-// 在字符串中找出第一个只出现一次的字符。如输入“abaccdeff”，则输出“b”
-
 func firstNotRepeatingChar(_ string: String) -> Character? {
     let chars = Array(string)
     var dictionary = [Character: Int]()
@@ -676,9 +691,10 @@ func firstNotRepeatingChar(_ string: String) -> Character? {
     }
     return nil
 }
-
-print(firstNotRepeatingChar("abaccdeff") ?? "")
 ```
+
+**时间复杂度：O(n) 
+空间复杂度：O(∣Σ∣)，其中 Σ 是字符集**
 
 ***
 
@@ -830,9 +846,45 @@ print(reverseWords("  hello  world  "))
 
 ## 64.求 1+2+...+n
 
+[1+2+...+100.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/1+2+...+100.playground)
+
+题目：1+2+...+100
+
+```
+func sum4(_ n: Int, _ m: Int) -> Int {
+    if n == m {
+        return n
+    }
+    return m + sum4(n, m - 1)
+}
+```
+
+**时间复杂度：O(n) 空间复杂度：O(1)**
+
+***
 
 ## 65.不用加减乘除做加法
 
+[不用加减乘除做加法.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/不用加减乘除做加法.playground)
+
+题目：写一个函数，求两个整数之和，要求在函数体内不得使用 “+”、“-”、“*”、“/” 四则运算符号。
+
+```
+func add(_ a: Int, _ b: Int) -> Int {
+    var a = a
+    var b = b
+    while b != 0 {
+        let c = (a & b) << 1
+        a = a ^ b
+        b = c
+    }
+    return a
+}
+```
+
+**时间复杂度：O(1) 空间复杂度：O(1)**
+
+***
 
 ## 66.构建乘积数组
 

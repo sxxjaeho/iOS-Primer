@@ -123,12 +123,15 @@
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md#25合并两个排序的链表">25.合并两个排序的链表</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md#28对称的二叉树">28.对称的二叉树</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md#29顺时针打印矩阵">29.顺时针打印矩阵</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md#40最小的-k-个数">40.最小的 k 个数</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md#41数据流中的中位数">41.数据流中的中位数</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md#42连续子数组的最大和">42.连续子数组的最大和</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md#50第一个只出现一次的字符">50.第一个只出现一次的字符</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md#55二叉树深度">55.二叉树深度</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md#57和为-s-的数字">57.和为 s 的数字</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md#58翻转字符串">58.翻转字符串</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md#64求-12n">64.求 1+2...+n</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md#65不用加减乘除做加法">65.不用加减乘除做加法</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue1.md">...</a><br>
         </td>
     </tr>
@@ -139,14 +142,18 @@
         <td>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#1两数之和">1.两数之和</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#5最长回文子串">5.最长回文子串</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#7整数反转">7.整数反转</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#15三数之和">15.三数之和</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#19删除链表的倒数第N个结点">19.删除链表的倒数第N个结点</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#20有效的括号">20.有效的括号</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#22括号生成">22.括号生成</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#24两两交换链表中的节点">24.两两交换链表中的节点</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#25K个一组翻转链">25.K个一组翻转链表</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#50powx-n">50.Pow(x, n)</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#69x的平方根">69.x的平方根</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#70爬楼梯">70.爬楼梯</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#88合并两个有序数组">88.合并两个有序数组</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#92反转链表II">92.反转链表II</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#98验证二叉搜索树">98.验证二叉搜索树</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#100相同的树">100.相同的树</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#102二叉树的层次遍历">102.二叉树的层次遍历</a><br>
@@ -156,7 +163,9 @@
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#113路径总和II">113.路径总和II</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#120三角形最小路径和">120.三角形最小路径和</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#124二叉树中的最大路径和">124.二叉树中的最大路径和</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#136只出现一次的数字">136.只出现一次的数字</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#141环形链表">141.环形链表</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#142环形链表II">142.环形链表II</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#146LRU缓存机制">146.LRU缓存机制</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#160相交链表">160.相交链表</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#165比较版本号">165.比较版本号</a><br>
@@ -167,6 +176,9 @@
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#232用栈实现队列">232.用栈实现队列</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#236二叉树的最近公共祖先">236.二叉树的最近公共祖先</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#239滑动窗口最大值">239.滑动窗口最大值</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#300最长递增子序列">300.最长递增子序列</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#338比特位计数">338.比特位计数</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#415字符串相加">415.字符串相加</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#443压缩字符串">443.压缩字符串</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#468验证IP地址">468.验证IP地址</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue2.md#480滑动窗口中位数">480.滑动窗口中位数</a><br>
@@ -209,7 +221,10 @@
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue4.md">牛客题霸-客户端爱考<br>部分算法题解</a>
         </td>
         <td>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue4.md#NC40两个链表相加生成相加链表">两个链表相加生成相加链表</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue4.md#NC41最长无重复子数组">最长无重复子数组</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue4.md#NC69链表中倒数第k个结点">链表中倒数第k个结点</a><br>
+            <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue4.md#NC88寻找第K大">寻找第K大</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue4.md#NC127最长公共子串">最长公共子串</a><br>
             <a href="https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/Arithmetic-Catalogue4.md">...</a><br>
         </td>

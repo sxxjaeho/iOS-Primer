@@ -2,6 +2,7 @@
    * [LeetCode-部分算法题解](#LeetCode-部分算法题解)
       * [1.两数之和](#1两数之和)
       * [5.最长回文子串](#5最长回文子串)
+      * [7.整数反转](#7整数反转)
       * [15.三数之和](#15三数之和)
       * [19.删除链表的倒数第N个结点](#19删除链表的倒数第N个结点)
       * [20.有效的括号](#20有效的括号)
@@ -9,8 +10,10 @@
       * [24.两两交换链表中的节点](#24两两交换链表中的节点)
       * [25.K个一组翻转链表](#K个一组翻转链表)
       * [50.Pow(x, n)](#50powx-n)
+      * [69.x的平方根](#69x的平方根)
       * [70.爬楼梯](#70爬楼梯)
       * [88.合并两个有序数组](#88合并两个有序数组)
+      * [92.反转链表II](#92反转链表II)
       * [98.验证二叉搜索树](#98验证二叉搜索树)
       * [100.相同的树](#100相同的树)
       * [102.二叉树的层次遍历](#102二叉树的层次遍历)
@@ -20,6 +23,7 @@
       * [113.路径总和II](#113路径总和II)
       * [120.三角形最小路径和](#120三角形最小路径和)
       * [124.二叉树中的最大路径和](#124二叉树中的最大路径和)
+      * [136.只出现一次的数字](#136只出现一次的数字)
       * [141.环形链表](#141环形链表)
       * [142.环形链表II](#142环形链表II)
       * [146.LRU缓存机制](#146LRU缓存机制)
@@ -32,6 +36,9 @@
       * [232.用栈实现队列](#232用栈实现队列)
       * [236.二叉树的最近公共祖先](#236二叉树的最近公共祖先)
       * [239.滑动窗口最大值](#239滑动窗口最大值)
+      * [300.最长递增子序列](#300最长递增子序列)
+      * [338.比特位计数](#338比特位计数)
+      * [415.字符串相加](#415字符串相加)
       * [443.压缩字符串](#443压缩字符串)
       * [468.验证IP地址](#468验证IP地址)
       * [480.滑动窗口中位数](#480滑动窗口中位数)
@@ -116,6 +123,42 @@ func longestPalindrome(_ s: String) -> String {
 
 ***
 
+## 7.整数反转
+
+[整数反转.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/整数反转.playground)
+
+[题目](https://leetcode-cn.com/problems/reverse-integer/)：给你一个 32 位的有符号整数 x ，返回将 x 中的数字部分反转后的结果。
+
+如果反转后整数超过 32 位的有符号整数的范围 [−231,  231 − 1] ，就返回 0。
+
+假设环境不允许存储 64 位整数（有符号或无符号）。
+
+示例：
+
+```
+输入：x = 123
+输出：321
+```
+
+```
+func reverse(_ x: Int) -> Int {
+    var res = 0
+    var x = x
+    while x != 0 {
+        res = res * 10 + x%10
+        if res > Int32.max || res < Int32.min {
+            return 0
+        }
+        x = x/10
+    }
+    return res
+}
+```
+
+**时间复杂度：O(log|x|) 空间复杂度：O(1)**
+
+***
+
 ## 15.三数之和
 
 [三数之和.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/三数之和.playground)
@@ -194,7 +237,7 @@ func sortArray(_ nums: [Int]) -> [Int] {
 
 [删除链表的倒数第N个结点.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/删除链表的倒数第N个结点.playground)
 
-[题目](https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/)：题目：给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。
+[题目](https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/)：给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。
  
 进阶：你能尝试使用一趟扫描实现吗？
 
@@ -496,6 +539,43 @@ func myPow(_ x: Double, _ n: Int) -> Double {
 
 ***
 
+## 69.x的平方根
+
+[x的平方根.playground](https://github.com/sxxjaeho/iOS-Primer/tree/master/contents/arithmetic/code/x的平方根)
+
+[题目](https://leetcode-cn.com/problems/sqrtx/)：实现 int sqrt(int x) 函数。
+
+计算并返回 x 的平方根，其中 x 是非负整数。
+
+由于返回类型是整数，结果只保留整数的部分，小数部分将被舍去。
+
+示例:
+
+```
+输入: 4
+输出: 2
+```
+
+```
+func mySqrt(_ x: Int) -> Int {
+    var left = 0, right = x, result = 0
+    while left <= right {
+        let mid = left + (right - left) / 2
+        if mid*mid <= x {
+            result = mid
+            left += 1
+        } else {
+            right = mid - 1
+        }
+    }
+    return result
+}
+```
+
+**时间复杂度：O(logx) 空间复杂度：O(1)**
+
+***
+
 ## 70.爬楼梯
 
 [爬楼梯.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/爬楼梯.playground)
@@ -574,6 +654,66 @@ func merge(_ nums1: inout [Int], _ m: Int, _ nums2: [Int], _ n: Int) {
 ```
 
 **时间复杂度：O(n+m) 空间复杂度：O(1)**
+
+***
+
+## 92.反转链表II
+
+[反转链表II.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/反转链表II.playground)
+
+[题目](https://leetcode-cn.com/problems/reverse-linked-list-ii/)：给你单链表的头指针 head 和两个整数 left 和 right ，其中 left <= right 。请你反转从位置 left 到位置 right 的链表节点，返回 反转后的链表 。
+
+示例：
+
+```
+输入：head = [1,2,3,4,5], left = 2, right = 4
+输出：[1,4,3,2,5]
+```
+
+```
+class ListNode {
+    var value: Int
+    var next: ListNode?
+    
+    init(_ value: Int) {
+        self.value = value
+    }
+    
+    func next(_ value: Int) -> ListNode {
+        let node = ListNode(value)
+        next = node
+        return node
+    }
+}
+
+func reverseBetween(_ head: ListNode?, _ left: Int, _ right: Int) -> ListNode? {
+    guard head != nil else {
+        return nil
+    }
+    
+    let reversedHead = ListNode.init(0)
+    reversedHead.next = head!
+    
+    var prevNode = reversedHead
+    for _ in 1..<left {
+        prevNode = prevNode.next!
+    }
+
+    let curNode = prevNode.next
+ 
+    for _ in left..<right {
+        let next = curNode?.next
+        curNode?.next = next?.next
+        
+        next?.next = prevNode.next
+        prevNode.next = next
+    }
+    
+    return reversedHead.next
+}
+```
+
+**时间复杂度：O(n) 空间复杂度：O(n)**
 
 ***
 
@@ -1102,7 +1242,7 @@ func minimumTotal(_ triangle: [[Int]]) -> Int {
 
 [二叉树中的最大路径和.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/二叉树中的最大路径和.playground)
 
-[题目](https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/)：题目：给你一个二叉树的根节点 root ，返回其 最大路径和 。
+[题目](https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/)：给你一个二叉树的根节点 root ，返回其 最大路径和 。
 
 示例：
 ```
@@ -1151,6 +1291,65 @@ func maxGain(_ node :TreeNode?) -> Int {
 ```
 
 **时间复杂度：O(n) 空间复杂度：O(n)**
+
+***
+
+## 136.只出现一次的数字
+
+[只出现一次的数字.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/只出现一次的数字.playground)
+
+[题目](https://leetcode-cn.com/problems/single-number/)：给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。
+
+说明：
+你的算法应该具有线性时间复杂度。 你可以不使用额外空间来实现吗？
+
+示例:
+
+```
+输入: [2,2,1]
+输出: 1
+```
+
+```
+func singleNumber(_ nums: [Int]) -> Int? {
+    var dictionary = [Int: Int]()
+    for num in nums {
+        if dictionary[num] == nil {
+            dictionary[num] = 1
+        } else {
+            dictionary[num]! += 1
+        }
+    }
+    for num in nums {
+        if dictionary[num]! == 1 {
+            return num
+        }
+    }
+    return nil
+}
+
+// 不使用额外空间来实现：异或运算
+// 任何数和 0 做异或运算，结果仍然是原来的数
+// 任何数和其自身做异或运算，结果是 0
+// 异或运算满足交换律和结合律
+// 时间复杂度：O(n)，其中 n 是数组长度。只需要对数组遍历一次。
+// 空间复杂度：O(1)。
+//func singleNumber1(_ nums: [Int]) -> Int? {
+//    var singleNumber = 0
+//    for num in nums {
+//        // 4
+//        // 5
+//        // 7
+//        // 6
+//        // 4
+//        singleNumber = num ^ singleNumber
+//    }
+//    return singleNumber
+//}
+```
+
+**时间复杂度：O(n) 
+空间复杂度：O(∣Σ∣)，其中 Σ 是字符集**
 
 ***
 
@@ -1840,6 +2039,136 @@ func maxSlidingWindow(_ nums: [Int], _ k: Int) -> [Int]? {
 ```
 
 **时间复杂度：O(nlogn) 空间复杂度：O(n)**
+
+***
+
+## 300.最长递增子序列
+
+[最长递增子序列.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/最长递增子序列.playground)
+
+[题目](https://leetcode-cn.com/problems/longest-increasing-subsequence/)：给定数组arr，设长度为n，输出arr的最长递增子序列。（如果有多个答案，请输出其中字典序最小的）
+
+示例:
+
+```
+输入：[2,1,5,3,6,4,8,9,7]
+输出：[1,3,4,8,9]
+```
+
+```
+func LIS ( _ arr: [Int]) -> [Int] {
+    let n = arr.count;
+    
+    var sub = Array(repeating: 0, count: n+1)
+    var dp = Array(repeating: 0, count: n)
+    
+    var len = 1;
+    sub[1] = arr[0];
+    dp[0] = 1;
+    
+    for i in 1..<n {
+        if (sub[len] < arr[i]) {
+            len += 1
+            sub[len] = arr[i];
+            dp[i] = len;
+        } else {
+            var l = 0;
+            var r = len;
+            while (l <= r) {
+                let mid = l + (r - l) / 2;
+                if (sub[mid] >= arr[i]) {
+                    r = mid - 1;
+                } else {
+                    l = mid + 1;
+                }
+            }
+            sub[l] = arr[i];
+            dp[i] = l;
+        }
+    }
+    
+    var res = Array(repeating: 0, count: len);
+    for i in (0..<n).reversed() {
+        if dp[i] == len {
+            len -= 1
+            res[len] = arr[i];
+        }
+    }
+    return res;
+}
+```
+
+**时间复杂度：O(nlogn) 空间复杂度：O(n)**
+
+***
+
+## 338.比特位计数
+
+[比特位计数.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/比特位计数.playground)
+
+[题目](https://leetcode-cn.com/problems/counting-bits/)：给定一个非负整数 num。对于 0 ≤ i ≤ num 范围中的每个数字 i ，计算其二进制数中的 1 的数目并将它们作为数组返回。
+
+示例:
+
+```
+输入: 2
+输出: [0,1,1]
+```
+
+```
+func countBits1(_ num: Int) -> [Int] {
+    if num == 0 {
+        return [0]
+    }
+    var res = [Int](repeating: 0, count: num + 1)
+    for i in 1...num {
+        res[i] = res[i & (i-1)] + 1
+    }
+    return res
+}
+```
+
+**时间复杂度：O(num) 空间复杂度：O(1)**
+
+***
+
+## 415.字符串相加
+
+[字符串相加.playground](https://github.com/sxxjaeho/iOS-Primer/blob/master/contents/arithmetic/code/字符串相加.playground)
+
+[题目](https://leetcode-cn.com/problems/add-strings/)：给定两个字符串形式的非负整数 num1 和num2 ，计算它们的和。
+
+```
+func addStrings(_ num1: String, _ num2: String) -> String {
+    let num1 = [Character](num1)
+    let num2 = [Character](num2)
+    var result = ""
+    var i = num1.count - 1
+    var j = num2.count - 1
+    var add: UInt8 = 0
+    while i>=0 || j>=0 {
+        var x: UInt8 = 0
+        if i >= 0 {
+            x = num1[i].asciiValue! - Character("0").asciiValue!
+        }
+        var y: UInt8 = 0
+        if j >= 0 {
+            y = num2[j].asciiValue! - Character("0").asciiValue!
+        }
+        let sum = x + y + add
+        result = String(sum % 10) + result
+        add = sum / 10
+        i -= 1
+        j -= 1
+    }
+    if add == 1 {
+        result = "1" + result
+    }
+    return result
+}
+```
+
+**时间复杂度：O(max(len1, len2)) 空间复杂度：O(1)**
 
 ***
 
