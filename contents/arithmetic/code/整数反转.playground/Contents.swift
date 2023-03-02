@@ -22,7 +22,7 @@ func reverse(_ x: Int) -> Int {
         // 0 + 3
         // 30 + 2
         // 320 + 1
-        res = res * 10 + x%10
+        res = res * 10 + x % 10
         if res > Int32.max || res < Int32.min {
             return 0
         }

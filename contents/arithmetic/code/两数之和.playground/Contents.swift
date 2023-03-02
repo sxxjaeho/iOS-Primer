@@ -9,8 +9,10 @@ func twoSum(_ nums: [Int], _ target: Int) -> [[Int]] {
     for (index, value) in nums.enumerated() {
         // 与当前遍历的数作和等于目标值的数的下标(之前遍历过的一个数)
         if let differenceIndex = dictionary[target - value] {
+            // [[0, 1]]
             result.append([differenceIndex, index])
         }
+        // {2: 0}
         dictionary[value] = index
     }
     return result

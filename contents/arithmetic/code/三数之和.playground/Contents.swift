@@ -30,7 +30,7 @@ func threeSum(_ nums: [Int], _ target: Int) -> [[Int]] {
         guard index < sortedNums.count - 2 else {
             break
         }
-        // 2.      -4 sortedNums[ahead] = -1, sortedNums[behind] = 2
+        // 2.      -4 sortedNums[behind] = -1, sortedNums[ahead] = 2
         // 3.                             -1,                      2
         // 4.                              0,                      2
         // 5.                              1,                      2
