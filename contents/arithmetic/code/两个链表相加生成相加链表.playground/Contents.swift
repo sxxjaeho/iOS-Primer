@@ -30,9 +30,7 @@ class ListNode {
 // 个位排在链表首部:
 // 7->1->6
 // 5->9->2
-
-// 0      -> nil
-// result -> nil
+// 2->1->9
 
 // reuslt -> 2
 // 0      -> 2
@@ -44,23 +42,23 @@ class ListNode {
 func addTwoNumbers(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
     var head1 = l1, head2 = l2
     let dummy = ListNode(0)
-    
+
     var result = dummy
-    
+
     var sum = 0
     var carry = 0
-    
+
     while head1 != nil || head2 != nil {
         sum = (head1?.val ?? 0) + (head2?.val ?? 0) + carry
         carry = sum / 10
-        
+
         head1 = head1?.next
         head2 = head2?.next
-        
+
         result.next = ListNode(sum % 10)
         result = result.next!
     }
-    
+
     if carry > 0 {
         result.next = ListNode(carry)
         result = result.next!
@@ -85,25 +83,26 @@ if let result = addTwoNumbers(head1, head2) {
 
  示例：
  输入：[9,3,7],[6,3]
- 数出：{1,0,0,0}
+ 输出：{1,0,0,0}
  解释：链表 1 为 9->3->7，链表 2 为 6->3，最后生成新的结果链表为 1->0->0->0
  */
 
-// 个位排在链表首部:
-// 9<-3<-7
-//    6<-3
+// 反转链表
+// 个位排在链表头部:
+// 7->3->9
+// 3->6
+// 1->0->0->0
 
-// result
-// 0       -> result
-// result  -> nil
-
-// 0       -> 0
+// 0       -> nil
 // result
 
-// 0       -> 0 -> 0
+// 0       -> 0 -> nil
 // result
 
-// 1       -> 0 -> 0 -> 0
+// 0       -> 0 -> 0 -> nil
+// result
+
+// 1       -> 0 -> 0 -> 0 -> nil
 // result
 func addTwoNumbers2(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
     var head1 = reverseList(l1), head2 = reverseList(l2)
