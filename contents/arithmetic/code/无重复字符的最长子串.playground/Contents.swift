@@ -12,17 +12,16 @@ import UIKit
  时间复杂度：O(n) 空间复杂度：O(∣Σ∣)，其中 Σ 表示字符集（即字符串中可以出现的字符），∣Σ∣ 表示字符集的大小
  */
 func lengthOfLongestSubstring(_ s: String) -> Int {
-    let characters = Array(s)
-    guard characters.count > 0 else {
+    guard s.count > 0 else {
         return 0
     }
     
     var dic = [Character: Int]()
     var start = 0, length = 0;
     
-    for end in 0..<characters.count {
-        let character = characters[end]
-        if let dummy = dic[character] {
+    for end in 0..<s.count {
+        let char = Array(s)[end]
+        if let dummy = dic[char] {
             // (2, 0)
             // (3, 2)
             // 有重复的就换起点
@@ -36,7 +35,7 @@ func lengthOfLongestSubstring(_ s: String) -> Int {
         // {"p":1, "w":"3", "k":"4"}
         // {"p":1, "w":"3", "k":"4", "e":"5"}
         // {"p":1, "w":"6", "k":"4", "e":"5"}
-        dic[character] = end + 1
+        dic[char] = end + 1
     }
     return length
 }
