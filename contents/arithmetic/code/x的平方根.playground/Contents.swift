@@ -18,13 +18,26 @@ import UIKit
 func mySqrt(_ x: Int) -> Int {
     var left = 0, right = x, result = 0
     while left <= right {
+        // 1.mid: 3
+        // 2.mid: 1
+        // 3.mid: 1
+        // 4.mid: 2
         let mid = left + (right - left) / 2
+        print("mid:\(mid)")
         if mid*mid <= x {
+            // 2.result: 1 left: 1
+            // 3.result: 1 left: 2
+            // 3.result: 2 left: 3
             result = mid
             left += 1
+            print("resutl:\(result)\(left)")
         } else {
+            // 1.right: 2
             right = mid - 1
+            print("right:\(right)")
         }
     }
     return result
 }
+
+print(mySqrt(6))
