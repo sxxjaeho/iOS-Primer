@@ -18,10 +18,16 @@ func subsets(_ nums: [Int]) -> [[Int]] {
         let item = [i]
         for itemArr in result {
             result.append(itemArr + item)
+            // 2.result = [[1], [1, 2]]
+            // 3.reuslt = [[1], [1, 2], [2], [1, 3], [1, 2, 3], [2, 3]]
         }
+        // 1.result = [[1]]
+        // 2.result = [[1], [1, 2], [2]]
+        // 3.result = [[1], [1, 2], [2], [1, 3], [1, 2, 3], [2, 3], [3]]
         result.append(item)
     }
     result.append([])
     return result
-    
 }
+
+print(subsets([1,2,3]))

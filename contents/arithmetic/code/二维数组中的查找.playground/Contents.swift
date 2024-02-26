@@ -12,6 +12,10 @@ func find(_ matrix: [[Int]], _ num: Int) -> Bool {
     while column <= matrix[0].count - 1 && row >= 0 {
         // 当前数 > 目标数 列 -1
         // 当前数 < 目标数 行 +1
+        // 9
+        // 8
+        // 4
+        // 7
         if matrix[row][column] > num {
             column -= 1
         } else if matrix[row][column] < num {

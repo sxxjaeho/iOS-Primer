@@ -37,16 +37,17 @@ func strStr(_ haystack: String, _ needle: String) -> Int {
     return -1
 }
 
+// 理论:
 // KMP 时间复杂度：O(n+m) 空间复杂度：O(m)
-// pi 数组存的咱们最长公共前后缀中，前缀的结尾字符下标
+// pi 数组存的是最长公共前后缀中的前缀的结尾字符下标
 // 例如:bcbcbea
-// b -1
-// bc -1
-// bcb 0
-// bcbc 1
-// bcbcb 2
-// bcbcbe -1
-// pi[-1, -1, 0, 1, 2, -1]
+// b        无公共前后缀   -1
+// bc       无公共前后缀   -1
+// bcb      b            0(b的下标)
+// bcbc     bc           1(c的下标)
+// bcbcb    bcb          2(b的下标)
+// bcbcbe   无公共前后缀   -1
+// pi[-1, -1, 0, 1, 2, -1, -1]
 
 // 过程
 // ↓   ...   ↓
@@ -68,6 +69,29 @@ func strStr(_ haystack: String, _ needle: String) -> Int {
 // ↓    ...    ↓
 // b c b c b e a
 
+//----------------------------------
+
+// 实践:
+// pi[0, 0, 1, 2, 3, 0, 0]
+
+// ↓  ...    ↓
+// b c b c b c b c b e a
+// ↓  ...    ↓
+// b c b c b e a
+//         ↑ 注释:在pi找到b的下标4的元素3,指针回退到下标为3的c
+
+//           ↓...↓
+// b c b c b c b c b e a
+//       ↓...↓
+// b c b c b e a
+//         ↑ 注释:在pi找到b的下标4的元素3,指针回退到下标为3的c
+
+//               ↓ ... ↓
+// b c b c b c b c b e a
+//       ↓ ... ↓
+// b c b c b e a
+
+
 func strStr1(_ haystack: String, _ needle: String) -> Int {
     let n = haystack.count, m = needle.count
     if (m == 0) {
@@ -88,14 +112,40 @@ func strStr1(_ haystack: String, _ needle: String) -> Int {
         pi[i] = j
     }
     
+    // pi:[0, 0, 1, 2, 3, 0, 0]
+    // "bcbcbcbea", "bcbcbea"
+    
     j = 0
     for i in 0..<n {
+        // 1. i = 0
+        // 2. i = 1
+        // 3. i = 2
+        // 4. i = 3
+        // 5. i = 4
+        // *6. i = 5
+        // 7. i = 6
+        // *8. i = 7
+        // 9. i = 8
+        // 10. i = 9
+        // 11. i = 10
         while j > 0 && haystack[i] != needle[j] {
+            // *6.c != e, j = 3
+            // *8.c != e, j = 4
             j = pi[j - 1]
         }
         if haystack[i] == needle[j] {
-            print(haystack[i], needle[j])
             j = j + 1
+            // 1.b = b, j = 1
+            // 2.c = c, j = 2
+            // 3.b = b, j = 3
+            // 4.c = c, j = 4
+            // 5.b = b, j = 5
+            // *6.c = c, j = 4
+            // 7.b = b, j = 6
+            // *8.c = c, j = 4
+            // 9.b = b, j = 5
+            // 10.e = e, j = 6
+            // 11.a = a, j = 7
         }
         if j == m {
             return i - m + 1
@@ -104,4 +154,4 @@ func strStr1(_ haystack: String, _ needle: String) -> Int {
     return -1
 }
 
-print(strStr1("bcbcbdbcbe", "bcbcbea"))
+print(strStr1("bcbcbcbcbea", "bcbcbea"))

@@ -22,8 +22,13 @@ func findNumbersWithSum(_ nums: [Int], _ sum: Int) -> (num1: Int, num2: Int)? {
         if curSum == sum {
             return (nums[behind], nums[ahead])
         } else if curSum > sum {
+            // 15 + 1
+            // 11 + 11
+            // 7 + 4
             ahead -= 1
         } else {
+            // 7 + 1
+            // 7 + 2
             behind += 1
         }
     }
