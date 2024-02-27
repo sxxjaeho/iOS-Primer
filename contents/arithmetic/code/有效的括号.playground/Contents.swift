@@ -21,20 +21,23 @@ func isValid(_ string: String) -> Bool {
 //    // 如果栈顶是右括号,以当前遍历的字符为 value,找出 key 就是左括号
 //    let dictionary1 = ["(": ")", "[": "]", "{": "}"]
     
+    // "([)]"
     for character in string {
         if !dictionary.keys.contains(String(character)) { // 左括号
+            // 1.["("]
+            // 2.["(", "["]
             stack.append(character)
         } else if !(!stack.isEmpty && String(stack.popLast()!) == dictionary[String(character)]) { // 栈顶元素是否与左括号匹配
-            print(stack)
+            // 3."[" != "("
             return false
         }
     }
     return stack.isEmpty
 }
 
-print(isValid("()"))
-print(isValid("()[]{}"))
-print(isValid("(]"))
+//print(isValid("()"))
+//print(isValid("()[]{}"))
+//print(isValid("(]"))
 print(isValid("([)]"))
-print(isValid("{[]}"))
+//print(isValid("{[]}"))
 
