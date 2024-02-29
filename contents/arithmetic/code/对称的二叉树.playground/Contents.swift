@@ -32,12 +32,29 @@ func isSymmetrical(_ node1: BinaryTreeNode?, _ node2: BinaryTreeNode?) -> Bool {
     if node1?.value != node2?.value {
         return false
     }
-    
+    // 1. 8 = 8
+    // 2. 6 = 6
+    // 3. 5 = 5
+    // 4. 7 = 7
     return isSymmetrical(node1?.left, node2?.right) &&
             isSymmetrical(node1?.right, node2?.left)
 }
 
+/*
+     8
+   /   \
+  6     6
+ / \   /  \
+5   7 7    5
+ */
 let root = BinaryTreeNode(value: 8, left: BinaryTreeNode(value: 6, left: BinaryTreeNode(value: 5, left: nil, right: nil), right: BinaryTreeNode(value: 7, left: nil, right: nil)), right: BinaryTreeNode(value: 6, left: BinaryTreeNode(value: 7, left: nil, right: nil), right: BinaryTreeNode(value: 5, left: nil, right: nil)))
+/*
+     7
+   /   \
+  7     7
+ / \   /
+7   7 7
+ */
 let root1 = BinaryTreeNode(value: 7, left: BinaryTreeNode(value: 7, left: BinaryTreeNode(value: 7, left: nil, right: nil), right: BinaryTreeNode(value: 7, left: nil, right: nil)), right: BinaryTreeNode(value: 7, left: BinaryTreeNode(value: 7, left: nil, right: nil), right: nil))
 print(isSymmetrical(root))
 print(isSymmetrical(root1))

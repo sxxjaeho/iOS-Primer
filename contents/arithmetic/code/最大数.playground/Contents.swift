@@ -15,17 +15,16 @@ func largestNumber(_ nums: [Int]) -> String {
     var nums = nums.map { (num) -> String in
         return String(num)
     }
-    
+    // ["10", "2"]
     nums = nums.sorted { (num1, num2) -> Bool in
         return num1 + num2 > num2 + num1
     }
-    
+    // ["2", "10"]
     if nums.count > 0 {
         if (nums[0] as NSString).isEqual(to: "0") {
             return "0"
         }
     }
-    
     return (nums as NSArray).componentsJoined(by: "")
 }
 

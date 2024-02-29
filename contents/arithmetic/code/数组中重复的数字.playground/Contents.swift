@@ -16,7 +16,6 @@ func duplicate(_ nums: [Int]) -> Int? {
     var nums = nums
     for index in 0..<nums.count {
         while nums[index] != index {
-            print(index)
             // 第0位不是0
             // 第0位的值和第0位应该在的位置的值不相等
             // 交换第0位和第0位应该在的位置的值

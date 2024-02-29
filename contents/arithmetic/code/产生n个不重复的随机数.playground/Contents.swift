@@ -19,7 +19,9 @@ func getRandom(_ num: Int) -> [Int] {
     for i in 0..<num {
         let index = Int(arc4random_uniform(UInt32(nums.count - i)))
         res[i] = nums[index]
+        // 将nums取出给res数置为未取过的数
         nums[index] = nums[nums.count - i - 1]
+        print("index = \(index), result:\(res), nums:\(nums)")
     }
     return res
 }

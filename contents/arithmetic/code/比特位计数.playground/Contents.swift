@@ -41,13 +41,31 @@ func countBits1(_ num: Int) -> [Int] {
     for i in 1...num {
         // 清零最低位的1
         // 1.     res[1] = res[(0001 & 0000)] + 1 = 1
-        // 2.     res[2] = res[(0010 & 0000)] + 1 = 1
+        // 2.     res[2] = res[(0010 & 0001)] + 1 = 1
         // 3.     res[3] = res[(0011 & 0010)] + 1 = 2
-        // 4.     res[4] = res[(0100 & 0000)] + 1 = 1
+        // 4.     res[4] = res[(0100 & 0011)] + 1 = 1
         // 5.     res[5] = res[(0101 & 0100)] + 1 = 2
         res[i] = res[i & (i-1)] + 1
     }
     return res
 }
 
-print(countBits1(5))
+// 动态规划——最高有效位
+func countBits2(_ num: Int) -> [Int] {
+    if num == 0 {
+        return [0]
+    }
+    var res = [Int](repeating: 0, count: num + 1)
+    var highBit = 0
+    for i in 1...num {
+        // 判断一个正整数是不是 2 的整数次幂，更新当前的最高有效位
+        if ((i & (i - 1)) == 0) {
+            highBit = i;
+        }
+        // 当前数的bit数为前一个数的bit数+1
+        res[i] = res[i - highBit] + 1;
+    }
+    return res
+}
+
+print(countBits2(7))

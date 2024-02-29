@@ -21,13 +21,30 @@ func maxLength ( _ arr: [Int]) -> Int {
     var start = 0, length = 0;
     
     for end in 0..<arr.count {
+        // 1. num = 2
+        // 2. num = 2
+        // 3. num = 3
+        // 4. num = 4
+        // 5. num = 3
         let num = arr[end]
         if let dummy = dic[num] {
+            // 2. start = max(1, 0)
+            // 5. start = max(3, 1)
             start = max(dummy, start)
         }
+        // 1. length = max(0 - 0 + 1, 0)
+        // 2. length = max(1 - 1 + 1, 1)
+        // 3. length = max(2 - 1 + 1, 1)
+        // 4. length = max(3 - 1 + 1, 2)
+        // 5. length = max(4 - 3 + 1, 3)
         length = max(end - start + 1, length)
         
         dic[num] = end + 1
+        // 1. dic = [2: 1]
+        // 2. dic = [2: 2]
+        // 3. dic = [3: 3]
+        // 4. dic = [2: 2, 3: 3, 4: 4]
+        // 4. dic = [2: 2, 3: 5, 4: 4]
     }
     return length
 }

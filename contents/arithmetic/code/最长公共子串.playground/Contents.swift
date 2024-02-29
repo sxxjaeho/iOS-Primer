@@ -67,7 +67,6 @@ func LCS ( _ str1: String,  _ str2: String) -> String {
 
 print(LCS("1AB2345CD", "12345EF"))
 
-
 //    0  1  2  3  4  5  E  F
 // 0  0  0  0  0  0  0  0  0
 // 1  0  1  0  0  0  0  0  0

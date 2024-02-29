@@ -41,3 +41,11 @@ func longestCommonSubsequence(_ text1: String, _ text2: String) -> Int {
 }
 
 print(longestCommonSubsequence("abcde", "ace"))
+
+//   0 a c e
+// 0 0 0 0 0
+// a 0 1 0 0
+// b 0 0 0 0
+// c 0 0 1 0
+// d 0 0 0 0
+// e 0 0 0 1

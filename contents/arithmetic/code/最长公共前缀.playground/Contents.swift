@@ -21,9 +21,12 @@ func longestCommonPrefix(_ strs: [String]) -> String {
     for string in strs {
         minLength = min(minLength, string.count)
     }
-    var left = 0, right = minLength - 1                 // minLenght = 4
-    while left <= right {                               // 第一轮 left = 0, right = 3, mid = 1, f
-        let mid = left + (right - left) / 2             // 第二轮 left = 2, right = 3, mid = 2, fl
+    // minLenght = 4
+    var left = 0, right = minLength - 1
+    while left <= right {
+        let mid = left + (right - left) / 2
+        // 1. left = 0, right = 3, mid = 1
+        // 2. left = 2, right = 3, mid = 2
         if isCommonPrefix(strs, mid + 1) {
             left = mid + 1
         } else {
@@ -35,6 +38,8 @@ func longestCommonPrefix(_ strs: [String]) -> String {
 
 func isCommonPrefix(_ strs: [String], _ mid: Int) -> Bool {
     let prefix = String(strs.first!.prefix(mid))
+    // 1. mid:2, prefix = fl
+    // 2. mid:3, prefix = flo
     for string in strs {
         if !string.hasPrefix(prefix) {
             return false

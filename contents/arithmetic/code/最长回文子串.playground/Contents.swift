@@ -27,13 +27,37 @@ func longestPalindrome(_ s: String) -> String {
     var maxLen = 0
     for j in 0..<s.count {
         for i in 0...j {
+            // 1. j = 0, i = 0
+            // 2. j = 1, i = 0
+            // 3. j = 1, i = 1
+            // 4. j = 2, i = 0
+            // 5. j = 2, i = 1
+            // 6. j = 2, i = 2
+            // 7. j = 3, i = 0
+            // 8. j = 3, i = 1
+            // 9. j = 3, i = 2
+            // 10. j = 3, i = 3
+            // 11. j = 4, i = 0
+            // 12. j = 4, i = 1
+            // 13. j = 4, i = 2
+            // 14. j = 4, i = 3
+            // 15. j = 4, i = 4
             if s[j] == s[i] {
+                // 1. -1 < 2
+                // 3. -1 < 2
+                // 4. 1 < 2
+                // 6. -1 < 2
+                // 8. 1 < 2
+                // 10. -1 <2
+                //  15. -1 < 2
                 if j-1 - (i+1) + 1 < 2 {
                     dp[i][j] = true
                 } else {
                     dp[i][j] = dp[i+1][j-1]
                 }
                 if j - i + 1 > maxLen && dp[i][j] {
+                    // 1. start = 0, maxLen = 1
+                    // 4. statr = 0, maxLen = 3
                     start = i
                     maxLen = j - i + 1
                 }
@@ -44,7 +68,7 @@ func longestPalindrome(_ s: String) -> String {
     }
     return String(s[start..<start+maxLen])
 }
-print(longestPalindrome("aaaa"))
+print(longestPalindrome("babad"))
 
 //i\j  b   a   b   a   d
 // b   1   0   1   0   0

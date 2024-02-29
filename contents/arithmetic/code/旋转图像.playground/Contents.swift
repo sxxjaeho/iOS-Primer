@@ -50,6 +50,6 @@ func rotate1(_ matrix: inout [[Int]]) {
     }
 }
 
-let matrix = [[1,2,3],[4,5,6],[7,8,9]]
+var matrix = [[1,2,3],[4,5,6],[7,8,9]]
 rotate(&matrix)
 print(matrix)

@@ -29,6 +29,7 @@ func simplifyPath(_ path: String) -> String {
             resPathArray.append(String(curPath))
         }
     }
+    // resPathArray = ["a", "b", "c"]
     return "/" + resPathArray.joined(separator: "/")
 }
 
