@@ -99,13 +99,3 @@ node3.next = node4
 if let res = getIntersectionNode(headA, headB) {
     print(res.val)
 }
-
-//struct ListNode* FindFirstCommonNode(struct ListNode* pHead1, struct ListNode* pHead2 ) {
-//    struct ListNode *node1 = pHead1;
-//    struct ListNode *node2 = pHead2;
-//    while (node1 != node2) {
-//        node1 = node1 ? node1->next : pHead2;
-//        node2 = node2 ? node2->next : pHead1;
-//    }
-//    return node1;
-//}

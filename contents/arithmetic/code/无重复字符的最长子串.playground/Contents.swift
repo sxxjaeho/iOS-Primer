@@ -31,7 +31,6 @@ func lengthOfLongestSubstring(_ s: String) -> Int {
             // 3.start: max(2, 0)
             // 6.       max(3, 2)
             // 有重复的就换起点
-            print(dummy, start)
             start = max(dummy, start)
         }
         // 1.length: max(1, 0)

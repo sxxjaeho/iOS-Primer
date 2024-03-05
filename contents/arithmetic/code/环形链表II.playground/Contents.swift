@@ -108,24 +108,3 @@ node3.next = node1
 if let node = detectCycle(head) {
     print(node.value)
 }
-
-//struct ListNode* detectCycle(struct ListNode* head ) {
-//    if (head == NULL || head->next == NULL) {
-//        return NULL;
-//    }
-//    struct ListNode *fast = head;
-//    struct ListNode *slow = head;
-//    while (fast != NULL && fast->next != NULL) {
-//        slow = slow->next;
-//        fast = fast->next->next;
-//        if (fast == slow) {
-//            struct ListNode *ptr = head;
-//            while (ptr != slow) {
-//                ptr = ptr->next;
-//                slow = slow->next;
-//            }
-//            return ptr;
-//        }
-//    }
-//    return NULL;
-//}

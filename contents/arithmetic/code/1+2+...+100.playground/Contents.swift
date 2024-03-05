@@ -53,3 +53,16 @@ func sum5(_ n: Int, _ m: Int, _ s: Int) -> Int {
 }
 
 print(sum5(1, 10, 2))
+
+// swap(a, b)
+func swap(_ a: inout Int, _ b: inout Int) {
+    (a, b) = (b, a)
+}
+func swap1(_ a: inout Int, _ b: inout Int) {
+    a = a ^ b;
+    b = a ^ b;
+    a = a ^ b;
+}
+var a = 1, b = 2
+swap1(&a, &b)
+print(a, b)

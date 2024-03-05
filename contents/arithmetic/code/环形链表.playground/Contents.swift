@@ -58,30 +58,4 @@ node1.next = node2
 node2.next = node3
 node3.next = node1
 
-//let head = ListNode(1)
-//let node1 = ListNode(2)
-//head.next = node1
-//node1.next = head
-
-//let head = ListNode(1)
-
 print(hasCycle(head))
-
-
-//#include <stdbool.h>
-// 
-//bool hasCycle(struct ListNode* head ) {
-//    if (head == NULL || head->next == NULL) {
-//        return false;
-//    }
-//    struct ListNode *fast = head;
-//    struct ListNode *slow = head;
-//    while(fast != NULL && fast->next != NULL) {
-//        fast = fast->next->next;
-//        slow = slow->next;
-//        if(fast == slow) {
-//           return true;
-//        }
-//    }
-//    return false;
-//}

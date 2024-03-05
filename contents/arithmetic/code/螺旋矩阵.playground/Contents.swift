@@ -18,19 +18,24 @@ func spiralOrder(_ matrix: [[Int]]) -> [Int] {
     while left <= right && top <= bottom {
         for column in left...right {
             res.append(matrix[top][column])
+            // 1. res = [1, 2, 3]
+            // 2. res = [1, 2, 3, 6, 9, 8, 7, 4, 5]
         }
         if top + 1 <= bottom {
             for row in top + 1...bottom {
                 res.append(matrix[row][right])
+                // 1. res = [1, 2, 3, 6, 9]
             }
         }
         if left <= right - 1 && top < bottom   {
             for colunm in (left...right - 1).reversed() {
                 res.append(matrix[bottom][colunm])
+                // 1. res = [1, 2, 3, 6, 9, 8, 7]
             }
             if top + 1 <= bottom - 1 {
                 for row in (top + 1...bottom - 1).reversed() {
                     res.append(matrix[row][left])
+                    // 1. res = [1, 2, 3, 6, 9, 8, 7, 4]
                 }
             }
         }
@@ -41,6 +46,8 @@ func spiralOrder(_ matrix: [[Int]]) -> [Int] {
     }
     return res
 }
+
+print(spiralOrder([[1,2,3],[4,5,6],[7,8,9]]))
 
 //(top,left)           (top,right)         //上 (top,left)...(top,right)
 //    1          2          3              //右 (top+1,right)...(bottm,right)

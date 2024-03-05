@@ -11,7 +11,8 @@ func reverseWords(_ sentence: String) -> String {
         return ""
     }
     // 整理字符串,出去多余的" "
-    var chars = Array(trimmingCharacters(sentence))
+//    var chars = Array(trimmingCharacters(sentence))
+    var chars = Array(sentence)
     var start = 0
     reverse(&chars, 0, chars.count - 1)
     for i in 0...chars.count - 1 {

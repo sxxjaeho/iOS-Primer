@@ -1,7 +1,7 @@
 import UIKit
 
 /*
- 题目：给你一个二叉树的根节点 root ，返回其 最大路径和 。
+ 题目：给你一个二叉树的根节点 root ，返回其最大路径和。
  
  示例：
         -10
@@ -57,3 +57,7 @@ func maxGain(_ node :TreeNode?) -> Int {
     
     return node.val + max(leftGain, rightGain);
 }
+
+let root = TreeNode(val: -10, left: TreeNode(val: 9, left: nil, right: nil), right: TreeNode(val: 20, left: TreeNode(val: 15, left:  nil, right: nil), right: TreeNode(val: 7, left:  nil, right: nil)))
+maxPathSum(root)
+print(maxSum)
